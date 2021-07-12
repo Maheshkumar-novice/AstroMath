@@ -9,6 +9,9 @@
     <title>TOP Jam 1</title>
   </head>
   <body>
+
+    <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
+
     <header class="header">
       <div class="header__icon">
         <i class="fas fa-cog header__settings-icon"></i>
@@ -27,8 +30,14 @@
         ></span>
       </div>
     </header>
+
     <main class="main">
-      <div class="main__"></div>
+        <div class="main__options">
+            <audio class="audio__hover" src="./assets/Music/selection/hover2.mp3"></audio>
+            <audio class="audio__click" src="./assets/Music/selection/click.mp3"></audio>
+            <h2 class="main__option main__resume">Resume</h2>
+            <h2 class="main__option main__newgame">NewGame</h2>
+        </div>
     </main>
 
     <!-- icon-link -->
@@ -39,5 +48,8 @@
       src="https://kit.fontawesome.com/a6cc4a65f2.js"
       crossorigin="anonymous"
     ></script>
+
+    <!--js-link-->
+    <script src="./js/music.js"></script>
   </body>
 </html>
