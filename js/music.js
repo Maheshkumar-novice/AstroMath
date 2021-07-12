@@ -24,4 +24,4 @@ options.forEach(option => {
     option.addEventListener("click", clickMusic);
 });
 
-// playMusic();
+playMusic();
