@@ -22,7 +22,7 @@
         </p> -->
       </div>
       <div class="header__icon">
-        <span
+        <!-- <span
           class="iconify header__info-icon"
           data-inline="false"
           data-icon="fluent:book-question-mark-24-filled"
@@ -31,7 +31,8 @@
           class="iconify none header__info-rtl-icon"
           data-icon="fluent:book-question-mark-rtl-24-filled"
           data-inline="false"
-        ></span>
+        ></span> -->
+        <i class="fas fa-question-circle header__info-icon"></i>
       </div>
     </header>
 
@@ -59,11 +60,12 @@
 
     <!-- init pop up -->
     <section class="popup">
-      <h2 class="popup__title">
-        Welcome <span class="popup__username">Sam</span> |
-      </h2>
+      <h2 class="popup__title">Welcome <span class="popup__username">Sam</span></h2>
+      <!-- <h2 class="popup__title">
+        Welcome <span class="popup__username">Sam |</span>
+      </h2> -->
       <p class="popup__description">
-        Destroy Asteroids by Solving Math and Save The Earth
+        Destroy <span class="primary-color">Asteroids</span> by Solving <span class="primary-color">Math</span> and Save <span class="primary-color">The Earth</span>
       </p>
       <div class="popup__buttons">
         <button class="popup__button">Play</button>
@@ -75,7 +77,10 @@
     <section class="settings none">
       <div class="settings__item">
         <h2 class="settings__title settings__sound">Sound:</h2>
-        <img class="settings__sound--icon settings__action" src="./assets/images/sound.svg">
+        <img
+          class="settings__sound--icon settings__action"
+          src="./assets/images/sound.svg"
+        />
       </div>
       <div class="settings__item">
         <h2 class="settings__title">Username:</h2>
@@ -94,27 +99,31 @@
 
     <!-- info -->
     <section class="info none">
-     <h3 class="info__tagline">Destroy Asteroids by Solving Math and Save The Earth</h3>
-     <div class="info__stars">
-       <h2 class="info__star-heading">Star Calculation</h2>
-       <div class="info__star-details">
-        <div class="info__star-item-100">
-          <img src="./assets/images/3.png" alt="">
-          <p>- 100% Destruction</p>
+      <h3 class="info__tagline">
+        Destroy Asteroids by Solving Math and Save The Earth
+      </h3>
+      <div class="info__stars">
+        <h2 class="info__star-heading">Star Calculation</h2>
+        <div class="info__star-details">
+          <div class="info__star-item-100">
+            <img src="./assets/images/3.png" alt="" />
+            <p>- 100% Destruction</p>
+          </div>
+          <div class="info__star-item-75">
+            <img src="./assets/images/2.png" alt="" />
+            <p>- 75% Destruction</p>
+          </div>
+          <div class="info__star-item-50">
+            <img src="./assets/images/1.png" alt="" />
+            <p>- 50% Destruction</p>
+          </div>
         </div>
-        <div class="info__star-item-75">
-          <img src="./assets/images/2.png" alt="">
-          <p>- 75% Destruction</p>
-        </div>
-        <div class="info__star-item-50">
-          <img src="./assets/images/1.png" alt="">
-          <p>- 50% Destruction</p>
-        </div>
-       </div>
-     </div>
-     <p class="info__levels">Click Current Level to see all levels</p>
+      </div>
+      <p class="info__levels">
+        Click <span class="info__level-text">Current Level</span> to see all
+        levels
+      </p>
     </section>
-
 
     <!-- icon-link -->
     <!--iconify-->

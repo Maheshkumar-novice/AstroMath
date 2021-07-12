@@ -29,6 +29,6 @@ popupButton.addEventListener("click", (e) => {
     document.body.classList.remove("blur");
     document.body.classList.add("not-home");
     document.querySelector(".popup").classList.add("none");
-    // playMusic();
+    playMusic();
 })
 
