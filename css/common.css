@@ -10,10 +10,11 @@
 
 :root {
   --poppins: Poppins, "sans-serif";
-  --yellow: #fee660;
-  --purple: #9a24ff;
-  --red: #fc0c0c;
+  --primary-color: #fee660;
+  --secondary-color: #9a24ff;
+  --danger-color: #fc0c0c;
   --orange: #ff7b01;
+  font-size: 62.5%;
 }
 
 html {
@@ -22,7 +23,7 @@ html {
   background-repeat: no-repeat;
   font-family: var(--poppins);
   font-weight: bold;
-  color: var(--yellow);
+  color: var(--primary-color);
 }
 
 body {
@@ -32,44 +33,50 @@ body {
   flex-direction: column;
 }
 
-header{
-  height: 200px; 
-}
-
-.nav{
-  padding: 0 2rem;
+.header {
+  padding: 0 3rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.title-cnt{
+.header__text {
   text-align: center;
 }
 
-.title{
-  font-size: 6rem;
+.header__title {
+  font-size: 10rem;
   color: var(--purple);
 }
 
-.user{
-  font-size: 2rem;
+.header__greeting {
+  font-size: 3rem;
 }
 
-.user-name{
-  color: var(--purple);
+.header__username {
+  color: var(--secondary-color);
 }
 
-.setting, .info{
-  padding: 2rem 0;
+.header__icon {
+  padding: 3rem 0;
 }
 
-.setting-ic ,.info-ic {
-  color: #fee660;
-  font-size: 80px;
+.header__settings-icon,
+.header__info-icon {
+  color: var(--primary-color);
+  font-size: 8rem;
 }
 
-main{
+.main {
   flex: 1;
+}
+
+/* Utilities */
+.none {
+  display: none !important;
+}
+
+.hidden {
+  visibility: hidden !important;
 }
