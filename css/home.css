@@ -88,7 +88,7 @@ html {
 }
 
 .popup__button {
-  width: 15rem;
+  width: 20rem;
   height: 5rem;
   margin: 1rem;
   border-radius: 15px;
@@ -101,9 +101,19 @@ html {
   cursor: pointer;
 }
 
+.popup__button--invert {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
 .popup__button:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
+}
+
+.popup__button--invert:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 body.blur header,
