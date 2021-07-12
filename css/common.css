@@ -72,7 +72,7 @@ a {
   color: var(--primary-color);
   font-size: 8rem;
   cursor: pointer;
-  transition: transform 1s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .header__info-icon:hover {
