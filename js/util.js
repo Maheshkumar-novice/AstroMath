@@ -1,16 +1,8 @@
-const infoIc = document.querySelector(".header__info-icon");
-const infoRtlIc = document.querySelector(".header__info-rtl-icon");
-const infoCnt = document.querySelector(".header__icon:last-child");
-
-infoCnt.addEventListener("mouseenter", (e) => {
-  //<span class="iconify" data-icon="fluent:book-question-mark-rtl-24-filled" data-inline="false"></span>
-});
-
 const body = document.body;
 const popup = document.querySelector(".popup");
 const settings = document.querySelector(".settings");
 const info = document.querySelector(".info");
-const infoIcon = document.querySelector(".header__title");
+const infoIcon = document.querySelector(".header__info-icon");
 const settingIcon = document.querySelector(".header__settings-icon");
 const creditMenu = document.querySelector(".footer__credit");
 const credits = document.querySelector(".credits");
@@ -83,3 +75,12 @@ function check(arg) {
   }
   
 }
+
+// let docStyle = document.documentElement.style;
+// let heroText = document.querySelector('.popup__title').textContent;
+
+// function updateHeroLength() {
+//     docStyle.setProperty('--typewriterCharacters', heroText.length);
+// }
+
+// window.addEventListener('load', updateHeroLength);
