@@ -6,11 +6,11 @@ html{
     flex: 1;
     padding: 8rem 0;
     font-size: 4rem;
+    display: flex;
   }
   
   .main__option{
     margin: 4rem 0 0 0;
-    width: fit-content;
     position: relative;
     cursor: pointer;
   }
