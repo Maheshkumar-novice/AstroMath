@@ -47,7 +47,7 @@ body {
 
 .header__title {
   font-size: 10rem;
-  color: var(--purple);
+  color: var(--secondary-color);
 }
 
 .header__greeting {
