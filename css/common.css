@@ -33,7 +33,7 @@ body {
   flex-direction: column;
 }
 
-a{
+a {
   text-decoration: none;
   color: var(--primary-color);
 }
@@ -75,16 +75,14 @@ a{
   transition: transform 1s ease-out;
 }
 
-.header__info-icon:hover{
+.header__info-icon:hover {
   color: var(--secondary-color);
 }
 
-.header__settings-icon:hover{
+.header__settings-icon:hover {
   transform: rotate(180deg);
   color: var(--secondary-color);
 }
-
-
 
 /* Utilities */
 .none {
