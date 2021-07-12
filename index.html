@@ -9,7 +9,6 @@
     <title>TOP Jam 1</title>
   </head>
   <body>
-
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
 
     <header class="header">
@@ -28,17 +27,35 @@
           data-inline="false"
           data-icon="fluent:book-question-mark-24-filled"
         ></span>
+        <span
+          class="iconify none header__info-rtl-icon"
+          data-icon="fluent:book-question-mark-rtl-24-filled"
+          data-inline="false"
+        ></span>
       </div>
     </header>
 
     <main class="main">
-        <div class="main__options">
-            <audio class="audio__hover" src="./assets/Music/selection/hover2.mp3"></audio>
-            <audio class="audio__click" src="./assets/Music/selection/click.mp3"></audio>
-            <h2 class="main__option main__resume">Resume</h2>
-            <h2 class="main__option main__newgame">NewGame</h2>
-        </div>
+      <div class="main__options">
+        <audio
+          class="audio__hover"
+          src="./assets/Music/selection/hover2.mp3"
+        ></audio>
+        <audio
+          class="audio__click"
+          src="./assets/Music/selection/click.mp3"
+        ></audio>
+        <h2 class="main__option main__resume">Resume</h2>
+        <h2 class="main__option main__newgame">NewGame</h2>
+      </div>
     </main>
+
+    <footer class="footer">
+      <p class="footer__level">
+        Current Level: <span class="footer__currentlevel">10</span>
+      </p>
+      <a href="#" class="footer__credit">Credits</a>
+    </footer>
 
     <!-- icon-link -->
     <!--iconify-->
@@ -50,6 +67,7 @@
     ></script>
 
     <!--js-link-->
+    <script src="./js/util.js"></script>
     <script src="./js/music.js"></script>
   </body>
 </html>
