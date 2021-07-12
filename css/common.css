@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
+
 *,
 *::before,
 *::after {
@@ -6,7 +8,68 @@
   box-sizing: border-box;
 }
 
+:root {
+  --poppins: Poppins, "sans-serif";
+  --yellow: #fee660;
+  --purple: #9a24ff;
+  --red: #fc0c0c;
+  --orange: #ff7b01;
+}
+
+html {
+  background: url("../assets/images/earth-space-scene/32313.jpg") center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: var(--poppins);
+  font-weight: bold;
+  color: var(--yellow);
+}
+
 body {
   min-height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  height: 200px; 
+}
+
+.nav{
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-cnt{
+  text-align: center;
+}
+
+.title{
+  font-size: 6rem;
+  color: var(--purple);
+}
+
+.user{
+  font-size: 2rem;
+}
+
+.user-name{
+  color: var(--purple);
+}
+
+.setting, .info{
+  padding: 2rem 0;
+}
+
+.setting-ic ,.info-ic {
+  color: #fee660;
+  font-size: 80px;
+}
+
+main{
+  flex: 1;
 }
