@@ -70,6 +70,36 @@ body {
 
 .main {
   flex: 1;
+  padding: 8rem 0;
+  font-size: 4rem;
+}
+
+.main__option{
+  margin: 4rem 0 0 0;
+  width: fit-content;
+  position: relative;
+  cursor: pointer;
+}
+
+.main__options{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.main__resume:hover, .main__newgame:hover{
+  color: var(--orange);
+}
+
+.main__resume::before, .main__newgame::before{
+  content: url("../assets/images/Fire.svg");
+  position: absolute;
+  top: -17px;
+  left: -170px;
+  display: none;
+}
+
+.main__resume:hover:before, .main__newgame:hover:before{
+  display: initial;
 }
 
 /* Utilities */
