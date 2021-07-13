@@ -6,15 +6,17 @@ const info = document.querySelector(".info");
 const infoIcon = document.querySelector(".header__info-icon");
 const creditMenu = document.querySelector(".footer__credit");
 const settingIcon = document.querySelector(".header__settings-icon");
-const levelMenu =
-  document.querySelector(".footer__level") || dummy;
-const popup =
-  document.querySelector(".popup") || dummy;
-const credits =
-  document.querySelector(".credits") || dummy;
+const levelMenu = document.querySelector(".footer__level") || dummy;
+const popup = document.querySelector(".popup") || dummy;
+const credits = document.querySelector(".credits") || dummy;
 
+settingIcon.addEventListener("click", settingsView);
+infoIcon.addEventListener("click", infoView);
+if (!credits.classList.contains("dummy")) {
+  creditMenu.addEventListener("click", creditsView);
+}
 
-settingIcon.addEventListener("click", (e) => {
+function settingsView() {
   info.classList.add("none");
   credits.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
@@ -28,9 +30,9 @@ settingIcon.addEventListener("click", (e) => {
     settings.classList.toggle("none");
     check(2);
   }
-});
+}
 
-infoIcon.addEventListener("click", (e) => {
+function infoView() {
   settings.classList.add("none");
   credits.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
@@ -44,27 +46,22 @@ infoIcon.addEventListener("click", (e) => {
     info.classList.toggle("none");
     check(2);
   }
-});
+}
 
-if (!credits.classList.contains("dummy")) {
-  creditMenu.addEventListener("click", (e) => {
-    info.classList.add("none");
-    settings.classList.add("none");
-    if (
-      body.classList.contains("not-home") &&
-      popup.classList.contains("none")
-    ) {
-      body.classList.remove("blur");
-      body.classList.toggle("blur");
-      credits.classList.toggle("none");
-      check(1);
-    } else {
-      popup.classList.remove("none");
-      popup.classList.toggle("none");
-      credits.classList.toggle("none");
-      check(2);
-    }
-  });
+function creditsView() {
+  info.classList.add("none");
+  settings.classList.add("none");
+  if (body.classList.contains("not-home") && popup.classList.contains("none")) {
+    body.classList.remove("blur");
+    body.classList.toggle("blur");
+    credits.classList.toggle("none");
+    check(1);
+  } else {
+    popup.classList.remove("none");
+    popup.classList.toggle("none");
+    credits.classList.toggle("none");
+    check(2);
+  }
 }
 
 function check(arg) {
@@ -90,6 +87,7 @@ function check(arg) {
 const nameEditIcon = document.querySelector(".settings__edit-icon") || dummy;
 const nameInput = document.querySelector(".settings__input") || dummy;
 const popupUsername = document.querySelector(".popup__username") || dummy;
+const userChangeButton = document.querySelector(".popup__button--change-user");
 let editing = true;
 
 nameEditIcon.addEventListener("click", (e) => {
@@ -107,7 +105,7 @@ nameEditIcon.addEventListener("click", (e) => {
     }
     setUserName(nameInput.value);
     popupUsername.textContent = nameInput.value;
-    // positionCursor(nameInput);
+        // positionCursor(nameInput);
   }
   editing = !editing;
 });
@@ -133,6 +131,11 @@ function setUserName(name) {
 function getUserName() {
   return localStorage.getItem("user") || "Jaam";
 }
+
+userChangeButton.addEventListener("click", (e) => {
+  settingsView();
+  nameEditIcon.click();
+});
 
 window.addEventListener("load", (e) => {
   nameInput.value = getUserName();
