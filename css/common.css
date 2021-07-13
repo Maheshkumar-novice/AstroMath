@@ -68,7 +68,8 @@ a {
 }
 
 .header__settings-icon,
-.header__info-icon {
+.header__info-icon,
+.header__volume-icon {
   color: var(--primary-color);
   font-size: 8rem;
   cursor: pointer;
@@ -175,8 +176,9 @@ body.blur main {
 }
 
 .settings__sound--icon {
+  cursor: pointer;
   width: 10rem;
-  height: 10rem;
+  /* height: 10rem; */
 }
 
 .settings__action--username {
