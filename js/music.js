@@ -2,7 +2,7 @@ const themeAudio = document.querySelector(".audio__theme");
 const hoverAudio = document.querySelector(".audio__hover");
 const clickAudio = document.querySelector(".audio__click");
 const options = document.querySelectorAll(".main__option");
-const popupButton = document.querySelector(".popup__button") || document.querySelector(".dummy");   
+const popupButton = document.querySelector(".popup__button") || dummy;   
 const soundToggle = document.querySelector(".settings__sound--icon");
 let soundSrc, playable;
 

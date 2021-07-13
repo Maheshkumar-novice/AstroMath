@@ -60,12 +60,16 @@
 
     <!-- init pop up -->
     <section class="popup popup__active">
-      <h2 class="popup__title">Welcome <span class="popup__username">Sam</span></h2>
+      <h2 class="popup__title">
+        Welcome <span class="popup__username">Sam</span>
+      </h2>
       <!-- <h2 class="popup__title">
         Welcome <span class="popup__username">Sam |</span>
       </h2> -->
       <p class="popup__description">
-        Destroy <span class="primary-color">Asteroids</span> by Solving <span class="primary-color">Math</span> and Save <span class="primary-color">The Earth</span>
+        Destroy <span class="primary-color">Asteroids</span> by Solving
+        <span class="primary-color">Math</span> and Save
+        <span class="primary-color">The Earth</span>
       </p>
       <div class="popup__buttons">
         <button class="popup__button">Play</button>
@@ -84,7 +88,18 @@
       </div>
       <div class="settings__item">
         <h2 class="settings__title">Username:</h2>
-        <p class="settings__action settings__action--username">Sam</p>
+        <div class="settings__name-holder">
+          <img
+            src="./assets/images/edit.svg"
+            alt=""
+            class="settings__edit-icon"
+          />
+          <input
+            class="settings__input settings__input--username"
+            value="sam"
+            readonly
+          />
+        </div>
       </div>
     </section>
 
@@ -100,7 +115,8 @@
     <!-- info -->
     <section class="info none">
       <h3 class="info__tagline">
-        Destroy Asteroids by Solving Math and Save The Earth
+        Destroy <span class="secondary-color">Asteroids</span> by Solving
+        <span class="secondary-color">Math</span> and Save <span class="secondary-color">The Earth</span>
       </h3>
       <div class="info__stars">
         <h2 class="info__star-heading">Star Calculation</h2>
