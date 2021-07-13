@@ -16,11 +16,12 @@
   --orange: #ff7b01;
   font-size: 62.5%;
   --site-title: clamp(4rem, 5vw, 10rem);
-  --title: clamp(1.95rem, 5vw, 6rem);
+  --title: clamp(2rem, 5vw, 6rem);
   --icon-size: clamp(3rem, 5vw, 8rem);
   --description-text: clamp(1.5rem, 5vw, 4rem);
   --text: clamp(2rem, 5vw, 3rem);
   --btn-text: clamp(1.5rem, 5vw, 2rem);
+  --small-text: clamp(1.2rem, 5vw, 2rem);
 }
 
 html {
@@ -37,9 +38,16 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  text-shadow: 1px 2px black;
+  -webkit-tap-highlight-color: transparent;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
 }
 
@@ -114,6 +122,10 @@ a {
   flex-direction: column;
   gap: 3rem;
   border-radius: 25px;
+}
+
+.popup {
+  margin-top: 20rem;
 }
 
 .popup__title,
@@ -220,8 +232,12 @@ body.blur main {
   display: block;
 }
 
+/* .info {
+  text-shadow: 1px 2px black;
+} */
+
 .info__tagline {
-  font-size: var(--text);
+  font-size: var(--small-text);
   color: var(--primary-color);
   text-align: center;
 }
@@ -294,6 +310,9 @@ body.blur main {
   .header__settings-icon {
     font-size: 4rem;
   } */
+  .info__star-details {
+    gap: 2rem;
+  }
   .info__star-details > * {
     flex-direction: column;
   }
