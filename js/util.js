@@ -1,10 +1,12 @@
 const body = document.body;
-const popup = document.querySelector(".popup");
 const settings = document.querySelector(".settings");
 const info = document.querySelector(".info");
 const infoIcon = document.querySelector(".header__info-icon");
-const settingIcon = document.querySelector(".header__settings-icon");
 const creditMenu = document.querySelector(".footer__credit");
+const settingIcon = document.querySelector(".header__settings-icon");
+const levelMenu = document.querySelector(".footer__level") || document.querySelector(".dummy");
+const popup = 
+  document.querySelector(".popup") || document.querySelector(".dummy");
 const credits =
   document.querySelector(".credits") || document.querySelector(".dummy");
 
