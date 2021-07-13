@@ -42,6 +42,17 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+body.blur {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+body.blur main {
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  min-height: 500px;
+}
+
 h1,
 h2,
 h3,
@@ -172,16 +183,6 @@ a {
 .popup__button--invert:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-}
-
-body.blur {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-body.blur main {
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
 }
 
 .settings__item {
