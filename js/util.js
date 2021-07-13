@@ -93,7 +93,9 @@ const popupUsername = document.querySelector(".popup__username") || dummy;
 const userChangeButton = document.querySelector(".popup__button--change-user");
 let editing = true;
 
-nameEditIcon.addEventListener("click", (e) => {
+nameEditIcon.addEventListener("click", editName);
+
+function editName() {
   if (editing) {
     nameInput.classList.add("border-bottom");
     nameInput.removeAttribute("readonly");
@@ -108,10 +110,11 @@ nameEditIcon.addEventListener("click", (e) => {
     }
     setUserName(nameInput.value);
     popupUsername.textContent = nameInput.value;
-        // positionCursor(nameInput);
+    settingsView();
+    // positionCursor(nameInput);
   }
   editing = !editing;
-});
+}
 
 function positionCursor(end) {
   let len = end.value.length;
