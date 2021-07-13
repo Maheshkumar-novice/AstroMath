@@ -90,7 +90,7 @@ function check(arg) {
 const nameEditIcon = document.querySelector(".settings__edit-icon") || dummy;
 const nameInput = document.querySelector(".settings__input") || dummy;
 const popupUsername = document.querySelector(".popup__username") || dummy;
-const userChangeButton = document.querySelector(".popup__button--change-user");
+const userChangeButton = document.querySelector(".popup__button--change-user") || dummy;
 let editing = true;
 
 nameEditIcon.addEventListener("click", editName);
