@@ -171,8 +171,8 @@ body.blur main {
   justify-content: space-between;
 }
 
-.settings__action:last-child {
-  text-align: right;
+.settings__item img {
+  cursor: pointer;
 }
 
 .settings__sound--icon {
@@ -181,8 +181,28 @@ body.blur main {
   /* height: 10rem; */
 }
 
-.settings__action--username {
+.settings__input--username {
+  outline: none;
+  border: none;
+  background-color: inherit;
   color: var(--secondary-color);
+  text-align: right;
+}
+
+.settings__input {
+  text-transform: capitalize;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 6rem;
+  width: 5rem;
+  flex: 1;
+}
+
+.settings__name-holder {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 2rem;
 }
 
 .credits__item {
@@ -238,4 +258,13 @@ body.blur main {
 
 .primary-color {
   color: var(--primary-color);
+}
+
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.border-bottom {
+  border: none;
+  border-bottom: 3px solid var(--primary-color);
 }

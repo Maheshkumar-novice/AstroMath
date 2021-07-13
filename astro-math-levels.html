@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOP Jam 1</title>
-    <link rel="stylesheet" href="./css/common.css">
-    
-</head>
-<body class="not-home">
-    
+    <link rel="stylesheet" href="./css/common.css" />
+  </head>
+  <body class="not-home">
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
 
     <header class="header">
@@ -36,7 +34,18 @@
       </div>
       <div class="settings__item">
         <h2 class="settings__title">Username:</h2>
-        <p class="settings__action settings__action--username">Sam</p>
+        <div class="settings__name-holder">
+          <img
+            src="./assets/images/edit.svg"
+            alt=""
+            class="settings__edit-icon"
+          />
+          <input
+            class="settings__input settings__input--username"
+            value="sam"
+            readonly
+          />
+        </div>
       </div>
     </section>
 
@@ -80,6 +89,5 @@
     <!--js-link-->
     <script src="./js/util.js"></script>
     <script src="./js/music.js"></script>
-
-</body>
+  </body>
 </html>

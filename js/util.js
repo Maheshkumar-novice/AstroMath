@@ -1,14 +1,18 @@
+// Section Navigation
 const body = document.body;
+const dummy = document.querySelector(".dummy");
 const settings = document.querySelector(".settings");
 const info = document.querySelector(".info");
 const infoIcon = document.querySelector(".header__info-icon");
 const creditMenu = document.querySelector(".footer__credit");
 const settingIcon = document.querySelector(".header__settings-icon");
-const levelMenu = document.querySelector(".footer__level") || document.querySelector(".dummy");
-const popup = 
-  document.querySelector(".popup") || document.querySelector(".dummy");
+const levelMenu =
+  document.querySelector(".footer__level") || dummy;
+const popup =
+  document.querySelector(".popup") || dummy;
 const credits =
-  document.querySelector(".credits") || document.querySelector(".dummy");
+  document.querySelector(".credits") || dummy;
+
 
 settingIcon.addEventListener("click", (e) => {
   info.classList.add("none");
@@ -82,11 +86,55 @@ function check(arg) {
   }
 }
 
-// let docStyle = document.documentElement.style;
-// let heroText = document.querySelector('.popup__title').textContent;
+// Settings of UserName
+const nameEditIcon = document.querySelector(".settings__edit-icon") || dummy;
+const nameInput = document.querySelector(".settings__input") || dummy;
+const popupUsername = document.querySelector(".popup__username") || dummy;
+let editing = true;
 
-// function updateHeroLength() {
-//     docStyle.setProperty('--typewriterCharacters', heroText.length);
-// }
+nameEditIcon.addEventListener("click", (e) => {
+  if (editing) {
+    nameInput.classList.add("border-bottom");
+    nameInput.removeAttribute("readonly");
+    nameEditIcon.src = "./assets/images/edit-save.svg";
+    positionCursor(nameInput);
+  } else {
+    nameInput.classList.remove("border-bottom");
+    nameInput.setAttribute("readonly", true);
+    nameEditIcon.src = "./assets/images/edit.svg";
+    if (nameInput.value == "") {
+      nameInput.value = "Jaam";
+    }
+    setUserName(nameInput.value);
+    popupUsername.textContent = nameInput.value;
+    // positionCursor(nameInput);
+  }
+  editing = !editing;
+});
 
-// window.addEventListener('load', updateHeroLength);
+function positionCursor(end) {
+  let len = end.value.length;
+  if (end.setSelectionRange) {
+    end.focus();
+    end.setSelectionRange(len, len);
+  } else if (end.createTextRange) {
+    var t = end.createTextRange();
+    t.collapse(true);
+    t.moveEnd("character", len);
+    t.moveStart("character", len);
+    t.select();
+  }
+}
+
+function setUserName(name) {
+  localStorage.setItem("user", name);
+}
+
+function getUserName() {
+  return localStorage.getItem("user") || "Jaam";
+}
+
+window.addEventListener("load", (e) => {
+  nameInput.value = getUserName();
+  popupUsername.textContent = nameInput.value;
+});
