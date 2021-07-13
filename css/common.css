@@ -25,7 +25,7 @@
 }
 
 html {
-  background: url("../assets/images/earth-space-scene/32313.jpg") center;
+  background: url("../assets/images/earth-space-scene/bg-compressed.jpg") center;
   background-size: cover;
   background-repeat: no-repeat;
   font-family: var(--poppins);
