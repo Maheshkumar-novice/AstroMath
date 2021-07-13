@@ -5,8 +5,9 @@ html {
 .main {
   flex: 1;
   padding: 8rem 0;
-  font-size: 4rem;
+  font-size: var(--title);
   display: flex;
+  text-shadow: 5px 5px black;
 }
 
 .main__option {
@@ -40,7 +41,7 @@ html {
 
 .footer {
   height: 100px;
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -62,7 +63,6 @@ html {
   --typewriterCharacters: 20;
 }
 .popup__title {
-  font-size: clamp(1.2rem, 5vw, 4rem);
   position: relative;
   width: max-content;
   color: var(--color);
