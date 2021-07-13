@@ -17,6 +17,9 @@ if (!credits.classList.contains("dummy")) {
 }
 
 function settingsView() {
+  if (nameEditIcon.src.includes("edit-save")) {
+    nameEditIcon.click();
+  }
   info.classList.add("none");
   credits.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
