@@ -20,24 +20,40 @@ html {
   margin: 0 auto;
 }
 
+.main__options__cnt{
+  display: flex;
+  position: relative;
+}
+
+.main__options__cnt img{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-40%);
+  left: -35%;
+  width: clamp(50px, 12vw, 120px);
+  height: clamp(50px, 15vw, 120px);
+}
+
 .main__resume:hover,
 .main__newgame:hover {
   color: var(--orange);
 }
 
-.main__resume::before,
+/* .main__resume::before,
 .main__newgame::before {
   content: url("../assets/images/Fire.svg");
   position: absolute;
-  top: -17px;
+  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   left: -170px;
   display: none;
-}
+} */
 
-.main__resume:hover:before,
+/* .main__resume:hover:before,
 .main__newgame:hover:before {
   display: initial;
-}
+} */
 
 .footer {
   height: 100px;
@@ -96,5 +112,11 @@ html {
 @keyframes blink {
   to {
     background: var(--secondary-color);
+  }
+}
+
+@media(max-width: 435px ){
+  .main__options__cnt img{
+    transform: translateY(-25%);
   }
 }
