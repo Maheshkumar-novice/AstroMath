@@ -17,7 +17,7 @@ if (!credits.classList.contains("dummy")) {
 }
 
 function settingsView() {
-  if (nameEditIcon.src.includes("edit-save")) {
+  if (!nameEditIcon.classList.contains("dummy") && nameEditIcon.src.includes("edit-save")) {
     nameEditIcon.click();
   }
   info.classList.add("none");
