@@ -1,0 +1,141 @@
+:root {
+  --game-info-text: clamp(2.5rem, 5vw, 4rem);
+  --asteroid-text: clamp(2rem, 2vw, 3.25rem);
+}
+
+a {
+    color: inherit;
+}
+
+.header {
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.header__info {
+  font-size: var(--game-info-text);
+  /* font-size: var(--description-text); */
+}
+
+.header__info--score {
+  color: var(--primary-color);
+}
+
+.header__info--time {
+  color: var(--primary-color);
+}
+
+.header__info--exit {
+  color: var(--danger-color);
+  cursor: pointer;
+}
+
+.header__info--sound {
+    cursor: pointer;
+}
+
+.header__info--time::before {
+  content: "Time: ";
+  color: var(--secondary-color);
+}
+
+.header__info--score::before {
+  content: "Score: ";
+  color: var(--secondary-color);
+}
+
+/* .header__info--exit::before {
+  content: "Exit ";
+} */
+
+.header__info--sound::before {
+  content: "Sound: ";
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main__asteroid-container {
+  /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../assets/images/asteroid.png");
+    background-position: center;
+    background-size: cover;
+    width: 25rem;
+    height: 25rem; */
+  width: max-content;
+  position: relative;
+}
+
+.main__asteroid-problem {
+  font-size: var(--asteroid-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main__asteroid {
+  height: 15rem;
+  width: 15rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__option {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+  margin: 1em;
+  outline: none;
+  border: 2px solid black;
+  box-shadow: 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-family: inherit;
+  font-size: var(--description-text);
+  transition: scale 0.5s ease-in-out;
+}
+
+/* .footer__option:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+} */
+
+/* .footer__option:active {
+    box-shadow: 2px 3px black;
+} */
+@media (max-width: 950px) {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .main__asteroid {
+    height: 10rem;
+    width: 10rem;
+  }
+}
+@media (max-width: 700px) {
+  .footer__option {
+    width: 8rem;
+    height: 8rem;
+  }
+}
