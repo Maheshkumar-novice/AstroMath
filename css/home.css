@@ -34,8 +34,8 @@ html {
   height: clamp(50px, 15vw, 120px);
 }
 
-.main__resume:hover,
-.main__newgame:hover {
+.main__resume a:hover,
+.main__newgame a:hover {
   color: var(--orange);
 }
 
