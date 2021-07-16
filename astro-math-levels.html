@@ -24,61 +24,8 @@
       </div>
     </header>
 
-    <!-- settings -->
-    <section class="settings none">
-      <div class="settings__item">
-        <h2 class="settings__title settings__sound">Sound:</h2>
-        <img
-          class="settings__sound--icon settings__action"
-          src="./assets/images/soundon.svg"
-        />
-      </div>
-      <div class="settings__item">
-        <h2 class="settings__title">Username:</h2>
-        <div class="settings__name-holder">
-          <img
-            src="./assets/images/edit.svg"
-            alt=""
-            class="settings__edit-icon"
-          />
-          <input
-            class="settings__input settings__input--username"
-            value="sam"
-            readonly
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- info -->
-    <section class="info none">
-      <h3 class="info__tagline">
-        Destroy Asteroids by Solving Math and Save The Earth
-      </h3>
-      <div class="info__stars">
-        <h2 class="info__star-heading">Star Calculation</h2>
-        <div class="info__star-details">
-          <div class="info__star-item-100">
-            <img src="./assets/images/3.png" alt="" />
-            <p>- 100% Destruction</p>
-          </div>
-          <div class="info__star-item-75">
-            <img src="./assets/images/2.png" alt="" />
-            <p>- 75% Destruction</p>
-          </div>
-          <div class="info__star-item-50">
-            <img src="./assets/images/1.png" alt="" />
-            <p>- 50% Destruction</p>
-          </div>
-        </div>
-      </div>
-      <p class="info__levels">
-        Click <span class="info__level-text">Current Level</span> to see all
-        levels
-      </p>
-    </section>
     <!--Level Section-->
-    <section class="levels">
+    <main class="levels">
       <div class="levels__level-cnt">
         <div class="levels__img-cnt">
           <img src="./assets/images/finished_level.svg" alt="asteroid" />
@@ -315,10 +262,67 @@
           />
         </div>
       </div>
-    </section>
+    </main>
     <footer class="footer">
       <a href="./index.html"><i class="fas fa-home"></i></a>
     </footer>
+
+    <!-- settings -->
+    <section class="settings none">
+      <div class="settings__item">
+        <h2 class="settings__title settings__sound">Sound:</h2>
+        <img
+          class="settings__sound--icon settings__action"
+          src="./assets/images/soundon.svg"
+        />
+      </div>
+      <div class="settings__item">
+        <h2 class="settings__title">Username:</h2>
+        <div class="settings__name-holder">
+          <img
+            src="./assets/images/edit.svg"
+            alt=""
+            class="settings__edit--icon"
+          />
+          <input
+            class="settings__input settings__input--username"
+            value="sam"
+            readonly
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- info -->
+    <section class="info none">
+      <h3 class="info__tagline">
+        Destroy <span class="secondary-color">Asteroids</span> by Solving
+        <span class="secondary-color">Math</span> and Save
+        <span class="secondary-color">The Earth</span>
+      </h3>
+      <div class="info__stars">
+        <h2 class="info__star-heading">Star Calculation</h2>
+        <div class="info__star-details">
+          <div class="info__star-item-100">
+            <img src="./assets/images/3.png" alt="" />
+            <p>- 100% Destruction</p>
+          </div>
+          <div class="info__star-item-75">
+            <img src="./assets/images/2.png" alt="" />
+            <p>- 75% Destruction</p>
+          </div>
+          <div class="info__star-item-50">
+            <img src="./assets/images/1.png" alt="" />
+            <p>- 50% Destruction</p>
+          </div>
+        </div>
+      </div>
+      <p class="info__levels">
+        Click <span class="info__level-text">Current Level</span> to see all
+        levels
+      </p>
+    </section>
+
     <!-- icon-link -->
     <!--iconify-->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
