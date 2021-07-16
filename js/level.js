@@ -7,7 +7,40 @@ import {
   playMusic,
   checkPlayable,
 } from "./modules/music.js";
+import {
+  body,
+  settings,
+  info,
+  infoIcon,
+  creditMenu,
+  settingIcon,
+  levelMenu,
+  popup,
+  credits,
+  settingsView,
+  infoView,
+  creditsView,
+  check,
+  nameEditIcon,
+  nameInput,
+  popupUsername,
+  userChangeButton,
+  editName,
+  positionCursor,
+  setUserName,
+  getUserName,
+  updatePopup,
+} from "./modules/utils.js";
 
+// Utils
+let editing = true;
+settingIcon.addEventListener("click", settingsView);
+infoIcon.addEventListener("click", infoView);
+nameEditIcon.addEventListener("click", () => {
+  editing = editName(editing);
+});
+
+// Music
 let soundSrc;
 let playable;
 
@@ -26,6 +59,8 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
+  nameInput.value = getUserName();
+  updatePopup(nameInput.value);
   if (document.body.classList.contains("not-home")) {
     soundToggle.src = getLocalSoundSrc() || soundToggle.src;
 

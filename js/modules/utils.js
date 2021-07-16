@@ -10,67 +10,99 @@ export const levelMenu = document.querySelector(".footer__level");
 export const popup = document.querySelector(".popup");
 export const credits = document.querySelector(".credits");
 
+function addClass(elements, classValue) {
+  elements.forEach((element) => {
+    if (element) {
+      element.classList.add(classValue);
+    }
+  });
+}
+
+function removeClass(elements, classValue) {
+  elements.forEach((element) => {
+    if (element) {
+      element.classList.remove(classValue);
+    }
+  });
+}
+
+function toggleClass(elements, classValue) {
+  elements.forEach((element) => {
+    if (element) {
+      element.classList.toggle(classValue);
+    }
+  });
+}
+
+function classWork(...args) {
+  let classValue = args[0];
+  let classOperation = args[1];
+  let elements = args.slice(2, args.length);
+  if (classOperation === "add") {
+    addClass(elements, classValue);
+  } else if (classOperation === "remove") {
+    removeClass(elements, classValue);
+  } else {
+    toggleClass(elements, classValue);
+  }
+}
+
+function containsClass(element, value) {
+  if (element) {
+    return element.classList.contains(value);
+  }
+  return false;
+}
+
+function nilCheck(element) {
+  return element ? containsClass(element, "none") : true;
+}
+
+const viewWorkMap = {
+  info: [settings, credits],
+  settings: [info, credits],
+  credits: [info, settings],
+};
+
+function viewWorker(view, strView) {
+  let checkFlag;
+  let otherTwo = viewWorkMap[strView];
+  classWork("none", "add", otherTwo[0], otherTwo[1]);
+  if (containsClass(body, "not-home") && nilCheck(popup)) {
+    classWork("blur", "add", body);
+    checkFlag = 1;
+  } else {
+    classWork("none", "add", popup);
+    checkFlag = 2;
+  }
+  classWork("none", "toggle", view);
+  check(checkFlag);
+}
+
 export function settingsView() {
   if (nameEditIcon.src.includes("edit-save")) {
     nameEditIcon.click();
   }
-  info.classList.add("none");
-  credits.classList.add("none");
-  if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.add("blur");
-    settings.classList.toggle("none");
-    check(1);
-  } else {
-    popup.classList.add("none");
-    settings.classList.toggle("none");
-    check(2);
-  }
+  viewWorker(settings, "settings");
 }
 
 export function infoView() {
-  settings.classList.add("none");
-  credits.classList.add("none");
-  if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.add("blur");
-    info.classList.toggle("none");
-    check(1);
-  } else {
-    popup.classList.add("none");
-    info.classList.toggle("none");
-    check(2);
-  }
+  viewWorker(info, "info");
 }
 
 export function creditsView() {
-  info.classList.add("none");
-  settings.classList.add("none");
-  if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.add("blur");
-    credits.classList.toggle("none");
-    check(1);
-  } else {
-    popup.classList.add("none");
-    credits.classList.toggle("none");
-    check(2);
-  }
+  viewWorker(credits, "credits");
 }
 
 export function check(arg) {
-  let a = info.classList.contains("none");
-  let b = credits.classList.contains("none");
-  let c = settings.classList.contains("none");
-  let d = popup.classList.contains("none");
-  let e = body.classList.contains("blur");
-  let r = a && b && c && d;
-  let r1 = a && b && c && e;
-  if (arg == 2) {
-    if (r) {
-      popup.classList.remove("none");
-    }
-  } else {
-    if (r1) {
-      body.classList.remove("blur");
-    }
+  let menuItemsCheck =
+    containsClass(info, "none") &&
+    nilCheck(credits) &&
+    containsClass(settings, "none");
+  if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
+    classWork("blur", "remove", body);
+  } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
+    popup ? classWork("none", "remove", popup) : console.log("no-pop-up-buddy");
   }
 }
 
@@ -84,19 +116,19 @@ export const userChangeButton = document.querySelector(
 
 export function editName(editing) {
   if (editing) {
-    nameInput.classList.add("border-bottom");
+    classWork("border-bottom", "add", nameInput);
     nameInput.removeAttribute("readonly");
     nameEditIcon.src = "./assets/images/edit-save.svg";
     positionCursor(nameInput);
   } else {
-    nameInput.classList.remove("border-bottom");
+    classWork("border-bottom", "remove", nameInput);
     nameInput.setAttribute("readonly", true);
     nameEditIcon.src = "./assets/images/edit.svg";
     if (nameInput.value == "") {
       nameInput.value = "Jaam";
     }
     setUserName(nameInput.value);
-    popupUsername.textContent = nameInput.value;
+    updatePopup(nameInput.value);
     settingsView();
   }
   return !editing;
@@ -122,4 +154,8 @@ export function setUserName(name) {
 
 export function getUserName() {
   return localStorage.getItem("user") || "Jaam";
+}
+
+export function updatePopup(value) {
+  popupUsername ? (popupUsername.textContent = value) : "no-pop-up-buddy";
 }
