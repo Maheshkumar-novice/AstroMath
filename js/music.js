@@ -36,7 +36,7 @@ popupButton.addEventListener("click", (e) => {
   popup.classList.remove("popup__active");
   popup.classList.add("none");
   if (checkPlayable()) {
-    playMusic();
+    playMusic(playable);
   }
 });
 
@@ -57,8 +57,8 @@ soundToggle.addEventListener("click", (e) => {
   }
   console.log(popup.classList.contains("none"));
   popup.classList.contains("popup__active")
-    ? console.log("hello")
-    : playMusic();
+    ? ""
+    : playMusic(playable);
 });
 
 window.onload = function () {
@@ -68,7 +68,7 @@ window.onload = function () {
     if (checkPlayable()) {
       playable = true;
     }
-    playMusic();
+    playMusic(playable);
   } else {
     getLocalSoundSrc()
       ? ((soundToggle.src = getLocalSoundSrc()), (playable = checkPlayable()))
