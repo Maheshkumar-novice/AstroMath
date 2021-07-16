@@ -36,13 +36,11 @@ export function playMusic(playable) {
 }
 
 export function hoverMusic() {
-//   if (!playable) return;
   hoverAudio.currentTime = 0;
   hoverAudio.play();
 }
 
 export function clickMusic() {
-//   if (!playable) return;
   clickAudio.currentTime = 0;
   clickAudio.play();
 }
