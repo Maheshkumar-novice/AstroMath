@@ -1,73 +1,61 @@
 // Section Navigation
-const body = document.body;
-const dummy = document.querySelector(".dummy");
-const settings = document.querySelector(".settings");
-const info = document.querySelector(".info");
-const infoIcon = document.querySelector(".header__info-icon");
-const creditMenu = document.querySelector(".footer__credit");
-const settingIcon = document.querySelector(".header__settings-icon");
-const levelMenu = document.querySelector(".footer__level") || dummy;
-const popup = document.querySelector(".popup") || dummy;
-const credits = document.querySelector(".credits") || dummy;
+export const body = document.body;
+// export const dummy = document.querySelector(".dummy");
+export const settings = document.querySelector(".settings");
+export const info = document.querySelector(".info");
+export const infoIcon = document.querySelector(".header__info-icon");
+export const creditMenu = document.querySelector(".footer__credit");
+export const settingIcon = document.querySelector(".header__settings-icon");
+export const levelMenu = document.querySelector(".footer__level");
+export const popup = document.querySelector(".popup");
+export const credits = document.querySelector(".credits");
 
-settingIcon.addEventListener("click", settingsView);
-infoIcon.addEventListener("click", infoView);
-if (!credits.classList.contains("dummy")) {
-  creditMenu.addEventListener("click", creditsView);
-}
-
-function settingsView() {
-  if (!nameEditIcon.classList.contains("dummy") && nameEditIcon.src.includes("edit-save")) {
+export function settingsView() {
+  if (nameEditIcon.src.includes("edit-save")) {
     nameEditIcon.click();
   }
   info.classList.add("none");
   credits.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.remove("blur");
-    body.classList.toggle("blur");
+    body.classList.add("blur");
     settings.classList.toggle("none");
     check(1);
   } else {
-    popup.classList.remove("none");
-    popup.classList.toggle("none");
+    popup.classList.add("none");
     settings.classList.toggle("none");
     check(2);
   }
 }
 
-function infoView() {
+export function infoView() {
   settings.classList.add("none");
   credits.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.remove("blur");
-    body.classList.toggle("blur");
+    body.classList.add("blur");
     info.classList.toggle("none");
     check(1);
   } else {
-    popup.classList.remove("none");
-    popup.classList.toggle("none");
+    popup.classList.add("none");
     info.classList.toggle("none");
     check(2);
   }
 }
 
-function creditsView() {
+export function creditsView() {
   info.classList.add("none");
   settings.classList.add("none");
   if (body.classList.contains("not-home") && popup.classList.contains("none")) {
-    body.classList.remove("blur");
-    body.classList.toggle("blur");
+    body.classList.add("blur");
     credits.classList.toggle("none");
     check(1);
   } else {
-    popup.classList.remove("none");
-    popup.classList.toggle("none");
+    popup.classList.add("none");
     credits.classList.toggle("none");
     check(2);
   }
 }
 
-function check(arg) {
+export function check(arg) {
   let a = info.classList.contains("none");
   let b = credits.classList.contains("none");
   let c = settings.classList.contains("none");
@@ -87,15 +75,14 @@ function check(arg) {
 }
 
 // Settings of UserName
-const nameEditIcon = document.querySelector(".settings__edit--icon") || dummy;
-const nameInput = document.querySelector(".settings__input") || dummy;
-const popupUsername = document.querySelector(".popup__username") || dummy;
-const userChangeButton = document.querySelector(".popup__button--change-user") || dummy;
-let editing = true;
+export const nameEditIcon = document.querySelector(".settings__edit--icon");
+export const nameInput = document.querySelector(".settings__input");
+export const popupUsername = document.querySelector(".popup__username");
+export const userChangeButton = document.querySelector(
+  ".popup__button--change-user"
+);
 
-nameEditIcon.addEventListener("click", editName);
-
-function editName() {
+export function editName(editing) {
   if (editing) {
     nameInput.classList.add("border-bottom");
     nameInput.removeAttribute("readonly");
@@ -111,12 +98,11 @@ function editName() {
     setUserName(nameInput.value);
     popupUsername.textContent = nameInput.value;
     settingsView();
-    // positionCursor(nameInput);
   }
-  editing = !editing;
+  return !editing;
 }
 
-function positionCursor(end) {
+export function positionCursor(end) {
   let len = end.value.length;
   if (end.setSelectionRange) {
     end.focus();
@@ -130,20 +116,10 @@ function positionCursor(end) {
   }
 }
 
-function setUserName(name) {
+export function setUserName(name) {
   localStorage.setItem("user", name);
 }
 
-function getUserName() {
+export function getUserName() {
   return localStorage.getItem("user") || "Jaam";
 }
-
-userChangeButton.addEventListener("click", (e) => {
-  settingsView();
-  nameEditIcon.click();
-});
-
-window.addEventListener("load", (e) => {
-  nameInput.value = getUserName();
-  popupUsername.textContent = nameInput.value;
-});
