@@ -67,10 +67,10 @@ a {
   color: var(--primary-color);
 }
 
-img{
+/* img{
   user-select: none;
   pointer-events: none;
-}
+} */
 
 .header {
   padding: 1rem 3rem;
