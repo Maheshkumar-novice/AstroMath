@@ -24,7 +24,7 @@ export function handleThemePromise(promise) {
   });
 }
 
-export function playMusic() {
+export function playMusic(playable) {
   if (!playable) {
     themeAudio.pause();
     return;
