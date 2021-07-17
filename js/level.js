@@ -1,7 +1,5 @@
 import {
   soundToggle,
-  updateLocalSoundSrc,
-  getLocalSoundSrc,
   playMusic,
   checkPlayable,
 } from "./modules/music.js";
@@ -14,9 +12,10 @@ import {
   nameEditIcon,
   nameInput,
   editName,
-  getUserName,
   containsClass,
   updatePopup,
+  updateLocal,
+  getLocal
 } from "./modules/utils.js";
 
 // Utils
@@ -35,29 +34,29 @@ soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
     soundToggle.src = "./assets/images/soundoff.svg";
-    updateLocalSoundSrc("./assets/images/soundoff.svg");
+    updateLocal("currentSoundSrc", "./assets/images/soundoff.svg");
     playable = false;
   } else {
     soundToggle.src = "./assets/images/soundon.svg";
-    updateLocalSoundSrc("./assets/images/soundon.svg");
+    updateLocal("currentSoundSrc", "./assets/images/soundon.svg");
     playable = true;
   }
   playMusic(playable);
 });
 
 window.onload = function () {
-  nameInput.value = getUserName();
+  nameInput.value = getLocal("user");
   updatePopup(nameInput.value);
   if (containsClass(body, "not-home")) {
-    soundToggle.src = getLocalSoundSrc() || soundToggle.src;
+    soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 
     if (checkPlayable()) {
       playable = true;
     }
     playMusic(playable);
   } else {
-    getLocalSoundSrc()
-      ? ((soundToggle.src = getLocalSoundSrc()), (playable = checkPlayable()))
-      : (updateLocalSoundSrc(soundToggle.src), (playable = true));
+    getLocal("currentSoundSrc")
+      ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
+      : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
 };

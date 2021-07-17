@@ -9,6 +9,14 @@ export const levelMenu = document.querySelector(".footer__level");
 export const popup = document.querySelector(".popup");
 export const credits = document.querySelector(".credits");
 
+export function updateLocal(key, val) {
+  localStorage.setItem(key, val);
+}
+
+export function getLocal(key) {
+  return localStorage.getItem(key);
+}
+
 function addClass(elements, classValue) {
   elements.forEach((element) => {
     if (element) {
@@ -128,7 +136,8 @@ export function editName(editing) {
     if (nameInput.value == "") {
       nameInput.value = "Jaam";
     }
-    setUserName(nameInput.value);
+    // setUserName(nameInput.value);
+    updateLocal("user", nameInput.value);
     updatePopup(nameInput.value);
     settingsView();
   }
@@ -147,14 +156,6 @@ export function positionCursor(end) {
     t.moveStart("character", len);
     t.select();
   }
-}
-
-export function setUserName(name) {
-  localStorage.setItem("user", name);
-}
-
-export function getUserName() {
-  return localStorage.getItem("user") || "Jaam";
 }
 
 export function updatePopup(value) {
