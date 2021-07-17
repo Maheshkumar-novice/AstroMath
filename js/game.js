@@ -7,7 +7,7 @@ import {
 } from "./modules/music.js";
 import { body, containsClass, timer } from "./modules/utils.js";
 
-// Utils
+// Utils - Options
 const options = [...document.querySelectorAll(".footer__option")];
 const colorMap = {
   invertedColor: "var(--primary-color)",
@@ -27,6 +27,7 @@ const keys = {
 options.forEach((option) => {
   option.addEventListener("click", (e) => {
     triggerOption(option.dataset.option);
+    console.log(option.dataset.value);
   });
 });
 
@@ -36,6 +37,7 @@ window.addEventListener("keyup", (e) => {
     case "s":
     case "d":
       triggerOption(e.key);
+      console.log(keys[e.key].dataset.value);
   }
 });
 
@@ -57,6 +59,8 @@ function normaliseColor(key) {
   key.style.background = colorMap.normalBackground;
   key.style.boxShadow = "5px 5px black";
 }
+
+// Utils - Game Logic
 
 // Timer
 timer("20");
