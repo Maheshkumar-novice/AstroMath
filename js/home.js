@@ -1,13 +1,9 @@
 import {
-  themeAudio,
-  hoverAudio,
-  clickAudio,
   options,
   popupButton,
   soundToggle,
   updateLocalSoundSrc,
   getLocalSoundSrc,
-  handleThemePromise,
   playMusic,
   hoverMusic,
   clickMusic,
@@ -16,26 +12,22 @@ import {
 
 import {
   body,
-  settings,
-  info,
   infoIcon,
   creditMenu,
   settingIcon,
   levelMenu,
   popup,
-  credits,
   settingsView,
   infoView,
   creditsView,
-  check,
   nameEditIcon,
   nameInput,
-  popupUsername,
   userChangeButton,
   editName,
-  positionCursor,
-  setUserName,
   getUserName,
+  classWorker,
+  containsClass,
+  updatePopup,
 } from "./modules/utils.js";
 
 // Utils
@@ -43,7 +35,6 @@ let editing = true;
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 creditMenu.addEventListener("click", creditsView);
-
 nameEditIcon.addEventListener("click", () => {
   editing = editName(editing);
 });
@@ -60,11 +51,11 @@ let menubtn = document.querySelectorAll(".main__option");
 menubtn.forEach((menu) => {
   menu.addEventListener("mouseenter", function () {
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-    fire.classList.remove("none");
+    classWorker("none", "remove", fire);
   });
   menu.addEventListener("mouseleave", function () {
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-    fire.classList.add("none");
+    classWorker("none", "add", fire);
   });
 });
 
@@ -82,10 +73,10 @@ options.forEach((option) => {
 });
 
 popupButton.addEventListener("click", (e) => {
-  document.body.classList.remove("blur");
-  document.body.classList.add("not-home");
-  popup.classList.remove("popup__active");
-  popup.classList.add("none");
+  classWorker("blur", "remove", body);
+  classWorker("not-home", "add", body);
+  classWorker("popup__active", "remove", popup);
+  classWorker("none", "add", popup);
   if (checkPlayable()) {
     playMusic(playable);
   }
@@ -106,13 +97,13 @@ soundToggle.addEventListener("click", (e) => {
     updateLocalSoundSrc("./assets/images/soundon.svg");
     playable = true;
   }
-  popup.classList.contains("popup__active") ? "" : playMusic(playable);
+  containsClass(popup, "popup__active") ? "" : playMusic(playable);
 });
 
 window.onload = function () {
   nameInput.value = getUserName();
-  popupUsername.textContent = nameInput.value;
-  if (document.body.classList.contains("not-home")) {
+  updatePopup(nameInput.value);
+  if (containsClass(body, "not-home")) {
     soundToggle.src = getLocalSoundSrc() || soundToggle.src;
 
     if (checkPlayable()) {

@@ -1,34 +1,21 @@
 import {
-  themeAudio,
   soundToggle,
   updateLocalSoundSrc,
   getLocalSoundSrc,
-  handleThemePromise,
   playMusic,
   checkPlayable,
 } from "./modules/music.js";
 import {
   body,
-  settings,
-  info,
   infoIcon,
-  creditMenu,
   settingIcon,
-  levelMenu,
-  popup,
-  credits,
   settingsView,
   infoView,
-  creditsView,
-  check,
   nameEditIcon,
   nameInput,
-  popupUsername,
-  userChangeButton,
   editName,
-  positionCursor,
-  setUserName,
   getUserName,
+  containsClass,
   updatePopup,
 } from "./modules/utils.js";
 
@@ -61,7 +48,7 @@ soundToggle.addEventListener("click", (e) => {
 window.onload = function () {
   nameInput.value = getUserName();
   updatePopup(nameInput.value);
-  if (document.body.classList.contains("not-home")) {
+  if (containsClass(body, "not-home")) {
     soundToggle.src = getLocalSoundSrc() || soundToggle.src;
 
     if (checkPlayable()) {

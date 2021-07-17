@@ -8,13 +8,20 @@
     <link rel="stylesheet" href="./css/game.css" />
     <title>Top Jam 1</title>
   </head>
-  <body>
+  <body class="not-home">
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
     <header class="header">
       <h2 class="header__info header__info--time">50 s</h2>
       <h2 class="header__info header__info--score">0</h2>
-      <h2 class="header__info header__info--sound">On</h2>
-      <h2 class="header__info header__info--exit"><a href="./index.html">Exit</a></h2>
+      <h2 class="header__info header__info--sound">
+        <img
+          class="settings__sound--icon settings__action"
+          src="./assets/images/soundon.svg"
+        />
+      </h2>
+      <h2 class="header__info header__info--exit">
+        <a href="./index.html">Exit</a>
+      </h2>
     </header>
     <main class="main">
       <div class="main__asteroid-container">
@@ -35,6 +42,6 @@
       <button class="footer__option footer__option2" data-option="2">1</button>
       <button class="footer__option footer__option3" data-option="3">1</button>
     </footer>
-    <script src="./js/game.js"></script>
+    <script type="module" src="./js/game.js"></script>
   </body>
 </html>

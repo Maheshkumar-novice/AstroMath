@@ -1,6 +1,5 @@
 // Section Navigation
 export const body = document.body;
-// export const dummy = document.querySelector(".dummy");
 export const settings = document.querySelector(".settings");
 export const info = document.querySelector(".info");
 export const infoIcon = document.querySelector(".header__info-icon");
@@ -34,7 +33,7 @@ function toggleClass(elements, classValue) {
   });
 }
 
-function classWork(...args) {
+export function classWorker(...args) {
   let classValue = args[0];
   let classOperation = args[1];
   let elements = args.slice(2, args.length);
@@ -47,7 +46,7 @@ function classWork(...args) {
   }
 }
 
-function containsClass(element, value) {
+export function containsClass(element, value) {
   if (element) {
     return element.classList.contains(value);
   }
@@ -67,15 +66,15 @@ const viewWorkMap = {
 function viewWorker(view, strView) {
   let checkFlag;
   let otherTwo = viewWorkMap[strView];
-  classWork("none", "add", otherTwo[0], otherTwo[1]);
+  classWorker("none", "add", otherTwo[0], otherTwo[1]);
   if (containsClass(body, "not-home") && nilCheck(popup)) {
-    classWork("blur", "add", body);
+    classWorker("blur", "add", body);
     checkFlag = 1;
   } else {
-    classWork("none", "add", popup);
+    classWorker("none", "add", popup);
     checkFlag = 2;
   }
-  classWork("none", "toggle", view);
+  classWorker("none", "toggle", view);
   check(checkFlag);
 }
 
@@ -100,9 +99,11 @@ export function check(arg) {
     nilCheck(credits) &&
     containsClass(settings, "none");
   if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
-    classWork("blur", "remove", body);
+    classWorker("blur", "remove", body);
   } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
-    popup ? classWork("none", "remove", popup) : console.log("no-pop-up-buddy");
+    popup
+      ? classWorker("none", "remove", popup)
+      : console.log("no-pop-up-buddy");
   }
 }
 
@@ -116,12 +117,12 @@ export const userChangeButton = document.querySelector(
 
 export function editName(editing) {
   if (editing) {
-    classWork("border-bottom", "add", nameInput);
+    classWorker("border-bottom", "add", nameInput);
     nameInput.removeAttribute("readonly");
     nameEditIcon.src = "./assets/images/edit-save.svg";
     positionCursor(nameInput);
   } else {
-    classWork("border-bottom", "remove", nameInput);
+    classWorker("border-bottom", "remove", nameInput);
     nameInput.setAttribute("readonly", true);
     nameEditIcon.src = "./assets/images/edit.svg";
     if (nameInput.value == "") {
@@ -140,7 +141,7 @@ export function positionCursor(end) {
     end.focus();
     end.setSelectionRange(len, len);
   } else if (end.createTextRange) {
-    var t = end.createTextRange();
+    let t = end.createTextRange();
     t.collapse(true);
     t.moveEnd("character", len);
     t.moveStart("character", len);
@@ -158,4 +159,34 @@ export function getUserName() {
 
 export function updatePopup(value) {
   popupUsername ? (popupUsername.textContent = value) : "no-pop-up-buddy";
+}
+
+// Timer
+const timeHolder = document.querySelector(".header__info--time");
+let countdown;
+export function timer(seconds) {
+  clearInterval(countdown);
+
+  const now = Date.now();
+  const then = now + seconds * 1000;
+  displayTimeLeft(seconds);
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
+    if (secondsLeft < 0) {
+      clearInterval(countdown);
+      return;
+    }
+
+    displayTimeLeft(secondsLeft);
+  }, 1000);
+}
+
+function displayTimeLeft(seconds) {
+  const display = seconds + " s";
+  document.title = display;
+  timeHolder.textContent = display;
+  if (seconds == 0) {
+    timeHolder.textContent = "0 s";
+  }
 }
