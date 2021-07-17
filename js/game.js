@@ -1,3 +1,13 @@
+import {
+  soundToggle,
+  updateLocalSoundSrc,
+  getLocalSoundSrc,
+  playMusic,
+  checkPlayable,
+} from "./modules/music.js";
+import { body, containsClass, timer } from "./modules/utils.js";
+
+// Utils
 const options = [...document.querySelectorAll(".footer__option")];
 const colorMap = {
   invertedColor: "var(--primary-color)",
@@ -40,54 +50,46 @@ function invertColor(key) {
   key.style.color = colorMap.invertedColor;
   key.style.background = colorMap.invertedBackground;
   key.style.boxShadow = "2px 3px black";
-  //   key.style.transform = "scale(1.2)";
 }
 
 function normaliseColor(key) {
   key.style.color = colorMap.normalColor;
   key.style.background = colorMap.normalBackground;
   key.style.boxShadow = "5px 5px black";
-  //   key.style.transform = "scale(1)";
 }
 
 // Timer
-const timeHolder = document.querySelector(".header__info--time");
-let countdown;
-function timer(seconds) {
-  clearInterval(countdown);
-
-  const now = Date.now();
-  const then = now + seconds * 1000;
-  displayTimeLeft(seconds);
-
-  countdown = setInterval(() => {
-    const secondsLeft = Math.round((then - Date.now()) / 1000);
-    if (secondsLeft < 0) {
-      clearInterval(countdown);
-      return;
-    }
-
-    displayTimeLeft(secondsLeft);
-  }, 1000);
-}
-
-function displayTimeLeft(seconds) {
-  if (seconds < 10) {
-    // timeHolder.style.color = "var(--danger-color)";
-  }
-  const display = seconds + " s";
-  document.title = display;
-  timeHolder.textContent = display;
-  if (seconds == 0) {
-    timeHolder.textContent = "0 s";
-  }
-}
-
-// function startTimer() {
-//   let time = "20";
-//   const seconds = time;
-//   timer(seconds);
-// }
-
-// startTimer();
 timer("20");
+
+// Music
+let soundSrc;
+let playable;
+
+soundToggle.addEventListener("click", (e) => {
+  soundSrc = soundToggle.src;
+  if (soundSrc.includes("soundon")) {
+    soundToggle.src = "./assets/images/soundoff.svg";
+    updateLocalSoundSrc("./assets/images/soundoff.svg");
+    playable = false;
+  } else {
+    soundToggle.src = "./assets/images/soundon.svg";
+    updateLocalSoundSrc("./assets/images/soundon.svg");
+    playable = true;
+  }
+  playMusic(playable);
+});
+
+window.onload = function () {
+  if (containsClass(body, "not-home")) {
+    soundToggle.src = getLocalSoundSrc() || soundToggle.src;
+
+    if (checkPlayable()) {
+      playable = true;
+    }
+    playMusic(playable);
+  } else {
+    getLocalSoundSrc()
+      ? ((soundToggle.src = getLocalSoundSrc()), (playable = checkPlayable()))
+      : (updateLocalSoundSrc(soundToggle.src), (playable = true));
+  }
+};
