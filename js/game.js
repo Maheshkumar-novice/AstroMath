@@ -3,9 +3,9 @@ import {
   updateLocalSoundSrc,
   getLocalSoundSrc,
   playMusic,
-  checkPlayable,
+  checkPlayable
 } from "./modules/music.js";
-import { body, containsClass, timer } from "./modules/utils.js";
+import { body, containsClass, timer, updateLocal, getLocal } from "./modules/utils.js";
 
 // Utils - Options
 const options = [...document.querySelectorAll(".footer__option")];
@@ -73,11 +73,11 @@ soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
     soundToggle.src = "./assets/images/soundoff.svg";
-    updateLocalSoundSrc("./assets/images/soundoff.svg");
+    updateLocal("currentSoundSrc", "./assets/images/soundoff.svg");
     playable = false;
   } else {
     soundToggle.src = "./assets/images/soundon.svg";
-    updateLocalSoundSrc("./assets/images/soundon.svg");
+    updateLocal("currentSoundSrc", "./assets/images/soundon.svg");
     playable = true;
   }
   playMusic(playable);
@@ -85,15 +85,15 @@ soundToggle.addEventListener("click", (e) => {
 
 window.onload = function () {
   if (containsClass(body, "not-home")) {
-    soundToggle.src = getLocalSoundSrc() || soundToggle.src;
+    soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 
     if (checkPlayable()) {
       playable = true;
     }
     playMusic(playable);
   } else {
-    getLocalSoundSrc()
-      ? ((soundToggle.src = getLocalSoundSrc()), (playable = checkPlayable()))
+    getLocal("currentSoundSrc")
+      ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
       : (updateLocalSoundSrc(soundToggle.src), (playable = true));
   }
 };
