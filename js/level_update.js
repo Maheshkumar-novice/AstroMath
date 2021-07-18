@@ -26,15 +26,15 @@ function returnLevelStatus(val, levelCount){
 
 function returnStars(percentage){
     if(percentage == 100){
-        return (goldenStar + "\n" + goldenStar + "\n" + goldenStar);
+        return (goldenStar + goldenStar + goldenStar);
     }
     if(percentage >= 75){
-        return (goldenStar + "\n" + goldenStar + "\n" + silverStar);
+        return (goldenStar + goldenStar + silverStar);
     }
     if(percentage >= 50){
-        return (goldenStar + "\n" + silverStar + "\n" + silverStar);
+        return (goldenStar  + silverStar + silverStar);
     }
-    return (silverStar + "\n" + silverStar + "\n" + silverStar);
+    return (silverStar + silverStar + silverStar);
 }
 
 function fillLevel(){
