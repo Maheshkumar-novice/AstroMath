@@ -30,17 +30,17 @@ function returnLevelStatus(status, level) {
   }
 }
 
-function returnStars(percentage){
-    if(percentage == 100){
-        return (goldenStar + goldenStar + goldenStar);
-    }
-    if(percentage >= 75){
-        return (goldenStar + goldenStar + silverStar);
-    }
-    if(percentage >= 50){
-        return (goldenStar  + silverStar + silverStar);
-    }
-    return (silverStar + silverStar + silverStar);
+function returnStars(percentage) {
+  if (percentage == 100) {
+    return goldenStar + goldenStar + goldenStar;
+  }
+  if (percentage >= 75) {
+    return goldenStar + goldenStar + silverStar;
+  }
+  if (percentage >= 50) {
+    return goldenStar + silverStar + silverStar;
+  }
+  return silverStar + silverStar + silverStar;
 }
 
 function fillLevel() {
@@ -64,7 +64,8 @@ function fillLevel() {
 levelContainer.innerHTML = fillLevel();
 
 function getLevelTime(level) {
-  if (level === 1) {
+  console.log(level);
+  if (level == 1) {
     return 45;
   } else if (level <= 4) {
     return 43;
