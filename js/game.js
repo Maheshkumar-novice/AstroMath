@@ -1,11 +1,17 @@
 import {
-  soundToggle,
   updateLocalSoundSrc,
   getLocalSoundSrc,
   playMusic,
-  checkPlayable
+  checkPlayable,
 } from "./modules/music.js";
-import { body, containsClass, timer, updateLocal, getLocal } from "./modules/utils.js";
+import {
+  body,
+  containsClass,
+  timer,
+  updateLocal,
+  getLocal,
+  classWorker,
+} from "./modules/utils.js";
 
 // Utils - Options
 const options = [...document.querySelectorAll(".footer__option")];
@@ -60,15 +66,10 @@ function normaliseColor(key) {
   key.style.boxShadow = "5px 5px black";
 }
 
-// Utils - Game Logic
-
-// Timer
-timer("20");
-
 // Music
 let soundSrc;
 let playable;
-
+const soundToggle = document.querySelector(".header__info--sound-icon");
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
@@ -83,6 +84,8 @@ soundToggle.addEventListener("click", (e) => {
   playMusic(playable);
 });
 
+// onload
+const level = document.querySelector(".header__info--level");
 window.onload = function () {
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
@@ -93,7 +96,17 @@ window.onload = function () {
     playMusic(playable);
   } else {
     getLocal("currentSoundSrc")
-      ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
+      ? ((soundToggle.src = getLocal("currentSoundSrc")),
+        (playable = checkPlayable()))
       : (updateLocalSoundSrc(soundToggle.src), (playable = true));
   }
+  document.querySelector(".header__info--time").textContent =
+    getLocal("gameTime") + " s";
+  level.textContent = getLocal("gameLevel");
 };
+
+const start = document.querySelector(".popup__button--start");
+start.addEventListener("click", () => {
+  timer(getLocal("gameTime"));
+  classWorker("none", "add", start.parentElement);
+});

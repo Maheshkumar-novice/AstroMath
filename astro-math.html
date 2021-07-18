@@ -15,15 +15,23 @@
       <h2 class="header__info header__info--score">0</h2>
       <h2 class="header__info header__info--sound">
         <img
-          class="settings__sound--icon settings__action"
+          class="header__info--sound-icon"
           src="./assets/images/soundon.svg"
         />
       </h2>
+      <h2 class="header__info header__info--level">
+        <a href="./astro-math-levels.html">0</a>
+      </h2>
       <h2 class="header__info header__info--exit">
-        <a href="./index.html">Exit</a>
+        <a href="./astro-math-levels.html">Exit</a>
       </h2>
     </header>
     <main class="main">
+      <section class="popup popup--game">
+        <h2 class="popup__title">Get Ready</h2>
+        <p class="popup__description">Click Start to Play!</p>
+        <button class="popup__button popup__button--start">Start</button>
+      </section>
       <div class="main__asteroid-container">
         <h2 class="main__asteroid-problem">5 * 5</h2>
         <img src="./assets/images/asteroid.png" alt="" class="main__asteroid" />
@@ -38,9 +46,27 @@
       </div>
     </main>
     <footer class="footer">
-      <button class="footer__option footer__option1" data-option="1" data-value="1">1</button>
-      <button class="footer__option footer__option2" data-option="2" data-value="1">1</button>
-      <button class="footer__option footer__option3" data-option="3" data-value="1">1</button>
+      <button
+        class="footer__option footer__option1"
+        data-option="1"
+        data-value="1"
+      >
+        1
+      </button>
+      <button
+        class="footer__option footer__option2"
+        data-option="2"
+        data-value="1"
+      >
+        1
+      </button>
+      <button
+        class="footer__option footer__option3"
+        data-option="3"
+        data-value="1"
+      >
+        1
+      </button>
     </footer>
     <script type="module" src="./js/game.js"></script>
   </body>

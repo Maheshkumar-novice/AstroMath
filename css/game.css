@@ -4,7 +4,7 @@
 }
 
 a {
-    color: inherit;
+  color: inherit;
 }
 
 .header {
@@ -14,7 +14,7 @@ a {
   align-items: center;
   gap: 1em;
   flex-wrap: wrap;
-  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: rgba(0, 0, 0, 0.3); */
 }
 
 .header__info {
@@ -36,7 +36,17 @@ a {
 }
 
 .header__info--sound {
-    cursor: pointer;
+  cursor: pointer;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__info--sound-icon {
+  height: 4rem;
+  width: 6rem;
+  margin-left: 1rem;
 }
 
 .header__info--time::before {
@@ -49,9 +59,10 @@ a {
   color: var(--secondary-color);
 }
 
-/* .header__info--exit::before {
-  content: "Exit ";
-} */
+.header__info--level::before {
+  content: "Level: ";
+  color: var(--secondary-color);
+}
 
 .header__info--sound::before {
   content: "Sound: ";
@@ -91,6 +102,15 @@ a {
   width: 15rem;
 }
 
+.popup--game {
+  background-color: black;
+  height: max-content;
+  min-height: unset;
+  padding: 2rem;
+  margin: 0;
+  top: 30%;
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -127,10 +147,17 @@ a {
   .header {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
   }
   .main__asteroid {
     height: 10rem;
     width: 10rem;
+  }
+  .header__info--exit {
+    grid-column: 1/3;
+  }
+  .header__info--sound-icon {
+    width: 4rem;
   }
 }
 @media (max-width: 700px) {
