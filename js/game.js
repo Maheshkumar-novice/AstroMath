@@ -1,6 +1,4 @@
 import {
-  updateLocalSoundSrc,
-  getLocalSoundSrc,
   playMusic,
   checkPlayable,
 } from "./modules/music.js";
@@ -98,7 +96,7 @@ window.onload = function () {
     getLocal("currentSoundSrc")
       ? ((soundToggle.src = getLocal("currentSoundSrc")),
         (playable = checkPlayable()))
-      : (updateLocalSoundSrc(soundToggle.src), (playable = true));
+      : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
   document.querySelector(".header__info--time").textContent =
     getLocal("gameTime") + " s";

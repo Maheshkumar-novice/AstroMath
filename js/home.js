@@ -101,7 +101,7 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  nameInput.value = getLocal("user");
+  nameInput.value = getLocal("user") || "Jaam";
   updatePopup(nameInput.value);
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;

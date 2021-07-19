@@ -1,5 +1,5 @@
 :root {
-  --game-info-text: clamp(2.5rem, 5vw, 4rem);
+  --game-info-text: clamp(1.5rem, 4vw, 4rem);
   --asteroid-text: clamp(2rem, 2vw, 3.25rem);
 }
 
@@ -14,12 +14,14 @@ a {
   align-items: center;
   gap: 1em;
   flex-wrap: wrap;
-  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.header > * {
+  flex: 1;
 }
 
 .header__info {
   font-size: var(--game-info-text);
-  /* font-size: var(--description-text); */
 }
 
 .header__info--score {
@@ -77,14 +79,6 @@ a {
 }
 
 .main__asteroid-container {
-  /* display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url("../assets/images/asteroid.png");
-    background-position: center;
-    background-size: cover;
-    width: 25rem;
-    height: 25rem; */
   width: max-content;
   position: relative;
 }
@@ -135,14 +129,6 @@ a {
   transition: scale 0.5s ease-in-out;
 }
 
-/* .footer__option:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-} */
-
-/* .footer__option:active {
-    box-shadow: 2px 3px black;
-} */
 @media (max-width: 950px) {
   .header {
     display: grid;
@@ -164,5 +150,22 @@ a {
   .footer__option {
     width: 8rem;
     height: 8rem;
+  }
+  .header__info--sound-icon {
+    width: 3rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .main__asteroid {
+    height: 8rem;
+    width: 8rem;
+  }
+  .main__asteroid-problem {
+    font-size: 1.3rem;
+  }
+  .footer__option {
+    width: 6rem;
+    height: 6rem;
   }
 }
