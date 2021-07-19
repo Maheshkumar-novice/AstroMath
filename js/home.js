@@ -98,7 +98,7 @@ popupButton.addEventListener("click", (e) => {
 });
 
 levelMenu.addEventListener("click", (e) => {
-  updateLocal(soundToggle.src);
+  updateLocal("currentSoundSrc", soundToggle.src);
 });
 
 soundToggle.addEventListener("click", (e) => {
