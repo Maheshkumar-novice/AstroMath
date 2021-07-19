@@ -64,14 +64,14 @@ newgame.addEventListener("click", (e) => {
   e.preventDefault();
   updateLocal("gameTime", 45);
   updateLocal("gameLevel", 1);
-  location.href = "/astro-math.html";
+  location.href = "./astro-math.html";
 });
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
   updateLocal("gameTime", 35);
   updateLocal("gameLevel", 10);
-  location.href = "/astro-math.html";
+  location.href = "./astro-math.html";
 });
 
 options.forEach((option) => {

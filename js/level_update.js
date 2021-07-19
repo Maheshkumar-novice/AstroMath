@@ -87,7 +87,7 @@ levels.forEach((level) => {
       console.log(clickedLevel, clickedGameTime);
       updateLocal("gameTime", clickedGameTime);
       updateLocal("gameLevel", clickedLevel);
-      location.href = "/astro-math.html";
+      location.href = "./astro-math.html";
     } else {
       console.log("Locked");
     }
