@@ -26,7 +26,7 @@ import {
   containsClass,
   updatePopup,
   updateLocal,
-  getLocal
+  getLocal,
 } from "./modules/utils.js";
 
 // Utils
@@ -46,6 +46,8 @@ userChangeButton.addEventListener("click", (e) => {
 let soundSrc;
 let playable;
 let menubtn = document.querySelectorAll(".main__option");
+const newgame = document.querySelector(".main__newgame--link");
+const resume = document.querySelector(".main__resume--link");
 
 menubtn.forEach((menu) => {
   menu.addEventListener("mouseenter", function () {
@@ -56,6 +58,20 @@ menubtn.forEach((menu) => {
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
     classWorker("none", "add", fire);
   });
+});
+
+newgame.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateLocal("gameTime", 45);
+  updateLocal("gameLevel", 1);
+  location.href = "/astro-math.html";
+});
+
+resume.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateLocal("gameTime", 35);
+  updateLocal("gameLevel", 10);
+  location.href = "/astro-math.html";
 });
 
 options.forEach((option) => {
@@ -83,7 +99,6 @@ popupButton.addEventListener("click", (e) => {
 
 levelMenu.addEventListener("click", (e) => {
   updateLocal(soundToggle.src);
-  
 });
 
 soundToggle.addEventListener("click", (e) => {
@@ -112,7 +127,8 @@ window.onload = function () {
     playMusic(playable);
   } else {
     getLocal("currentSoundSrc")
-      ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
+      ? ((soundToggle.src = getLocal("currentSoundSrc")),
+        (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
 };
