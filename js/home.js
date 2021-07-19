@@ -103,6 +103,7 @@ levelMenu.addEventListener("click", (e) => {
 
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
+  console.log(soundToggle.src);
   if (soundSrc.includes("soundon")) {
     soundToggle.src = "./assets/images/soundoff.svg";
     updateLocal("currentSoundSrc", "./assets/images/soundoff.svg");
@@ -112,12 +113,15 @@ soundToggle.addEventListener("click", (e) => {
     updateLocal("currentSoundSrc", "./assets/images/soundon.svg");
     playable = true;
   }
+  console.log(soundToggle.src);
+
   containsClass(popup, "popup__active") ? "" : playMusic(playable);
 });
 
 window.onload = function () {
   nameInput.value = getLocal("user") || "Jaam";
   updatePopup(nameInput.value);
+  console.log(soundToggle.src);
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 

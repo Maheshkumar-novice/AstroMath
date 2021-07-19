@@ -1,7 +1,4 @@
-import {
-  playMusic,
-  checkPlayable,
-} from "./modules/music.js";
+import { playMusic, checkPlayable, soundToggle } from "./modules/music.js";
 import {
   body,
   containsClass,
@@ -67,7 +64,6 @@ function normaliseColor(key) {
 // Music
 let soundSrc;
 let playable;
-const soundToggle = document.querySelector(".header__info--sound-icon");
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
