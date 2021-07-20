@@ -15,7 +15,7 @@ let levelValueBak = {
   7: ["locked", null, null, 11],
   8: ["locked", null, null, 12],
   9: ["locked", null, null, 15],
-  10: ["locked", null, null, 15]
+  10: ["locked", null, null, 15],
 };
 updateLocal("levelValue", JSON.stringify(levelValueBak));
 
@@ -49,7 +49,11 @@ function fillLevel() {
   let levelHTML = "";
   levelContainer.innerHTML = "";
   for (let level in levelValue) {
-    levelHTML += `<div class="levels__level-cnt" data-level="${level}" data-per="${levelValue[level][2]}" data-status="${levelValue[level][0]}" data-questions="${levelValue[level][3]}">
+    levelHTML += `<div class="levels__level-cnt" data-level="${level}" data-per="${
+      levelValue[level][2]
+    }" data-status="${levelValue[level][0]}" data-questions="${
+      levelValue[level][3]
+    }" data-besttime="${levelValue[level][1]}">
                         <div class="levels__img-cnt">
                             ${returnLevelStatus(levelValue[level][0], level)}
                         </div>
@@ -89,9 +93,10 @@ function getLevelTime(level) {
 }
 
 let clickedLevel,
- clickedGameTime,
- clickedLevelPercentage,
- clickedLevelQuestions;
+  clickedGameTime,
+  clickedGameBestTime,
+  clickedLevelPercentage,
+  clickedLevelQuestions;
 function clickLevel() {
   const levels = document.querySelectorAll(".levels__level-cnt");
   levels.forEach((level) => {
@@ -99,9 +104,11 @@ function clickLevel() {
       if (level.dataset.status !== "locked") {
         clickedLevel = level.dataset.level;
         clickedGameTime = getLevelTime(clickedLevel);
+        clickedGameBestTime = level.dataset.besttime;
         clickedLevelPercentage = level.dataset.per;
         clickedLevelQuestions = level.dataset.questions;
         updateLocal("gameTime", clickedGameTime);
+        updateLocal("gameBestTime", clickedGameBestTime);
         updateLocal("gameLevel", clickedLevel);
         updateLocal("gamePercentage", clickedLevelPercentage);
         updateLocal("gameQuestions", clickedLevelQuestions);
