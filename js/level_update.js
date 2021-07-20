@@ -6,16 +6,16 @@ const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="
 const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;
 
 let levelValueBak = {
-  1: ["played", 40, 100],
-  2: ["played", 40, 100],
-  3: ["played", 40, 80],
-  4: ["played", 40, 70],
-  5: ["played", 40, 60],
-  6: ["current", null, null],
-  7: ["locked", null, null],
-  8: ["locked", null, null],
-  9: ["locked", null, null],
-  10: ["locked", null, null],
+  1: ["played", 40, 100, 5],
+  2: ["played", 40, 100, 6],
+  3: ["played", 40, 80, 7],
+  4: ["played", 40, 70, 8],
+  5: ["played", 40, 60, 9],
+  6: ["current", null, null, 10],
+  7: ["locked", null, null, 11],
+  8: ["locked", null, null, 12],
+  9: ["locked", null, null, 15],
+  10: ["locked", null, null, 15]
 };
 updateLocal("levelValue", JSON.stringify(levelValueBak));
 
@@ -49,9 +49,7 @@ function fillLevel() {
   let levelHTML = "";
   levelContainer.innerHTML = "";
   for (let level in levelValue) {
-    levelHTML += `<div class="levels__level-cnt" data-level="${level}" data-per="${
-      levelValue[level][2]
-    }" data-status="${levelValue[level][0]}">
+    levelHTML += `<div class="levels__level-cnt" data-level="${level}" data-per="${levelValue[level][2]}" data-status="${levelValue[level][0]}" data-questions="${levelValue[level][3]}">
                         <div class="levels__img-cnt">
                             ${returnLevelStatus(levelValue[level][0], level)}
                         </div>
@@ -90,9 +88,10 @@ function getLevelTime(level) {
   }
 }
 
-let clickedLevel;
-let clickedGameTime;
-let clickedLevelPercentage;
+let clickedLevel,
+ clickedGameTime,
+ clickedLevelPercentage,
+ clickedLevelQuestions;
 function clickLevel() {
   const levels = document.querySelectorAll(".levels__level-cnt");
   levels.forEach((level) => {
@@ -101,9 +100,11 @@ function clickLevel() {
         clickedLevel = level.dataset.level;
         clickedGameTime = getLevelTime(clickedLevel);
         clickedLevelPercentage = level.dataset.per;
+        clickedLevelQuestions = level.dataset.questions;
         updateLocal("gameTime", clickedGameTime);
         updateLocal("gameLevel", clickedLevel);
         updateLocal("gamePercentage", clickedLevelPercentage);
+        updateLocal("gameQuestions", clickedLevelQuestions);
         location.href = "./astro-math.html";
       }
     });
