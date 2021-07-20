@@ -1,5 +1,6 @@
 import { getLocal, updateLocal } from "./modules/utils.js";
 
+// display levels
 const levelContainer = document.querySelector(".levels");
 const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="levels__star"/>`;
 const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;
@@ -16,8 +17,6 @@ let levelValueBak = {
   9: ["locked", null, null],
   10: ["locked", null, null],
 };
-
-let levelValue;
 updateLocal("levelValue", JSON.stringify(levelValueBak));
 
 function returnLevelStatus(status, level) {
@@ -64,6 +63,20 @@ function fillLevel() {
   return levelHTML;
 }
 
+let levelValue;
+async function parseLevel() {
+  levelValue = JSON.parse(getLocal("levelValue"));
+}
+
+async function updateData() {
+  await parseLevel();
+  levelContainer.innerHTML = fillLevel();
+  clickLevel();
+}
+
+updateData();
+
+// set data for game page
 function getLevelTime(level) {
   console.log(level);
   if (level == 1) {
@@ -88,26 +101,11 @@ function clickLevel() {
         clickedLevel = level.dataset.level;
         clickedGameTime = getLevelTime(clickedLevel);
         clickedLevelPercentage = level.dataset.per;
-        console.log(clickedLevel, clickedGameTime);
         updateLocal("gameTime", clickedGameTime);
         updateLocal("gameLevel", clickedLevel);
         updateLocal("gamePercentage", clickedLevelPercentage);
         location.href = "./astro-math.html";
-      } else {
-        console.log("Locked");
       }
     });
   });
 }
-
-async function parseLevel() {
-  levelValue = JSON.parse(getLocal("levelValue"));
-}
-
-async function updateData() {
-  await parseLevel();
-  levelContainer.innerHTML = fillLevel();
-  clickLevel();
-}
-
-updateData();
