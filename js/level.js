@@ -7,6 +7,7 @@ import {
 import {
   body,
   infoIcon,
+  settings,
   settingIcon,
   settingsView,
   infoView,
@@ -24,6 +25,11 @@ let editing = true;
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 nameEditIcon.addEventListener("click", () => {
+  editing = editName(editing);
+});
+
+window.addEventListener("keyup", (e) => {
+  if(settings.classList.contains("none") || !(e.code=="Enter") || editing) return;
   editing = editName(editing);
 });
 

@@ -27,6 +27,7 @@ import {
   updatePopup,
   updateLocal,
   getLocal,
+  settings,
 } from "./modules/utils.js";
 
 // Utils
@@ -37,6 +38,12 @@ creditMenu.addEventListener("click", creditsView);
 nameEditIcon.addEventListener("click", () => {
   editing = editName(editing);
 });
+
+window.addEventListener("keyup", (e) => {
+  if(settings.classList.contains("none") || !(e.code=="Enter") || editing) return;
+  editing = editName(editing);
+});
+
 userChangeButton.addEventListener("click", (e) => {
   settingsView();
   nameEditIcon.click();
