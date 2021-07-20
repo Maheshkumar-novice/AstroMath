@@ -17,7 +17,6 @@ export function getLocalSoundSrc() {
 
 export function handleThemePromise(promise) {
   promise.catch((err) => {
-    console.log(err);
     if (err) {
       soundToggle.src = "./assets/images/soundoff.svg";
       updateLocalSoundSrc("./assets/images/soundoff.svg");
