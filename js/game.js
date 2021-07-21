@@ -28,7 +28,6 @@ const keys = {
 options.forEach((option) => {
   option.addEventListener("click", (e) => {
     triggerOption(option.dataset.option);
-    console.log(option.dataset.value);
   });
 });
 
@@ -38,7 +37,6 @@ window.addEventListener("keyup", (e) => {
     case "s":
     case "d":
       triggerOption(e.key);
-      console.log(keys[e.key].dataset.value);
   }
 });
 
