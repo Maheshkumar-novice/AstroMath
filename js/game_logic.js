@@ -1,8 +1,16 @@
-import { getLocal, updateLocal } from "./modules/utils.js";
+import {
+  getLocal,
+  updateLocal,
+  secondsLeft,
+  timer,
+  classWorker,
+} from "./modules/utils.js";
 
 const operators = ["+", "-", "*", "/"];
 let qaMap = {};
-let randomAnswer1, randomAnswer2;
+let randomAnswer1,
+  randomAnswer2,
+  score = 0;
 let answers = [];
 
 function getRandomOperator() {
@@ -123,12 +131,14 @@ function randIndex(index) {
   return Math.floor(Math.random() * index);
 }
 
+let randomAsteroid;
+const scoreTag = document.querySelector(".header__info--score");
+
 function assignOptions() {
-  let randomAsteroid = gameAsteroids.splice(
-    randIndex(gameAsteroids.length),
-    1
-  )[0];
+  randomAsteroid = gameAsteroids.splice(randIndex(gameAsteroids.length), 1)[0];
+  console.log(randomAsteroid);
   if (!randomAsteroid) {
+    endGame();
     return;
   }
   let values = randomAsteroid.dataset.all.split(",");
@@ -155,29 +165,91 @@ const keys = {
   3: gameOptions[2],
 };
 
+function answerValidate(value) {
+  let target = document.querySelector(`[data-ans="${value}"]`);
+  if (target) {
+    target.remove();
+    scoreTag.innerText = ++score;
+  } else {
+    randomAsteroid.querySelector("h2").style.color = "red";
+  }
+  assignOptions();
+}
+
 gameOptions.forEach((option) => {
   option.addEventListener("click", (e) => {
-    let target = document.querySelector(
-      `[data-ans="${e.target.textContent.trim()}"]`
-    );
-    if (target) {
-      target.remove();
-      assignOptions();
-    }
+    answerValidate(e.target.textContent.trim());
   });
 });
 
-window.addEventListener("keyup", (e) => {
-  switch (e.key) {
-    case "a":
-    case "s":
-    case "d":
-      let target = document.querySelector(
-        `[data-ans="${keys[e.key].textContent.trim()}"]`
-      );
-      if (target) {
-        target.remove();
-        assignOptions();
-      }
+
+function calculatePercentage(ques, score) {
+  return (score / ques) * 100;
+}
+
+const footer = document.querySelector(".footer");
+
+function endGame() {
+  let localjson = JSON.parse(getLocal("levelValue"));
+
+  let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
+  let ques = getLocal("gameQuestions");
+  let currPercentage = Math.floor(
+    calculatePercentage(ques, +scoreTag.innerText)
+  );
+  let currBestTime = +getLocal("gameBestTime") || 0;
+  console.log(currBestTime);
+  let previousPercentage = getLocal("gamePercentage");
+  
+  let currLevel = `${getLocal("gameLevel")}`;
+
+  if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
+    localjson[currLevel][2] = currPercentage;
+    localjson[currLevel][0] = "played";
+    let next = `${+currLevel + 1}`;
+    localjson[next][0] = "current";
+    localjson[currLevel][1] = currTime;
   }
+  else if (currPercentage > previousPercentage) {
+    localjson[currLevel][2] = currPercentage;
+    localjson[currLevel][1] = currTime;
+  }
+  if(currPercentage == previousPercentage && currTime <= currBestTime ){
+    localjson[currLevel][1] = currTime;
+  }
+
+  updateLocal("gamePercentage", localjson[currLevel][2]);
+  updateLocal("gameBestTime", localjson[currLevel][1]);
+  updateLocal("levelValue", JSON.stringify(localjson));
+  asteroids_container.style.display = footer.style.display = "none";
+}
+
+function timerCheck() {
+  if (secondsLeft < 0) {
+    endGame();
+    return;
+  }
+  setTimeout(timerCheck, 1000);
+}
+
+const start = document.querySelector(".popup__button--start");
+start.addEventListener("click", () => {
+  window.addEventListener("keyup", (e) => {
+    switch (e.key) {
+      case "a":
+      case "s":
+      case "d":
+        answerValidate(keys[e.key].textContent.trim());
+    }
+  });
+  footer.style.pointerEvents = "unset";
+  timer(getLocal("gameTime"));
+  timerCheck();
+  classWorker("none", "add", start.parentElement);
 });
+
+footer.style.pointerEvents = "none";
+
+// setInterval(function (){
+//   console.log(secondsLeft);
+// }, 800);

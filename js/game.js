@@ -2,10 +2,8 @@ import { playMusic, checkPlayable, soundToggle } from "./modules/music.js";
 import {
   body,
   containsClass,
-  timer,
   updateLocal,
   getLocal,
-  classWorker,
 } from "./modules/utils.js";
 
 // Utils - Options
@@ -97,8 +95,3 @@ window.onload = function () {
   level.textContent = getLocal("gameLevel");
 };
 
-const start = document.querySelector(".popup__button--start");
-start.addEventListener("click", () => {
-  timer(getLocal("gameTime"));
-  classWorker("none", "add", start.parentElement);
-});

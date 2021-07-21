@@ -17,7 +17,7 @@ let levelValueBak = {
   9: ["locked", null, null, 15],
   10: ["locked", null, null, 15],
 };
-updateLocal("levelValue", JSON.stringify(levelValueBak));
+// updateLocal("levelValue", JSON.stringify(levelValueBak));
 
 function returnLevelStatus(status, level) {
   if (status === "played") {

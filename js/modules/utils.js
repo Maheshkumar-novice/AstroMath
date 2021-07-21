@@ -164,6 +164,7 @@ export function updatePopup(value) {
 
 // Timer
 const timeHolder = document.querySelector(".header__info--time");
+export let secondsLeft;
 let countdown;
 export function timer(seconds) {
   clearInterval(countdown);
@@ -173,7 +174,7 @@ export function timer(seconds) {
   displayTimeLeft(seconds);
 
   countdown = setInterval(() => {
-    const secondsLeft = Math.round((then - Date.now()) / 1000);
+    secondsLeft = Math.round((then - Date.now()) / 1000);
     if (secondsLeft < 0) {
       clearInterval(countdown);
       return;
