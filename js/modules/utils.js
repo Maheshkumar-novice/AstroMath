@@ -184,6 +184,10 @@ export function timer(seconds) {
   }, 1000);
 }
 
+export function clearTime() {
+  clearInterval(countdown);
+}
+
 function displayTimeLeft(seconds) {
   const display = seconds + " s";
   document.title = display;

@@ -4,6 +4,7 @@ import {
   secondsLeft,
   timer,
   classWorker,
+  clearTime,
 } from "./modules/utils.js";
 
 const operators = ["+", "-", "*", "/"];
@@ -182,7 +183,6 @@ gameOptions.forEach((option) => {
   });
 });
 
-
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
 }
@@ -190,6 +190,8 @@ function calculatePercentage(ques, score) {
 const footer = document.querySelector(".footer");
 
 function endGame() {
+  clearTime();
+  window.removeEventListener("keyup", listenKeys);
   let localjson = JSON.parse(getLocal("levelValue"));
 
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
@@ -199,7 +201,7 @@ function endGame() {
   );
   let currBestTime = +getLocal("gameBestTime") || 0;
   let previousPercentage = getLocal("gamePercentage");
-  
+
   let currLevel = `${getLocal("gameLevel")}`;
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
@@ -209,12 +211,11 @@ function endGame() {
     localjson[next][0] = "current";
     localjson[currLevel][1] = currTime;
     updateLocal("currentLevel", next);
-  }
-  else if (currPercentage > previousPercentage) {
+  } else if (currPercentage > previousPercentage) {
     localjson[currLevel][2] = currPercentage;
     localjson[currLevel][1] = currTime;
   }
-  if(currPercentage == previousPercentage && currTime <= currBestTime ){
+  if (currPercentage == previousPercentage && currTime <= currBestTime) {
     localjson[currLevel][1] = currTime;
   }
 
@@ -232,16 +233,18 @@ function timerCheck() {
   setTimeout(timerCheck, 1000);
 }
 
+function listenKeys(e) {
+  switch (e.key) {
+    case "a":
+    case "s":
+    case "d":
+      answerValidate(keys[e.key].textContent.trim());
+  }
+}
+
 const start = document.querySelector(".popup__button--start");
 start.addEventListener("click", () => {
-  window.addEventListener("keyup", (e) => {
-    switch (e.key) {
-      case "a":
-      case "s":
-      case "d":
-        answerValidate(keys[e.key].textContent.trim());
-    }
-  });
+  window.addEventListener("keyup", listenKeys);
   footer.style.pointerEvents = "unset";
   timer(getLocal("gameTime"));
   timerCheck();
