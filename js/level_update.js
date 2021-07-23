@@ -5,6 +5,19 @@ const levelContainer = document.querySelector(".levels");
 const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="levels__star"/>`;
 const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;
 
+let newLevel = JSON.stringify({
+  1: ["current", null, null, 5],
+  2: ["locked", null, null, 6],
+  3: ["locked", null, null, 7],
+  4: ["locked", null, null, 8],
+  5: ["locked", null, null, 9],
+  6: ["locked", null, null, 10],
+  7: ["locked", null, null, 11],
+  8: ["locked", null, null, 12],
+  9: ["locked", null, null, 15],
+  10: ["locked", null, null, 15],
+})
+
 let levelValueBak = {
   1: ["played", 40, 100, 5],
   2: ["played", 40, 100, 6],
@@ -18,6 +31,7 @@ let levelValueBak = {
   10: ["locked", null, null, 15],
 };
 // updateLocal("levelValue", JSON.stringify(levelValueBak));
+
 
 function returnLevelStatus(status, level) {
   if (status === "played") {
@@ -65,9 +79,15 @@ function fillLevel() {
   return levelHTML;
 }
 
+function updateNewGame(){
+  updateLocal("levelValue", newLevel);
+  updateLocal("currentLevel", "1");
+  return newLevel
+}
+
 let levelValue;
 async function parseLevel() {
-  levelValue = JSON.parse(getLocal("levelValue"));
+  levelValue = JSON.parse(getLocal("levelValue") || updateNewGame());
 }
 
 async function updateData() {

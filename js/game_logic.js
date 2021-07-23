@@ -209,6 +209,7 @@ function endGame() {
     let next = `${+currLevel + 1}`;
     localjson[next][0] = "current";
     localjson[currLevel][1] = currTime;
+    updateLocal("currentLevel", next);
   }
   else if (currPercentage > previousPercentage) {
     localjson[currLevel][2] = currPercentage;
