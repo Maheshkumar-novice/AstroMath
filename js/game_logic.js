@@ -236,7 +236,7 @@ function endResult(gameQues,seconds,percent){
   <div class="popup--percent popup__description">${percent}%</div>
   <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next'>Next</button></div>`;
 }
-const buttons=resultCont.querySelectorAll(button);
+const buttons=resultCont.querySelectorAll('button');
 buttons.forEach(data=>{
   data.addEventListener('click',naviCaller);
 })
