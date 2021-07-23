@@ -49,6 +49,10 @@ userChangeButton.addEventListener("click", (e) => {
   nameEditIcon.click();
 });
 
+function updateCurrentLevel(){
+  levelMenu.querySelector(".footer__currentlevel").innerText = getLocal("currentLevel") || 1;
+}
+
 // Music
 let soundSrc;
 let playable;
@@ -123,6 +127,7 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
+  updateCurrentLevel();
   nameInput.value = getLocal("user") || "Jaam";
   updatePopup(nameInput.value);
   if (containsClass(body, "not-home")) {

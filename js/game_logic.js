@@ -198,7 +198,6 @@ function endGame() {
     calculatePercentage(ques, +scoreTag.innerText)
   );
   let currBestTime = +getLocal("gameBestTime") || 0;
-  console.log(currBestTime);
   let previousPercentage = getLocal("gamePercentage");
   
   let currLevel = `${getLocal("gameLevel")}`;
