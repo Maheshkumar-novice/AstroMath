@@ -71,14 +71,14 @@ function generateProblem() {
     getRandomOperator(),
   ];
   let eq = `${op1} ${op} ${op2}`;
-  while (checkEquation(eq)) {
-    [op1, op2, op] = [
-      getRandomNumber(),
-      getRandomNumber(),
-      getRandomOperator(),
-    ];
-    eq = `${op1} ${op} ${op2}`;
-  }
+  // while (checkEquation(eq)) {
+  //   [op1, op2, op] = [
+  //     getRandomNumber(),
+  //     getRandomNumber(),
+  //     getRandomOperator(),
+  //   ];
+  //   eq = `${op1} ${op} ${op2}`;
+  // }
   let ans = returnAnswer(op1, op2, op);
   while (answers.includes(ans)) {
     [op1, op2, op] = [
@@ -218,13 +218,33 @@ function endGame() {
   if (currPercentage == previousPercentage && currTime <= currBestTime) {
     localjson[currLevel][1] = currTime;
   }
-
   updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("gameBestTime", localjson[currLevel][1]);
   updateLocal("levelValue", JSON.stringify(localjson));
-  asteroids_container.style.display = footer.style.display = "none";
+  endResult(ques,currTime,currPercentage);
 }
-
+const resultCont=document.querySelector('.result-cont');
+function endResult(gameQues,seconds,percent){
+  asteroids_container.style.display = footer.style.display = "none";
+  classWorker("none","add",asteroids_container,footer);
+  resultCont.classList.remove('none');
+  resultCont.innerHTML=` <h2 class="popup__title">Results</h2>
+  <div class="popup--score popup__description">${scoreTag.innerText}</div>
+  <div class="popup--targets popup__description">${gameQues}</div>
+  <div class="popup--missed popup__description">${gameQues-scoreTag.innerText}</div>
+  <div class="popup--time popup__description">${seconds}s</div>
+  <div class="popup--percent popup__description">${percent}%</div>
+  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next'>Next</button></div>`;
+}
+const buttons=resultCont.querySelectorAll(button);
+buttons.forEach(data=>{
+  data.addEventListener('click',naviCaller);
+})
+function naviCaller(){
+  if(this.dataset.value==='next'){
+    updateLocal();                /***********Need to work on this for tommorrow********/
+  }
+}
 function timerCheck() {
   if (secondsLeft < 0) {
     endGame();

@@ -136,6 +136,26 @@ a {
   font-size: var(--description-text);
   transition: scale 0.5s ease-in-out;
 }
+.popup--score::before {
+  content: "Score: ";
+  color: var(--primary-color);
+}
+.popup--targets::before {
+  content: "Targets: ";
+  color: var(--primary-color);
+}
+.popup--missed::before {
+  content: "Missed: ";
+  color: var(--primary-color);
+}
+.popup--percent::before {
+  content: "Percentage: ";
+  color: var(--primary-color);
+}
+.popup--time::before {
+  content: "Time: ";
+  color: var(--primary-color);
+}
 
 @media (max-width: 950px) {
   .header {
