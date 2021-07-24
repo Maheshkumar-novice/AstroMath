@@ -177,6 +177,7 @@ gameOptions.forEach((option) => {
   });
 });
 
+// end Game
 const resultCont = document.querySelector(".result-cont");
 
 function calculatePercentage(ques, score) {
@@ -201,20 +202,26 @@ function endGame() {
 
   endResult(ques, currTime, currPercentage);
   const buttons = resultCont.querySelectorAll("button");
+  buttons[1].disabled = false;
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
-    buttons[1].disabled = false;
-
     localjson[currLevel][0] = "played";
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
 
-    let next = `${+currLevel + 1}`;
-    localjson[next][0] = "current";
-    updateLocal("currentLevel", next);
+    let next = `${(+currLevel + 1) % 10}`;
+    if (next == 0) {
+      next = 10;
+      updateLocal("allDone", "yes");
+    }
+    if (getLocal("allDone") === "yes") {
+      updateLocal("currentLevel", 10);
+      localjson[10][0] = "current";
+    } else {
+      updateLocal("currentLevel", next);
+      localjson[next][0] = "current";
+    }
   } else if (currPercentage > previousPercentage) {
-    buttons[1].disabled = false;
-
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
   }
@@ -223,11 +230,10 @@ function endGame() {
     currPercentage == previousPercentage &&
     currTime <= currBestTime
   ) {
-    buttons[1].disabled = false;
     localjson[currLevel][1] = currTime;
   }
-  if (!(localjson[currLevel][0] === "current")) {
-    buttons[1].disabled = false;
+  if (localjson[currLevel][0] === "current") {
+    buttons[1].disabled = true;
   }
   updateLocal("gameBestTime", localjson[currLevel][1]);
   updateLocal("gamePercentage", localjson[currLevel][2]);
@@ -237,7 +243,10 @@ function endGame() {
 function naviCaller() {
   console.log("clicked");
   if (this.dataset.value == "next") {
-    let nextLevel = `${+getLocal("gameLevel") + 1}`;
+    let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
+    if (nextLevel == 0) {
+      nextLevel = 10;
+    }
     let localjson = JSON.parse(getLocal("levelValue"));
 
     updateLocal("gameLevel", nextLevel);
@@ -247,8 +256,7 @@ function naviCaller() {
     updateLocal("gameQuestions", localjson[nextLevel][3]);
 
     location.reload();
-  }
-  else {
+  } else {
     location.reload();
   }
 }
