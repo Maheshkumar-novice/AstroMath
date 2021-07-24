@@ -104,15 +104,6 @@ a {
   width: 15rem;
 }
 
-.popup--game {
-  background-color: black;
-  height: max-content;
-  min-height: unset;
-  padding: 2rem;
-  margin: 0;
-  top: 30%;
-}
-
 .footer {
   display: flex;
   justify-content: center;
@@ -136,6 +127,23 @@ a {
   font-size: var(--description-text);
   transition: scale 0.5s ease-in-out;
 }
+
+.popup--game {
+  background-color: #000d1b;
+  height: max-content;
+  width: 95vw;
+  min-height: unset;
+  padding: 2rem;
+  margin: 0;
+  top: 25%;
+  border: 2px solid var(--danger-color);
+}
+
+.result-cont {
+  max-width: unset;
+  width: 95vw;
+}
+
 .popup--score::before {
   content: "Score: ";
   color: var(--primary-color);
