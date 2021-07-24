@@ -1,4 +1,4 @@
-import { getLocal, updateLocal } from "./modules/utils.js";
+import { getLocal, updateLocal, getLevelTime } from "./modules/utils.js";
 
 // display levels
 const levelContainer = document.querySelector(".levels");
@@ -99,18 +99,18 @@ async function updateData() {
 // updateData();
 
 // set data for game page
-function getLevelTime(level) {
-  console.log(level);
-  if (level == 1) {
-    return 45;
-  } else if (level <= 4) {
-    return 43;
-  } else if (level <= 8) {
-    return 40;
-  } else if (level <= 10) {
-    return 35;
-  }
-}
+// function getLevelTime(level) {
+//   console.log(level);
+//   if (level == 1) {
+//     return 45;
+//   } else if (level <= 4) {
+//     return 43;
+//   } else if (level <= 8) {
+//     return 40;
+//   } else if (level <= 10) {
+//     return 35;
+//   }
+// }
 
 let clickedLevel,
   clickedGameTime,

@@ -5,6 +5,7 @@ import {
   timer,
   classWorker,
   clearTime,
+  getLevelTime,
 } from "./modules/utils.js";
 
 const operators = ["+", "-", "*", "/"];
@@ -71,15 +72,8 @@ function generateProblem() {
     getRandomOperator(),
   ];
   let eq = `${op1} ${op} ${op2}`;
-  // while (checkEquation(eq)) {
-  //   [op1, op2, op] = [
-  //     getRandomNumber(),
-  //     getRandomNumber(),
-  //     getRandomOperator(),
-  //   ];
-  //   eq = `${op1} ${op} ${op2}`;
-  // }
   let ans = returnAnswer(op1, op2, op);
+
   while (answers.includes(ans)) {
     [op1, op2, op] = [
       getRandomNumber(),
@@ -185,22 +179,6 @@ gameOptions.forEach((option) => {
 
 const resultCont = document.querySelector(".result-cont");
 
-function naviCaller(){
-  console.log("clickde");
-  if (this.dataset.value == "next") {
-    let nextLevel = `${+getLocal("gameLevel") + 1}`;
-    let localjson = JSON.parse(getLocal("levelValue"));
-    updateLocal("gameTime", "45"); // Need to change here
-    updateLocal("gameBestTime", localjson[nextLevel][1]);
-    updateLocal("gameLevel", nextLevel);
-    updateLocal("gamePercentage", localjson[nextLevel][2]);
-    updateLocal("gameQuestions", localjson[nextLevel][3]);
-    location.reload();
-
-    // window.location.href = `./astro-math-levels.html?next=${nextLevel}`;
-    // fetch(`./astro-math-levels.html?next=${nextLevel}`);
-  }
-}
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
 }
@@ -210,8 +188,8 @@ const footer = document.querySelector(".footer");
 function endGame() {
   clearTime();
   window.removeEventListener("keyup", listenKeys);
-  let localjson = JSON.parse(getLocal("levelValue"));
 
+  let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
   let ques = getLocal("gameQuestions");
   let currPercentage = Math.floor(
@@ -219,25 +197,26 @@ function endGame() {
   );
   let currBestTime = +getLocal("gameBestTime") || 0;
   let previousPercentage = getLocal("gamePercentage");
-
   let currLevel = `${getLocal("gameLevel")}`;
 
   endResult(ques, currTime, currPercentage);
-
   const buttons = resultCont.querySelectorAll("button");
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
     buttons[1].disabled = false;
-    localjson[currLevel][2] = currPercentage;
+
     localjson[currLevel][0] = "played";
+    localjson[currLevel][1] = currTime;
+    localjson[currLevel][2] = currPercentage;
+
     let next = `${+currLevel + 1}`;
     localjson[next][0] = "current";
-    localjson[currLevel][1] = currTime;
     updateLocal("currentLevel", next);
   } else if (currPercentage > previousPercentage) {
     buttons[1].disabled = false;
-    localjson[currLevel][2] = currPercentage;
+
     localjson[currLevel][1] = currTime;
+    localjson[currLevel][2] = currPercentage;
   }
   if (
     currPercentage >= 50 &&
@@ -247,19 +226,34 @@ function endGame() {
     buttons[1].disabled = false;
     localjson[currLevel][1] = currTime;
   }
-  if (!localjson[currLevel][0] === "current"){
+  if (!(localjson[currLevel][0] === "current")) {
     buttons[1].disabled = false;
   }
-  updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("gameBestTime", localjson[currLevel][1]);
+  updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("levelValue", JSON.stringify(localjson));
-  
+}
+
+function naviCaller() {
+  console.log("clicked");
+  if (this.dataset.value == "next") {
+    let nextLevel = `${+getLocal("gameLevel") + 1}`;
+    let localjson = JSON.parse(getLocal("levelValue"));
+
+    updateLocal("gameLevel", nextLevel);
+    updateLocal("gameTime", getLevelTime(nextLevel));
+    updateLocal("gameBestTime", localjson[nextLevel][1]);
+    updateLocal("gamePercentage", localjson[nextLevel][2]);
+    updateLocal("gameQuestions", localjson[nextLevel][3]);
+
+    location.reload();
+  }
 }
 
 function endResult(gameQues, seconds, percent) {
-  asteroids_container.style.display = footer.style.display = "none";
   classWorker("none", "add", asteroids_container, footer);
-  resultCont.classList.remove("none");
+  classWorker("none", "remove", resultCont);
+
   resultCont.innerHTML = ` <h2 class="popup__title">Results</h2>
   <div class="popup--score popup__description">${scoreTag.innerText}</div>
   <div class="popup--targets popup__description">${gameQues}</div>
@@ -269,6 +263,7 @@ function endResult(gameQues, seconds, percent) {
   <div class="popup--time popup__description">${seconds}s</div>
   <div class="popup--percent popup__description">${percent}%</div>
   <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next' disabled>Next</button></div>`;
+
   const buttons = resultCont.querySelectorAll("button");
   buttons.forEach((data) => {
     data.addEventListener("click", naviCaller);
@@ -302,7 +297,3 @@ start.addEventListener("click", () => {
 });
 
 footer.style.pointerEvents = "none";
-
-// setInterval(function (){
-//   console.log(secondsLeft);
-// }, 800);
