@@ -248,6 +248,9 @@ function naviCaller() {
 
     location.reload();
   }
+  else {
+    location.reload();
+  }
 }
 
 function endResult(gameQues, seconds, percent) {
