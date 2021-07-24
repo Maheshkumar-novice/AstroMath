@@ -183,6 +183,24 @@ gameOptions.forEach((option) => {
   });
 });
 
+const resultCont = document.querySelector(".result-cont");
+
+function naviCaller(){
+  console.log("clickde");
+  if (this.dataset.value == "next") {
+    let nextLevel = `${+getLocal("gameLevel") + 1}`;
+    let localjson = JSON.parse(getLocal("levelValue"));
+    updateLocal("gameTime", "45"); // Need to change here
+    updateLocal("gameBestTime", localjson[nextLevel][1]);
+    updateLocal("gameLevel", nextLevel);
+    updateLocal("gamePercentage", localjson[nextLevel][2]);
+    updateLocal("gameQuestions", localjson[nextLevel][3]);
+    location.reload();
+
+    // window.location.href = `./astro-math-levels.html?next=${nextLevel}`;
+    // fetch(`./astro-math-levels.html?next=${nextLevel}`);
+  }
+}
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
 }
@@ -204,7 +222,12 @@ function endGame() {
 
   let currLevel = `${getLocal("gameLevel")}`;
 
+  endResult(ques, currTime, currPercentage);
+
+  const buttons = resultCont.querySelectorAll("button");
+
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
+    buttons[1].disabled = false;
     localjson[currLevel][2] = currPercentage;
     localjson[currLevel][0] = "played";
     let next = `${+currLevel + 1}`;
@@ -212,39 +235,46 @@ function endGame() {
     localjson[currLevel][1] = currTime;
     updateLocal("currentLevel", next);
   } else if (currPercentage > previousPercentage) {
+    buttons[1].disabled = false;
     localjson[currLevel][2] = currPercentage;
     localjson[currLevel][1] = currTime;
   }
-  if (currPercentage == previousPercentage && currTime <= currBestTime) {
+  if (
+    currPercentage >= 50 &&
+    currPercentage == previousPercentage &&
+    currTime <= currBestTime
+  ) {
+    buttons[1].disabled = false;
     localjson[currLevel][1] = currTime;
+  }
+  if (!localjson[currLevel][0] === "current"){
+    buttons[1].disabled = false;
   }
   updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("gameBestTime", localjson[currLevel][1]);
   updateLocal("levelValue", JSON.stringify(localjson));
-  endResult(ques,currTime,currPercentage);
+  
 }
-const resultCont=document.querySelector('.result-cont');
-function endResult(gameQues,seconds,percent){
+
+function endResult(gameQues, seconds, percent) {
   asteroids_container.style.display = footer.style.display = "none";
-  classWorker("none","add",asteroids_container,footer);
-  resultCont.classList.remove('none');
-  resultCont.innerHTML=` <h2 class="popup__title">Results</h2>
+  classWorker("none", "add", asteroids_container, footer);
+  resultCont.classList.remove("none");
+  resultCont.innerHTML = ` <h2 class="popup__title">Results</h2>
   <div class="popup--score popup__description">${scoreTag.innerText}</div>
   <div class="popup--targets popup__description">${gameQues}</div>
-  <div class="popup--missed popup__description">${gameQues-scoreTag.innerText}</div>
+  <div class="popup--missed popup__description">${
+    gameQues - scoreTag.innerText
+  }</div>
   <div class="popup--time popup__description">${seconds}s</div>
   <div class="popup--percent popup__description">${percent}%</div>
-  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next'>Next</button></div>`;
+  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next' disabled>Next</button></div>`;
+  const buttons = resultCont.querySelectorAll("button");
+  buttons.forEach((data) => {
+    data.addEventListener("click", naviCaller);
+  });
 }
-const buttons=resultCont.querySelectorAll('button');
-buttons.forEach(data=>{
-  data.addEventListener('click',naviCaller);
-})
-function naviCaller(){
-  if(this.dataset.value==='next'){
-    updateLocal();                /***********Need to work on this for tommorrow********/
-  }
-}
+
 function timerCheck() {
   if (secondsLeft < 0) {
     endGame();

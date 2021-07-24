@@ -96,7 +96,7 @@ async function updateData() {
   clickLevel();
 }
 
-updateData();
+// updateData();
 
 // set data for game page
 function getLevelTime(level) {
@@ -137,3 +137,18 @@ function clickLevel() {
     });
   });
 }
+
+updateData();
+
+// async function checkparams(){
+//   const params = new URLSearchParams(window.location.search);
+//   await updateData();
+//   if(!params.has("next")){ 
+//     return
+//   }
+//   const next = params.get("next");
+//   let toLoad = document.querySelector(`.levels__level-cnt[data-level='${next}']`)
+//   toLoad.click();
+// }
+
+// checkparams();
