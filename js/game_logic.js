@@ -265,7 +265,7 @@ function endResult(gameQues, seconds, percent) {
   classWorker("none", "add", asteroids_container, footer);
   classWorker("none", "remove", resultCont);
 
-  resultCont.innerHTML = ` <h2 class="popup__title">Results</h2>
+  resultCont.innerHTML = ` <h2 class="popup__title secondary-color">Results</h2>
   <div class="popup--score popup__description">${scoreTag.innerText}</div>
   <div class="popup--targets popup__description">${gameQues}</div>
   <div class="popup--missed popup__description">${
@@ -273,7 +273,7 @@ function endResult(gameQues, seconds, percent) {
   }</div>
   <div class="popup--time popup__description">${seconds}s</div>
   <div class="popup--percent popup__description">${percent}%</div>
-  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Restart</button>   <button class="popup__button popup__button--start" data-value='next' disabled>Next</button></div>`;
+  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Play Again</button>   <button class="popup__button popup__button--start" data-value='next' disabled>Next</button></div>`;
 
   const buttons = resultCont.querySelectorAll("button");
   buttons.forEach((data) => {
