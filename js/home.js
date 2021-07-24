@@ -28,6 +28,7 @@ import {
   updateLocal,
   getLocal,
   settings,
+  getLevelTime,
 } from "./modules/utils.js";
 
 // Utils
@@ -40,7 +41,8 @@ nameEditIcon.addEventListener("click", () => {
 });
 
 window.addEventListener("keyup", (e) => {
-  if(settings.classList.contains("none") || !(e.code=="Enter") || editing) return;
+  if (settings.classList.contains("none") || !(e.code == "Enter") || editing)
+    return;
   editing = editName(editing);
 });
 
@@ -49,8 +51,9 @@ userChangeButton.addEventListener("click", (e) => {
   nameEditIcon.click();
 });
 
-function updateCurrentLevel(){
-  levelMenu.querySelector(".footer__currentlevel").innerText = getLocal("currentLevel") || 1;
+function updateCurrentLevel() {
+  levelMenu.querySelector(".footer__currentlevel").innerText =
+    getLocal("currentLevel") || 1;
 }
 
 // Music
@@ -71,17 +74,38 @@ menubtn.forEach((menu) => {
   });
 });
 
+let levelValue = JSON.stringify({
+  1: ["current", null, null, 5],
+  2: ["locked", null, null, 6],
+  3: ["locked", null, null, 7],
+  4: ["locked", null, null, 8],
+  5: ["locked", null, null, 9],
+  6: ["locked", null, null, 10],
+  7: ["locked", null, null, 11],
+  8: ["locked", null, null, 12],
+  9: ["locked", null, null, 15],
+  10: ["locked", null, null, 15],
+});
+
 newgame.addEventListener("click", (e) => {
   e.preventDefault();
+  updateLocal("levelValue", levelValue);
   updateLocal("gameTime", 45);
   updateLocal("gameLevel", 1);
+  updateLocal("gameQuestions", 5);
+  updateLocal("currentLevel", 1);
   location.href = "./astro-math.html";
 });
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
-  updateLocal("gameTime", 35);
-  updateLocal("gameLevel", 10);
+  let currentLevel = getLocal("currentLevel");
+  let levelValue = JSON.parse(getLocal("levelValue"));
+  updateLocal("gameTime", getLevelTime(currentLevel));
+  updateLocal("gameBestTime", levelValue[currentLevel][1]);
+  updateLocal("gamePercentage", levelValue[currentLevel][2]);
+  updateLocal("gameQuestions", levelValue[currentLevel][3])
+  updateLocal("gameLevel", currentLevel);
   location.href = "./astro-math.html";
 });
 
