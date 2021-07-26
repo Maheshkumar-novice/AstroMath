@@ -33,8 +33,8 @@ function getRandomAnswers(ans) {
   if (!Number.isInteger(ans)) {
     let randomValue1 = Math.random();
     let randomValue2 = Math.random();
-    randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
-    randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
+    randomAnswer1 = +((randomAnswer1 + randomValue1).toFixed(1));
+    randomAnswer2 = +((randomAnswer2 + randomValue2).toFixed(1));
   }
   if (
     randomAnswer1 === ans ||
@@ -65,9 +65,7 @@ function returnAnswer(op1, op2, op) {
     case "*":
       return op1 * op2;
     case "/":
-      return Number((op1 / op2).toFixed(1));
-    case "^":
-      return Math.pow(op1, op2);
+      return +(op1 / op2).toFixed(1);
   }
 }
 
