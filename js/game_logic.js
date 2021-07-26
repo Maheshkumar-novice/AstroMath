@@ -229,7 +229,7 @@ function endGame() {
     localjson[currLevel][2] = currPercentage;
 
     let next = `${(+currLevel + 1) % 10}`;
-    if (next == 0) {
+    if (next === 0) {
       next = 10;
       updateLocal("allDone", "yes");
     }
@@ -246,7 +246,7 @@ function endGame() {
   }
   if (
     currPercentage >= 50 &&
-    currPercentage == previousPercentage &&
+    currPercentage === previousPercentage &&
     currTime <= currBestTime
   ) {
     localjson[currLevel][1] = currTime;
@@ -261,9 +261,9 @@ function endGame() {
 
 function naviCaller() {
   console.log("clicked");
-  if (this.dataset.value == "next") {
+  if (this.dataset.value === "next") {
     let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
-    if (nextLevel == 0) {
+    if (nextLevel === 0) {
       nextLevel = 10;
     }
     let localjson = JSON.parse(getLocal("levelValue"));
@@ -275,7 +275,7 @@ function naviCaller() {
     updateLocal("gameQuestions", localjson[nextLevel][3]);
 
     location.reload();
-  } else {
+  } else if (this.dataset.value === "again") {
     location.reload();
   }
 }
