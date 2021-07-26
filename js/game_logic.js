@@ -37,7 +37,7 @@ function getRandomAnswer(ans) {
 function getRandomAnswers(ans) {
   randomAnswer1 = getRandomAnswer(ans);
   randomAnswer2 = getRandomAnswer(ans);
-  console.log(randomAnswer1, randomAnswer2)
+  console.log(randomAnswer1, randomAnswer2);
   if (ans < 0) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
@@ -198,13 +198,12 @@ gameOptions.forEach((option) => {
 });
 
 // end Game
-const resultCont = document.querySelector(".result-cont");
+const resultCont = document.querySelector(".result");
+const footer = document.querySelector(".footer");
 
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
 }
-
-const footer = document.querySelector(".footer");
 
 function endGame() {
   clearTime();
@@ -281,25 +280,24 @@ function naviCaller() {
   }
 }
 
+function updateText(element, text) {
+  document.querySelector(element).textContent = text;
+}
+
 function endResult(gameQues, seconds, percent) {
   classWorker("none", "add", asteroids_container, footer);
   classWorker("none", "remove", resultCont);
-
-  resultCont.innerHTML = ` <h2 class="popup__title secondary-color">Results</h2>
-  <div class="popup--score popup__description">${scoreTag.innerText}</div>
-  <div class="popup--targets popup__description">${gameQues}</div>
-  <div class="popup--missed popup__description">${
-    gameQues - scoreTag.innerText
-  }</div>
-  <div class="popup--time popup__description">${seconds}s</div>
-  <div class="popup--percent popup__description">${percent}%</div>
-  <div class="popup--buttons-cont">   <button class="popup__button popup__button--start" data-value='restart'>Play Again</button>   <button class="popup__button popup__button--start" data-value='next' disabled>Next</button></div>`;
-
-  const buttons = resultCont.querySelectorAll("button");
-  buttons.forEach((data) => {
-    data.addEventListener("click", naviCaller);
-  });
+  updateText(".result__percent", `${percent} %`);
+  updateText(".result__score span", `${scoreTag.textContent}`);
+  updateText(".result__time span", `${seconds} s`);
+  updateText(".result__targets span", `${gameQues}`);
+  updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
 }
+
+const buttons = resultCont.querySelectorAll("button");
+buttons.forEach((data) => {
+  data.addEventListener("click", naviCaller);
+});
 
 function timerCheck() {
   if (secondsLeft < 0) {

@@ -58,18 +58,58 @@
           />
         </div>
       </div>
-      <div class="popup popup--game result-cont none" style="top:15%">
-        <h2 class="popup__title secondary-color">Results</h2>
-        <div class="popup--score popup__description">2</div>
-        <div class="popup--targets popup__description">10</div>
-        <div class="popup--missed popup__description">8</div>
-        <div class="popup--time popup__description">2s</div>
-        <div class="popup--percent popup__description">20%</div>
-        <div class="popup--buttons-cont">
-          <button class="popup__button popup__button--start">Play Again</button>
-          <button class="popup__button popup__button--start" disabled>
-            Next
-          </button>
+      <div class="result none">
+        <h2 class="result__title secondary-color">Results</h2>
+        <div class="result__details">
+          <div class="result__images">
+            <img
+              src="./assets/images/asteroid.png"
+              alt=""
+              class="result__img"
+            />
+            <div class="result__stars">
+              <img
+                src="./assets/images/goldenstar.svg"
+                alt=""
+                class="result__star"
+              />
+              <img
+                src="./assets/images/goldenstar.svg"
+                alt=""
+                class="result__star"
+              />
+              <img
+                src="./assets/images/goldenstar.svg"
+                alt=""
+                class="result__star"
+              />
+            </div>
+            <p class="result__percent popup__description">20%</p>
+          </div>
+
+          <div class="result__data">
+            <div>
+              <p class="result__score popup__description primary-color">
+                Score: <span class="secondary-color">2</span>
+              </p>
+              <p class="result__time popup__description primary-color">
+                Time: <span class="secondary-color">2s</span>
+              </p>
+            </div>
+
+            <div class="result--row">
+              <p class="result__targets popup__description">
+                Targets: <span class="primary-color">10</span>
+              </p>
+              <p class="result__missed popup__description">
+                Missed: <span class="primary-color">8</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="result__buttons">
+          <button class="result__button popup__button">Play Again</button>
+          <button class="result__button popup__button" disabled data-value="next">Next</button>
         </div>
       </div>
     </main>

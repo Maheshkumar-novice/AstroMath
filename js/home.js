@@ -94,6 +94,7 @@ newgame.addEventListener("click", (e) => {
   updateLocal("gameLevel", 1);
   updateLocal("gameQuestions", 5);
   updateLocal("currentLevel", 1);
+  updateLocal("allDone", "no");
   location.href = "./astro-math.html";
 });
 
@@ -104,7 +105,7 @@ resume.addEventListener("click", (e) => {
   updateLocal("gameTime", getLevelTime(currentLevel));
   updateLocal("gameBestTime", levelValue[currentLevel][1]);
   updateLocal("gamePercentage", levelValue[currentLevel][2]);
-  updateLocal("gameQuestions", levelValue[currentLevel][3])
+  updateLocal("gameQuestions", levelValue[currentLevel][3]);
   updateLocal("gameLevel", currentLevel);
   location.href = "./astro-math.html";
 });

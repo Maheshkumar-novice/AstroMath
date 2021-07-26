@@ -127,7 +127,6 @@ a {
   font-size: var(--description-text);
   transition: scale 0.5s ease-in-out;
 }
-
 .popup--game {
   background-color: #000d1b;
   height: max-content;
@@ -138,31 +137,71 @@ a {
   top: 25%;
   border: 2px solid var(--danger-color);
 }
-
-.result-cont {
-  max-width: unset;
+.result {
   width: 95vw;
+  height: 80vh;
+  background-color: #000d1b;
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  border: 2px solid var(--danger-color);
+  border-radius: 25px;
+  z-index: 100;
+
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
 }
 
-.popup--score::before {
-  content: "Score: ";
-  color: var(--primary-color);
+.result__title {
+  font-size: 5rem;
 }
-.popup--targets::before {
-  content: "Targets: ";
-  color: var(--primary-color);
+
+.result__details {
+  display: flex;
+  justify-content: space-around;
 }
-.popup--missed::before {
-  content: "Missed: ";
-  color: var(--primary-color);
+
+.result__details > * {
+  flex: 1;
+  padding-top: 10rem;
 }
-.popup--percent::before {
-  content: "Percentage: ";
-  color: var(--primary-color);
+
+.result__data {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
 }
-.popup--time::before {
-  content: "Time: ";
-  color: var(--primary-color);
+
+.result__images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.result__img {
+  width: 20rem;
+  height: 20rem;
+}
+
+.result__stars {
+  display: flex;
+  gap: 3rem;
+}
+
+.result__star {
+  width: 6rem;
+  height: 6rem;
+}
+
+.result__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.result--row {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
 }
 
 @media (max-width: 950px) {
