@@ -285,7 +285,7 @@ function updateText(element, text) {
 }
 
 function endResult(gameQues, seconds, percent) {
-  classWorker("none", "add", asteroids_container, footer);
+  classWorker("none", "add", asteroids_container, footer, document.querySelector(".header"));
   classWorker("none", "remove", resultCont);
   updateText(".result__percent", `${percent} %`);
   updateText(".result__score span", `${scoreTag.textContent}`);
@@ -323,6 +323,7 @@ start.addEventListener("click", () => {
   timer(getLocal("gameTime"));
   timerCheck();
   classWorker("none", "add", start.parentElement);
+  classWorker("none", "remove", document.querySelector(".main__asteroids"));
 });
 
 footer.style.pointerEvents = "none";
