@@ -285,13 +285,20 @@ function updateText(element, text) {
 }
 
 function endResult(gameQues, seconds, percent) {
-  classWorker("none", "add", asteroids_container, footer, document.querySelector(".header"));
+  classWorker(
+    "none",
+    "add",
+    asteroids_container,
+    footer,
+    document.querySelector(".header")
+  );
   classWorker("none", "remove", resultCont);
   updateText(".result__percent", `${percent} %`);
   updateText(".result__score span", `${scoreTag.textContent}`);
   updateText(".result__time span", `${seconds} s`);
   updateText(".result__targets span", `${gameQues}`);
   updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
+  closeFullscreen();
 }
 
 const buttons = resultCont.querySelectorAll("button");
@@ -316,6 +323,34 @@ function listenKeys(e) {
   }
 }
 
+let elem = document.documentElement;
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
 const start = document.querySelector(".popup__button--start");
 start.addEventListener("click", () => {
   window.addEventListener("keyup", listenKeys);
@@ -324,6 +359,7 @@ start.addEventListener("click", () => {
   timerCheck();
   classWorker("none", "add", start.parentElement);
   classWorker("none", "remove", document.querySelector(".main__asteroids"));
+  openFullscreen();
 });
 
 footer.style.pointerEvents = "none";
