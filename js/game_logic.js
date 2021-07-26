@@ -23,9 +23,21 @@ function getRandomNumber() {
   return Math.floor(Math.random() * 10 + 1);
 }
 
+function getRandomAnswer(ans) {
+  if (ans < 10) {
+    return getRandomNumber();
+  }
+  let randomAnswers = [
+    Math.floor(Math.random() * ans),
+    Math.floor(Math.random() * (ans + 100 - ans) + ans),
+  ];
+  return randomAnswers[Math.floor(Math.random() * 2)];
+}
+
 function getRandomAnswers(ans) {
-  randomAnswer1 = getRandomNumber();
-  randomAnswer2 = getRandomNumber();
+  randomAnswer1 = getRandomAnswer(ans);
+  randomAnswer2 = getRandomAnswer(ans);
+  console.log(randomAnswer1, randomAnswer2)
   if (ans < 0) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
