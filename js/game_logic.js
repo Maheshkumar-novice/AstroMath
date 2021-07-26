@@ -33,8 +33,8 @@ function getRandomAnswers(ans) {
   if (!Number.isInteger(ans)) {
     let randomValue1 = Math.random();
     let randomValue2 = Math.random();
-    randomAnswer1 = +((randomAnswer1 + randomValue1).toFixed(1));
-    randomAnswer2 = +((randomAnswer2 + randomValue2).toFixed(1));
+    randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
+    randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
   }
   if (
     randomAnswer1 === ans ||
