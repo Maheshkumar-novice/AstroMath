@@ -23,7 +23,19 @@
   --btn-text: clamp(1.5rem, 5vw, 2rem);
   --small-text: clamp(1.2rem, 5vw, 2rem);
 }
-
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 15rem;
+  background:var(--secondary-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background:var(--orange);
+}
 html {
   background: url("../assets/images/earth-space-scene/bg-compressed.jpg") center;
   background-size: cover;
