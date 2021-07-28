@@ -197,6 +197,35 @@ gameOptions.forEach((option) => {
   });
 });
 
+//Update Stars
+const starsCnt = document.querySelector(".result__stars");
+
+let goldenTemplate = `<img
+src="./assets/images/goldenstar.svg"
+alt=""
+class="result__star"
+/>`;
+
+let silverTemplate = `<img
+src="./assets/images/silverstar.svg"
+alt=""
+class="result__star"
+/>`;
+
+function updateStars(percent){
+  if(percent < 50) return;
+  
+  if(percent >= 50 && percent <75){
+    starsCnt.innerHTML = goldenTemplate + silverTemplate + silverTemplate;
+  }
+  else if(percent >= 75 && percent < 100){
+    starsCnt.innerHTML = goldenTemplate + goldenTemplate + silverTemplate;
+  }
+  else{
+    starsCnt.innerHTML = goldenTemplate + goldenTemplate + goldenTemplate;
+  }
+}
+
 // end Game
 const resultCont = document.querySelector(".result");
 const footer = document.querySelector(".footer");
@@ -226,6 +255,8 @@ function endGame() {
   endResult(ques, currTime, currPercentage);
   const buttons = resultCont.querySelectorAll("button");
   buttons[1].disabled = false;
+
+  updateStars(currPercentage)
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
     classWorker("none", "remove", pyro);
