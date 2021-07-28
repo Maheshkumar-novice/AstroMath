@@ -209,6 +209,9 @@ function endGame() {
   clearTime();
   window.removeEventListener("keyup", listenKeys);
   let pyro = document.querySelector(".pyro");
+  let resultImg = document.querySelector(".result__img");
+  let highImg = document.querySelector(".result__high-score");
+  let giphyAttr = document.querySelector(".giphy__attr");
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
   let ques = getLocal("gameQuestions");
@@ -225,6 +228,10 @@ function endGame() {
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
     classWorker("none", "remove", pyro);
+    classWorker("none", "add", resultImg);
+    classWorker("none", "remove", highImg);
+    classWorker("none", "remove", giphyAttr);
+    console.log("hisdfdsf");
     localjson[currLevel][0] = "played";
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
@@ -243,6 +250,9 @@ function endGame() {
     }
   } else if (currPercentage > previousPercentage) {
     classWorker("none", "remove", pyro);
+    classWorker("none", "add", resultImg);
+    classWorker("none", "remove", highImg);
+    classWorker("none", "remove", giphyAttr);
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
   }
