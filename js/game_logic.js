@@ -208,7 +208,7 @@ function calculatePercentage(ques, score) {
 function endGame() {
   clearTime();
   window.removeEventListener("keyup", listenKeys);
-
+  let pyro = document.querySelector(".pyro");
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
   let ques = getLocal("gameQuestions");
@@ -224,6 +224,7 @@ function endGame() {
   buttons[1].disabled = false;
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
+    classWorker("none", "remove", pyro);
     localjson[currLevel][0] = "played";
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
@@ -241,6 +242,7 @@ function endGame() {
       localjson[next][0] = "current";
     }
   } else if (currPercentage > previousPercentage) {
+    classWorker("none", "remove", pyro);
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
   }
@@ -249,6 +251,7 @@ function endGame() {
     currPercentage === previousPercentage &&
     currTime <= currBestTime
   ) {
+    classWorker("none", "remove", pyro);
     localjson[currLevel][1] = currTime;
   }
   if (localjson[currLevel][0] === "current") {
@@ -298,7 +301,7 @@ function endResult(gameQues, seconds, percent) {
   updateText(".result__time span", `${seconds} s`);
   updateText(".result__targets span", `${gameQues}`);
   updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
-  closeFullscreen();
+  // closeFullscreen();
 }
 
 const buttons = resultCont.querySelectorAll("button");
@@ -359,7 +362,7 @@ start.addEventListener("click", () => {
   timerCheck();
   classWorker("none", "add", start.parentElement);
   classWorker("none", "remove", document.querySelector(".main__asteroids"));
-  openFullscreen();
+  // openFullscreen();
 });
 
 footer.style.pointerEvents = "none";
