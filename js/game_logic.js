@@ -211,6 +211,7 @@ function endGame() {
   let pyro = document.querySelector(".pyro");
   let resultImg = document.querySelector(".result__img");
   let highImg = document.querySelector(".result__high-score");
+  let pbImg = document.querySelector(".result__pb");
   let giphyAttr = document.querySelector(".giphy__attr");
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
@@ -219,7 +220,7 @@ function endGame() {
     calculatePercentage(ques, +scoreTag.innerText)
   );
   let currBestTime = +getLocal("gameBestTime") || 0;
-  let previousPercentage = getLocal("gamePercentage");
+  let previousPercentage = +getLocal("gamePercentage");
   let currLevel = `${getLocal("gameLevel")}`;
 
   endResult(ques, currTime, currPercentage);
@@ -256,12 +257,17 @@ function endGame() {
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
   }
+  console.log(currPercentage, previousPercentage, currTime, currBestTime);
   if (
     currPercentage >= 50 &&
     currPercentage === previousPercentage &&
     currTime <= currBestTime
   ) {
     classWorker("none", "remove", pyro);
+    classWorker("none", "add", resultImg);
+    classWorker("none", "remove", pbImg);
+    classWorker("none", "remove", giphyAttr);
+    console.log("hi");
     localjson[currLevel][1] = currTime;
   }
   if (localjson[currLevel][0] === "current") {
