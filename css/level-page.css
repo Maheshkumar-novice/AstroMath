@@ -37,12 +37,6 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5rem;
-}
-.footer i {
-  font-size: 5rem;
+.header__text a{
+  font-size: var(--icon-size);
 }
