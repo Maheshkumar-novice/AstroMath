@@ -34,10 +34,19 @@ html {
   height: clamp(50px, 15vw, 120px);
 }
 
-.main__resume a:hover,
-.main__newgame a:hover {
+.orange{
   color: var(--orange);
 }
+
+.not-active{
+  opacity: .5;
+  cursor: default;
+}
+
+/* .main__resume a:hover,
+.main__newgame a:hover {
+  color: var(--orange);
+} */
 
 .footer {
   height: 100px;

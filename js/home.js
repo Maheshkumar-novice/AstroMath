@@ -59,20 +59,23 @@ function updateCurrentLevel() {
 // Music
 let soundSrc;
 let playable;
-let menubtn = document.querySelectorAll(".main__option");
+// let menubtn = document.querySelectorAll(".main__option");
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
 
-menubtn.forEach((menu) => {
-  menu.addEventListener("mouseenter", function () {
-    let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-    classWorker("none", "remove", fire);
-  });
-  menu.addEventListener("mouseleave", function () {
-    let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-    classWorker("none", "add", fire);
-  });
-});
+// menubtn.forEach((menu) => {
+//   menu.addEventListener("mouseenter", function () {
+//     if(this.dataset.value == "resume" && !getLocal("currentLevel")){
+//       return;
+//     }
+//     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
+//     classWorker("none", "remove", fire);
+//   });
+//   menu.addEventListener("mouseleave", function () {
+//     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
+//     classWorker("none", "add", fire);
+//   });
+// });
 
 let levelValue = JSON.stringify({
   1: ["current", null, null, 5],
@@ -113,16 +116,27 @@ resume.addEventListener("click", (e) => {
 });
 
 options.forEach((option) => {
-  option.addEventListener("mouseenter", () => {
+  option.addEventListener("mouseenter", function(){
+    if(this.dataset.value == "resume" && !getLocal("currentLevel")){
+      return;
+    }
+    this.querySelector("a").classList.add("orange");
+    let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
+    classWorker("none", "remove", fire);
     if (playable) {
       hoverMusic();
     }
   });
-  option.addEventListener("click", () => {
-    if (playable) {
-      clickMusic();
-    }
+  option.addEventListener("mouseleave", function () {
+    this.querySelector("a").classList.remove("orange");
+    let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
+    classWorker("none", "add", fire);
   });
+  // option.addEventListener("click", () => {
+  //   if (playable) {
+  //     clickMusic();
+  //   }
+  // });
 });
 
 popupButton.addEventListener("click", (e) => {
@@ -154,6 +168,9 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
+  if(!getLocal("currentLevel")){
+    options[0].querySelector("a").classList.add("not-active");
+  }
   updateCurrentLevel();
   nameInput.value = getLocal("user") || "Jaam";
   updatePopup(nameInput.value);
