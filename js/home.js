@@ -103,6 +103,7 @@ newgame.addEventListener("click", (e) => {
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
+  if(resume.classList.contains("not-active")) return;
   let currentLevel = getLocal("currentLevel") || 1;
   let levelValue = JSON.parse(getLocal("levelValue")) || {
     1: ["current", null, null, 5],
