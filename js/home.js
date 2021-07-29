@@ -100,8 +100,10 @@ newgame.addEventListener("click", (e) => {
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
-  let currentLevel = getLocal("currentLevel");
-  let levelValue = JSON.parse(getLocal("levelValue"));
+  let currentLevel = getLocal("currentLevel") || 1;
+  let levelValue = JSON.parse(getLocal("levelValue")) || {
+    1: ["current", null, null, 5],
+  };
   updateLocal("gameTime", getLevelTime(currentLevel));
   updateLocal("gameBestTime", levelValue[currentLevel][1]);
   updateLocal("gamePercentage", levelValue[currentLevel][2]);

@@ -71,6 +71,7 @@ const viewWorkMap = {
   credits: [info, settings],
 };
 
+let homeIcon = document.querySelector(".fa-home");
 function viewWorker(view, strView) {
   let checkFlag;
   let otherTwo = viewWorkMap[strView];
@@ -83,6 +84,9 @@ function viewWorker(view, strView) {
     checkFlag = 2;
   }
   classWorker("none", "toggle", view);
+  containsClass(view, "none")
+    ? classWorker("none", "remove", homeIcon)
+    : classWorker("none", "add", homeIcon);
   check(checkFlag);
 }
 
