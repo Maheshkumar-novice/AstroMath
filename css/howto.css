@@ -18,11 +18,13 @@ h1 {
 
 h2 {
     font-size: 4rem;
+    margin-bottom: 1.75rem;
 }
 
 h3 {
     font-size: 3rem;
     color: var(--primary-color);
+    margin: 2rem 0rem;
 }
 
 .explanation-text {
@@ -31,13 +33,15 @@ h3 {
     text-align: left;
     padding: 0 2rem;
 }
-
+.controls-heading {
+    margin-top: 3rem;
+}
 .controls {
     display: flex;
     margin-bottom: 2rem;
 }
 .controls-image {
-    
+    margin: 0rem 2rem;
     max-width: 50vw;
     max-height: 50vh;
     border-radius: 3rem;
@@ -51,6 +55,10 @@ h3 {
     color: var(--orange);
     font-size: 2rem;
     text-align: left;
-    padding: 0 2rem;
-    
+    padding: 0 2rem;   
+}
+
+span {
+    color: var(--secondary-color);
+    margin-right: 1rem;
 }
