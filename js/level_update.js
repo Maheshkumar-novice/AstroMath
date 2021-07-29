@@ -122,6 +122,10 @@ function clickLevel() {
   levels.forEach((level) => {
     level.addEventListener("click", () => {
       if (level.dataset.status !== "locked") {
+        //sound continue
+        const themeAud = document.querySelector(".audio__theme");
+        updateLocal("soundTime", themeAud.currentTime);
+
         clickedLevel = level.dataset.level;
         clickedGameTime = getLevelTime(clickedLevel);
         clickedGameBestTime = level.dataset.besttime;

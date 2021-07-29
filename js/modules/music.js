@@ -29,7 +29,7 @@ export function playMusic(playable) {
     themeAudio.pause();
     return;
   }
-  themeAudio.currentTime = 0;
+  themeAudio.currentTime = localStorage.getItem("soundTime") || 0;
   let themePromise = themeAudio.play();
   handleThemePromise(themePromise);
   themeAudio.loop = "true";

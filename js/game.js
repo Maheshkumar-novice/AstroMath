@@ -74,6 +74,17 @@ soundToggle.addEventListener("click", (e) => {
   playMusic(playable);
 });
 
+//exit
+
+const exit = document.getElementById("exit");
+const themeAud = document.querySelector(".audio__theme");
+
+exit.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateLocal("soundTime", themeAud.currentTime);
+  location.href = exit.href;
+});
+
 // onload
 const level = document.querySelector(".header__info--level");
 window.onload = function () {
@@ -93,5 +104,6 @@ window.onload = function () {
   document.querySelector(".header__info--time").textContent =
     getLocal("gameTime") + " s";
   level.textContent = getLocal("gameLevel");
+  localStorage.removeItem("soundTime");
 };
 

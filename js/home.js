@@ -31,6 +31,8 @@ import {
   getLevelTime,
 } from "./modules/utils.js";
 
+const themeAud = document.querySelector(".audio__theme");
+
 // Utils
 let editing = true;
 settingIcon.addEventListener("click", settingsView);
@@ -98,6 +100,7 @@ newgame.addEventListener("click", (e) => {
   updateLocal("gameQuestions", 5);
   updateLocal("currentLevel", 1);
   updateLocal("allDone", "no");
+  updateLocal("soundTime", themeAud.currentTime);
   location.href = "./astro-math.html";
 });
 
@@ -113,6 +116,7 @@ resume.addEventListener("click", (e) => {
   updateLocal("gamePercentage", levelValue[currentLevel][2]);
   updateLocal("gameQuestions", levelValue[currentLevel][3]);
   updateLocal("gameLevel", currentLevel);
+  updateLocal("soundTime", themeAud.currentTime);
   location.href = "./astro-math.html";
 });
 
@@ -152,6 +156,7 @@ popupButton.addEventListener("click", (e) => {
 
 levelMenu.addEventListener("click", (e) => {
   updateLocal("currentSoundSrc", soundToggle.src);
+  updateLocal("soundTime", themeAud.currentTime);
 });
 
 soundToggle.addEventListener("click", (e) => {

@@ -66,4 +66,5 @@ window.onload = function () {
       ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
+  localStorage.removeItem("soundTime");
 };
