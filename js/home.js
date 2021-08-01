@@ -122,7 +122,12 @@ resume.addEventListener("click", (e) => {
 });
 
 survival.addEventListener("click", (e) => {
-  updateLocal("gameTime", 120)
+  e.preventDefault();
+  if(!getLocal("survivalScore")){
+    updateLocal("survivalScore", 0);
+  }
+  updateLocal("gameTime", 10);
+  location.href = e.target.href;
 })
 
 options.forEach((option) => {
