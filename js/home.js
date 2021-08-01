@@ -64,6 +64,7 @@ let playable;
 // let menubtn = document.querySelectorAll(".main__option");
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
+const survival = document.querySelector(".main__survival--link");
 
 // menubtn.forEach((menu) => {
 //   menu.addEventListener("mouseenter", function () {
@@ -119,6 +120,10 @@ resume.addEventListener("click", (e) => {
   updateLocal("soundTime", themeAud.currentTime);
   location.href = "./astro-math.html";
 });
+
+survival.addEventListener("click", (e) => {
+  updateLocal("gameTime", 120)
+})
 
 options.forEach((option) => {
   option.addEventListener("mouseenter", function(){
