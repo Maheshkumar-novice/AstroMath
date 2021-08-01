@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/game.css" />
+    <link rel="stylesheet" href="./css/pyro.css" />
+    <title>Top Jam 1</title>
+  </head>
+  <body class="not-home">
+    <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
+    <header class="header">
+      <h2 class="header__info header__info--time">50 s</h2>
+      <h2 class="header__info header__info--score">0</h2>
+      <h2 class="header__info header__info--sound">
+        <img
+          class="header__info--sound-icon settings__sound--icon"
+          src="./assets/images/soundon.svg"
+        />
+      </h2>
+      <h2 class="header__info header__info--level">
+        <a href="./astro-math-levels.html">0</a>
+      </h2>
+      <h2 class="header__info header__info--exit">
+        <a href="./astro-math-levels.html" id="exit">Exit</a>
+      </h2>
+    </header>
+    <main class="main">
+      <section class="popup--game">
+        <h2 class="popup__title">Get Ready</h2>
+        <p class="popup__description">Click Start to Play!</p>
+        <button class="popup__button popup__button--start">Start</button>
+      </section>
+      <div class="main__asteroids none">
+        <div class="main__asteroid-container">
+          <h2 class="main__asteroid-problem">5 * 5</h2>
+          <img
+            src="./assets/images/asteroid.png"
+            alt=""
+            class="main__asteroid"
+          />
+        </div>
+        <div class="main__asteroid-container">
+          <h2 class="main__asteroid-problem">5 * 5</h2>
+          <img
+            src="./assets/images/asteroid.png"
+            alt=""
+            class="main__asteroid"
+          />
+        </div>
+        <div class="main__asteroid-container">
+          <h2 class="main__asteroid-problem">5 * 5</h2>
+          <img
+            src="./assets/images/asteroid.png"
+            alt=""
+            class="main__asteroid"
+          />
+        </div>
+      </div>
+      
+      <!-- Result Page -->
+
+      <div class="result none">
+        <div class="pyro none">
+          <div class="before"></div>
+          <div class="after"></div>
+        </div>
+        <h2 class="result__title secondary-color">Results</h2>
+        <div class="result__details">
+          <div class="result__images">
+            <img
+              src="./assets/images/asteroid.png"
+              alt=""
+              class="result__img"
+            />
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                padding-bottom: 0%;
+                position: relative;
+              "
+              class="result__high-score none"
+            >
+              <iframe
+                src="https://giphy.com/embed/TNkCo1hWb25CM2foWT"
+                width="100%"
+                height="100%"
+                style="position: absolute"
+                frameborder="0"
+                class="giphy-embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                padding-bottom: 0%;
+                position: relative;
+              "
+              class="result__pb none"
+            >
+              <iframe
+                src="https://giphy.com/embed/fjyoMBbDTPHOis7HmO"
+                width="100%"
+                height="100%"
+                style="position: absolute"
+                frameborder="0"
+                class="giphy-embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="giphy__attr none">
+              <a href="https://giphy.com/gifs/TNkCo1hWb25CM2foWT">via GIPHY</a>
+            </p>
+            <div class="result__stars">
+              <img
+                src="./assets/images/silverstar.svg"
+                alt=""
+                class="result__star"
+              />
+              <img
+                src="./assets/images/silverstar.svg"
+                alt=""
+                class="result__star"
+              />
+              <img
+                src="./assets/images/silverstar.svg"
+                alt=""
+                class="result__star"
+              />
+            </div>
+            <p class="result__percent popup__description">20%</p>
+          </div>
+
+          <div class="result__data">
+            <div>
+              <p class="result__score popup__description primary-color">
+                Score: <span class="secondary-color">2</span>
+              </p>
+              <p class="result__time popup__description primary-color">
+                Time: <span class="secondary-color">2s</span>
+              </p>
+            </div>
+
+            <div class="result--row">
+              <p class="result__targets popup__description">
+                Targets: <span class="primary-color">10</span>
+              </p>
+              <p class="result__missed popup__description">
+                Missed: <span class="primary-color">8</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="result__buttons">
+          <button class="result__button popup__button" data-value="again">
+            Play Again
+          </button>
+          <button
+            class="result__button popup__button"
+            disabled
+            data-value="next"
+          >
+            Next
+          </button>
+          <a href="./astro-math-levels.html">
+            <button class="result__button popup__button exit__button">
+              Exit
+            </button></a
+          >
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <button
+        class="footer__option footer__option1"
+        data-option="1"
+        data-value="1"
+      >
+        1
+      </button>
+      <button
+        class="footer__option footer__option2"
+        data-option="2"
+        data-value="1"
+      >
+        1
+      </button>
+      <button
+        class="footer__option footer__option3"
+        data-option="3"
+        data-value="1"
+      >
+        1
+      </button>
+    </footer>
+    <script type="module" src="./js/game.js"></script>
+    <script type="module" src="./js/survival_logic.js"></script>
+  </body>
+</html>
