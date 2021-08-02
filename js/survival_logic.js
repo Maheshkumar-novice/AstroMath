@@ -219,6 +219,7 @@ import {
 
     let bestScore = +getLocal("survivalScore");
     let score = +scoreTag.innerText;
+    let highImg = document.querySelector(".result__high-score");
     let giphyAttr = document.querySelector(".giphy__attr");
     let quoteTag = document.querySelector(".result__quotes");
 
