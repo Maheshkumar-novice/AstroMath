@@ -29,7 +29,6 @@ h3 {
 
 .explanation-text {
     color: var(--orange);
-    font-size: 2rem;
     text-align: left;
     padding: 0 2rem;
 }
@@ -61,4 +60,50 @@ h3 {
 span {
     color: var(--secondary-color);
     margin-right: 1rem;
+}
+p {
+    font-size: 1.7rem;
+    font-weight: 100;
+}
+
+a {
+    color: var(--secondary-color);
+    padding: 0.3rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+
+@media (max-width: 1024px) {
+    .main {
+        margin: 1rem auto;
+        padding: 2rem 3rem;
+        min-width: 85vw;
+    }
+    .controls {
+        flex-direction: column;
+    }
+    .controls-image {
+        justify-content: center;
+        max-width: 75vw;
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        margin: 1rem auto;
+        padding: 1rem 1.5rem;
+        min-width: 95vw;
+    }
+    .controls-image {
+        max-width: 95vw;
+    }
 }
