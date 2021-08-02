@@ -7,15 +7,12 @@ import {
     clearTime,
     getLevelTime,
   } from "./modules/utils.js";
-<<<<<<< HEAD
 
   const quotes= {
     "positve" : ["You Did it!", "You crushed! your previous score!!!", "AHHHH Improved!!!!"],
     "negative" : ["OOOPS!! You didn't make it", "No worries!! Try again", "Don't lose hope, you can!!!!"],
     "nothin" : ["Yep!!! Same level"]
   }
-=======
->>>>>>> origin/survival
   
   const operators = ["+", "-", "*", "/"];
   let qaMap = {};
@@ -90,13 +87,6 @@ import {
     }
   }
   
-<<<<<<< HEAD
-=======
-  function checkEquation(eq) {
-    return eq in qaMap;
-  }
-  
->>>>>>> origin/survival
   function generateProblem() {
     console.log(answers);
     let [op1, op2, op] = [
@@ -121,10 +111,6 @@ import {
   }
   
   function generateQA(questions) {
-<<<<<<< HEAD
-=======
-    // let questions = getLocal("gameQuestions");
->>>>>>> origin/survival
     for (let i = 0; i < questions; i++) {
       generateProblem();
     }
@@ -172,11 +158,6 @@ import {
     console.log(randomAsteroid);
     if (!randomAsteroid) {
         console.log("hello");
-<<<<<<< HEAD
-=======
-    //   endGame();
-    //   return;
->>>>>>> origin/survival
         asteroids = "";
         answers.splice(0, answers.length);
         qaMap = {};
@@ -259,38 +240,14 @@ import {
   
   function naviCaller() {
     console.log("clicked");
-<<<<<<< HEAD
     location.reload();
-=======
-    if (this.dataset.value === "next") {
-      let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
-      if (nextLevel === 0) {
-        nextLevel = 10;
-      }
-      let localjson = JSON.parse(getLocal("levelValue"));
-  
-      updateLocal("gameLevel", nextLevel);
-      updateLocal("gameTime", getLevelTime(nextLevel));
-      updateLocal("gameBestTime", localjson[nextLevel][1]);
-      updateLocal("gamePercentage", localjson[nextLevel][2]);
-      updateLocal("gameQuestions", localjson[nextLevel][3]);
-  
-      location.reload();
-    } else if (this.dataset.value === "again") {
-      location.reload();
-    }
->>>>>>> origin/survival
   }
   
   function updateText(element, text) {
     document.querySelector(element).textContent = text;
   }
   
-<<<<<<< HEAD
   function endResult(bs) {
-=======
-  function endResult() {
->>>>>>> origin/survival
     classWorker(
       "none",
       "add",
@@ -299,17 +256,8 @@ import {
       document.querySelector(".header")
     );
     classWorker("none", "remove", resultCont);
-<<<<<<< HEAD
     updateText(".result__score span", `${scoreTag.textContent}`);
     updateText(".result__prescore span", `${bs}`);
-=======
-    // updateText(".result__percent", `${percent} %`);
-    updateText(".result__score span", `${scoreTag.textContent}`);
-    // updateText(".result__time span", `${seconds} s`);
-    // updateText(".result__targets span", `${gameQues}`);
-    // updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
-    // closeFullscreen();
->>>>>>> origin/survival
   }
   
   const buttons = resultCont.querySelectorAll("button");
@@ -366,7 +314,7 @@ import {
   start.addEventListener("click", () => {
     window.addEventListener("keyup", listenKeys);
     footer.style.pointerEvents = "unset";
-    timer(10);
+    timer(30);
     timerCheck();
     classWorker("none", "add", start.parentElement);
     classWorker("none", "remove", document.querySelector(".main__asteroids"));
