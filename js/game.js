@@ -1,10 +1,5 @@
 import { playMusic, checkPlayable, soundToggle } from "./modules/music.js";
-import {
-  body,
-  containsClass,
-  updateLocal,
-  getLocal,
-} from "./modules/utils.js";
+import { body, containsClass, updateLocal, getLocal } from "./modules/utils.js";
 
 // Utils - Options
 const options = [...document.querySelectorAll(".footer__option")];
@@ -103,7 +98,12 @@ window.onload = function () {
   }
   document.querySelector(".header__info--time").textContent =
     getLocal("gameTime") + " s";
-  level.textContent = getLocal("gameLevel");
   localStorage.removeItem("soundTime");
-};
+  if (location.href.includes("survival.html")){
+    // if(!getLocal("survivalScor")){
 
+    // }
+    return
+  }
+    level.textContent = getLocal("gameLevel");
+};
