@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/game.css" />
     <link rel="stylesheet" href="./css/pyro.css" />
+    <link rel="stylesheet" href="./css/survival.css" />
     <title>Top Jam 1</title>
   </head>
   <body class="not-home">
@@ -20,9 +21,7 @@
           src="./assets/images/soundon.svg"
         />
       </h2>
-      <h2 class="header__info header__info--level">
-        <a href="./astro-math-levels.html">0</a>
-      </h2>
+      <h2 class="header__info header__info--level"></h2>
       <h2 class="header__info header__info--exit">
         <a href="./astro-math-levels.html" id="exit">Exit</a>
       </h2>
@@ -59,7 +58,7 @@
           />
         </div>
       </div>
-      
+
       <!-- Result Page -->
 
       <div class="result none">
@@ -116,42 +115,16 @@
             <p class="giphy__attr none">
               <a href="https://giphy.com/gifs/TNkCo1hWb25CM2foWT">via GIPHY</a>
             </p>
-            <div class="result__stars">
-              <img
-                src="./assets/images/silverstar.svg"
-                alt=""
-                class="result__star"
-              />
-              <img
-                src="./assets/images/silverstar.svg"
-                alt=""
-                class="result__star"
-              />
-              <img
-                src="./assets/images/silverstar.svg"
-                alt=""
-                class="result__star"
-              />
-            </div>
-            <p class="result__percent popup__description">20%</p>
+            <p class="result__quotes popup__description">20%</p>
           </div>
 
           <div class="result__data">
             <div>
+              <p class="result__prescore popup__description primary-color">
+                Previous Score: <span class="secondary-color">2</span>
+              </p>
               <p class="result__score popup__description primary-color">
                 Score: <span class="secondary-color">2</span>
-              </p>
-              <p class="result__time popup__description primary-color">
-                Time: <span class="secondary-color">2s</span>
-              </p>
-            </div>
-
-            <div class="result--row">
-              <p class="result__targets popup__description">
-                Targets: <span class="primary-color">10</span>
-              </p>
-              <p class="result__missed popup__description">
-                Missed: <span class="primary-color">8</span>
               </p>
             </div>
           </div>
@@ -159,13 +132,6 @@
         <div class="result__buttons">
           <button class="result__button popup__button" data-value="again">
             Play Again
-          </button>
-          <button
-            class="result__button popup__button"
-            disabled
-            data-value="next"
-          >
-            Next
           </button>
           <a href="./astro-math-levels.html">
             <button class="result__button popup__button exit__button">
