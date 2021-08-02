@@ -7,6 +7,12 @@ import {
     clearTime,
     getLevelTime,
   } from "./modules/utils.js";
+
+  const quotes= {
+    "positve" : ["You Did it!", "You crushed! your previous score!!!", "AHHHH Improved!!!!"],
+    "negative" : ["OOOPS!! You didn't make it", "No worries!! Try again", "Don't lose hope, you can!!!!"],
+    "nothin" : ["Yep!!! Same level"]
+  }
   
   const operators = ["+", "-", "*", "/"];
   let qaMap = {};
@@ -81,10 +87,6 @@ import {
     }
   }
   
-  function checkEquation(eq) {
-    return eq in qaMap;
-  }
-  
   function generateProblem() {
     console.log(answers);
     let [op1, op2, op] = [
@@ -109,7 +111,6 @@ import {
   }
   
   function generateQA(questions) {
-    // let questions = getLocal("gameQuestions");
     for (let i = 0; i < questions; i++) {
       generateProblem();
     }
@@ -157,8 +158,6 @@ import {
     console.log(randomAsteroid);
     if (!randomAsteroid) {
         console.log("hello");
-    //   endGame();
-    //   return;
         asteroids = "";
         answers.splice(0, answers.length);
         qaMap = {};
@@ -207,150 +206,49 @@ import {
       answerValidate(e.target.textContent.trim());
     });
   });
-  
-  //Update Stars
-  const starsCnt = document.querySelector(".result__stars");
-  
-  let goldenTemplate = `<img
-  src="./assets/images/goldenstar.svg"
-  alt=""
-  class="result__star"
-  />`;
-  
-  let silverTemplate = `<img
-  src="./assets/images/silverstar.svg"
-  alt=""
-  class="result__star"
-  />`;
-  
-  function updateStars(percent){
-    if(percent < 50) return;
-    
-    if(percent >= 50 && percent <75){
-      starsCnt.innerHTML = goldenTemplate + silverTemplate + silverTemplate;
-    }
-    else if(percent >= 75 && percent < 100){
-      starsCnt.innerHTML = goldenTemplate + goldenTemplate + silverTemplate;
-    }
-    else{
-      starsCnt.innerHTML = goldenTemplate + goldenTemplate + goldenTemplate;
-    }
-  }
+
   
   // end Game
   const resultCont = document.querySelector(".result");
   const footer = document.querySelector(".footer");
   
-  function calculatePercentage(ques, score) {
-    return (score / ques) * 100;
-  }
-  
   function endGame() {
+    let qono = Math.floor(Math.random()*3);
+
     clearTime();
     window.removeEventListener("keyup", listenKeys);
-    let pyro = document.querySelector(".pyro");
-    // let resultImg = document.querySelector(".result__img");
-    // let highImg = document.querySelector(".result__high-score");
-    // let pbImg = document.querySelector(".result__pb");
-    // let giphyAttr = document.querySelector(".giphy__attr");
-    // let localjson = JSON.parse(getLocal("levelValue"));
+
     let bestScore = +getLocal("survivalScore");
-    let score = scoreTag.innerText;
-    let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
+    let score = +scoreTag.innerText;
+    let giphyAttr = document.querySelector(".giphy__attr");
+    let quoteTag = document.querySelector(".result__quotes");
+
+    console.log(score, bestScore)
+
     if(score > bestScore){
-        updateLocal("survivalScore", score);
+        classWorker("none", "remove", giphyAttr);
+        classWorker("none", "remove", highImg);
+        quoteTag.innerText = quotes.positve[qono];
     }
-    // let ques = getLocal("gameQuestions");
-    // let currPercentage = Math.floor(
-    //   calculatePercentage(ques, +scoreTag.innerText)
-    // );
-    // let currBestTime = +getLocal("gameBestTime") || 0;
-    // let previousPercentage = +getLocal("gamePercentage");
-    // let currLevel = `${getLocal("gameLevel")}`;
-  
-    endResult();
-    // const buttons = resultCont.querySelectorAll("button");
-    // buttons[1].disabled = false;
-  
-    // updateStars(currPercentage)
-  
-    // if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
-    //   classWorker("none", "remove", pyro);
-    //   classWorker("none", "add", resultImg);
-    //   classWorker("none", "remove", highImg);
-    //   classWorker("none", "remove", giphyAttr);
-    //   console.log("hisdfdsf");
-    //   localjson[currLevel][0] = "played";
-    //   localjson[currLevel][1] = currTime;
-    //   localjson[currLevel][2] = currPercentage;
-  
-    //   let next = `${(+currLevel + 1) % 10}`;
-    //   if (next === 0) {
-    //     next = 10;
-    //     updateLocal("allDone", "yes");
-    //   }
-    //   if (getLocal("allDone") === "yes") {
-    //     updateLocal("currentLevel", 10);
-    //     localjson[10][0] = "current";
-    //   } else {
-    //     updateLocal("currentLevel", next);
-    //     localjson[next][0] = "current";
-    //   }
-    // } else if (currPercentage > previousPercentage) {
-    //   classWorker("none", "remove", pyro);
-    //   classWorker("none", "add", resultImg);
-    //   classWorker("none", "remove", highImg);
-    //   classWorker("none", "remove", giphyAttr);
-    //   localjson[currLevel][1] = currTime;
-    //   localjson[currLevel][2] = currPercentage;
-    // }
-    // console.log(currPercentage, previousPercentage, currTime, currBestTime);
-    // if (
-    //   currPercentage >= 50 &&
-    //   currPercentage === previousPercentage &&
-    //   currTime <= currBestTime
-    // ) {
-    //   classWorker("none", "remove", pyro);
-    //   classWorker("none", "add", resultImg);
-    //   classWorker("none", "remove", pbImg);
-    //   classWorker("none", "remove", giphyAttr);
-    //   console.log("hi");
-    //   localjson[currLevel][1] = currTime;
-    // }
-    // if (localjson[currLevel][0] === "current") {
-    //   buttons[1].disabled = true;
-    // }
-    // updateLocal("gameBestTime", localjson[currLevel][1]);
-    // updateLocal("gamePercentage", localjson[currLevel][2]);
-    // updateLocal("levelValue", JSON.stringify(localjson));
+    else if(score < bestScore){
+      quoteTag.innerText = quotes.negative[qono];
+    }
+    else{
+      quoteTag.innerText = quotes.nothin[0];
+    }
+    endResult(bestScore);
   }
   
   function naviCaller() {
     console.log("clicked");
-    if (this.dataset.value === "next") {
-      let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
-      if (nextLevel === 0) {
-        nextLevel = 10;
-      }
-      let localjson = JSON.parse(getLocal("levelValue"));
-  
-      updateLocal("gameLevel", nextLevel);
-      updateLocal("gameTime", getLevelTime(nextLevel));
-      updateLocal("gameBestTime", localjson[nextLevel][1]);
-      updateLocal("gamePercentage", localjson[nextLevel][2]);
-      updateLocal("gameQuestions", localjson[nextLevel][3]);
-  
-      location.reload();
-    } else if (this.dataset.value === "again") {
-      location.reload();
-    }
+    location.reload();
   }
   
   function updateText(element, text) {
     document.querySelector(element).textContent = text;
   }
   
-  function endResult() {
+  function endResult(bs) {
     classWorker(
       "none",
       "add",
@@ -359,12 +257,8 @@ import {
       document.querySelector(".header")
     );
     classWorker("none", "remove", resultCont);
-    // updateText(".result__percent", `${percent} %`);
     updateText(".result__score span", `${scoreTag.textContent}`);
-    // updateText(".result__time span", `${seconds} s`);
-    // updateText(".result__targets span", `${gameQues}`);
-    // updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
-    // closeFullscreen();
+    updateText(".result__prescore span", `${bs}`);
   }
   
   const buttons = resultCont.querySelectorAll("button");
