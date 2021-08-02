@@ -97,6 +97,28 @@ html {
       steps(var(--typewriterCharacters)) 1s forwards,
     blink 750ms steps(var(--typewriterCharacters)) infinite;
 }
+.video{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.video button{
+  z-index: 999;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.video video{
+  max-height: 100vh;
+  width: 100vw;
+}
 @keyframes typewriter {
   to {
     left: 100%;
