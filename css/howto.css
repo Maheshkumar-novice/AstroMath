@@ -62,8 +62,8 @@ span {
     margin-right: 1rem;
 }
 p {
-    font-size: 1.7rem;
-    font-weight: 100;
+    font-size: 2rem;
+    font-weight: 200;
 }
 
 a {
@@ -100,7 +100,7 @@ a:hover {
 @media (max-width: 480px) {
     .main {
         margin: 1rem auto;
-        padding: 1rem 1.5rem;
+        padding: 1rem 1rem;
         min-width: 95vw;
     }
     .controls-image {
