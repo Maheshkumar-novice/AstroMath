@@ -13,7 +13,7 @@
   <body class="not-home">
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
     <header class="header">
-      <h2 class="header__info header__info--time">50 s</h2>
+      <h2 class="header__info header__info--time">120 s</h2>
       <h2 class="header__info header__info--score">0</h2>
       <h2 class="header__info header__info--sound">
         <img
@@ -27,6 +27,27 @@
       </h2>
     </header>
     <main class="main">
+      <section class="life">
+        <img
+          data-value="1"
+          src="./assets/images/meteorlife.svg"
+          alt="Life"
+          class="life__img"
+        />
+        <img
+          data-value="2"
+          src="./assets/images/meteorlife.svg"
+          alt="Life"
+          class="life__img"
+        />
+        <img
+          data-value="3"
+          src="./assets/images/meteorlife.svg"
+          alt="Life"
+          class="life__img"
+        />
+      </section>
+
       <section class="popup--game">
         <h2 class="popup__title">Get Ready</h2>
         <p class="popup__description">Click Start to Play!</p>
@@ -137,6 +158,7 @@
               Exit
             </button></a
           >
+        </div>
       </div>
     </main>
     <footer class="footer">
@@ -162,6 +184,7 @@
         1
       </button>
     </footer>
+
     <script type="module" src="./js/game.js"></script>
     <script type="module" src="./js/survival_logic.js"></script>
   </body>
