@@ -55,21 +55,11 @@
             <a href="./astro-math.html" class="main__newgame--link">New Game</a>
           </h2>
         </div>
-        <div class="main__options__cnt">
-          <img
-            src="./assets/images/Fire.svg"
-            class="none"
-            data-tag="Survival"
-            alt=""
-          />
-          <h2 data-value="Survival" class="main__option main__survival">
-            <a href="./survival.html" class="main__survival--link">Survival Game</a>
-          </h2>
-        </div>
       </div>
     </main>
 
     <footer class="footer">
+      <a href="#" class="footer__modes">Modes</a>
       <a href="./astro-math-levels.html" class="footer__level">
         Current Level: <span class="footer__currentlevel">10</span>
       </a>
@@ -128,6 +118,42 @@
         <h2 class="credits__title">Image Credits:</h2>
         <a href="#" class="credits__item">Freepik</a>
         <a href="#" class="credits__item">Flaticon</a>
+      </div>
+    </section>
+
+    <!-- modes -->
+    <section class="modes none">
+      <div class="main__options">
+        <audio
+          class="audio__hover"
+          src="./assets/Music/selection/hover2.mp3"
+        ></audio>
+        <audio
+          class="audio__click"
+          src="./assets/Music/selection/click.mp3"
+        ></audio>
+        <div class="main__options__cnt">
+          <img
+            src="./assets/images/Fire.svg"
+            class="none"
+            data-tag="survival"
+            alt=""
+          />
+          <h2 data-value="survival" class="main__option main__survival">
+            <a href="./survival.html" class="main__survival--link">Survival</a>
+          </h2>
+        </div>
+        <div class="main__options__cnt">
+          <img
+            src="./assets/images/Fire.svg"
+            class="none"
+            data-tag="bonus"
+            alt=""
+          />
+          <h2 data-value="bonus" class="main__option main__bonus">
+            <a href="#" class="main__bonus--link">Bonus</a>
+          </h2>
+        </div>
       </div>
     </section>
 

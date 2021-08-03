@@ -1,12 +1,14 @@
 // Section Navigation
 export const body = document.body;
 export const settings = document.querySelector(".settings");
+export const modes = document.querySelector(".modes");
 export const info = document.querySelector(".info");
 export const infoIcon = document.querySelector(".header__info-icon");
 export const creditMenu = document.querySelector(".footer__credit");
 export const settingIcon = document.querySelector(".header__settings-icon");
 export const levelMenu = document.querySelector(".footer__level");
 export const popup = document.querySelector(".popup");
+export const modesMenu = document.querySelector(".footer__modes");
 export const credits = document.querySelector(".credits");
 
 export function updateLocal(key, val) {
@@ -66,16 +68,17 @@ function nilCheck(element) {
 }
 
 const viewWorkMap = {
-  info: [settings, credits],
-  settings: [info, credits],
-  credits: [info, settings],
+  info: [settings, credits, modes],
+  settings: [info, credits, modes],
+  credits: [info, settings, modes],
+  modes: [info, settings, credits],
 };
 
 let homeIcon = document.querySelector(".fa-home");
 function viewWorker(view, strView) {
   let checkFlag;
   let otherTwo = viewWorkMap[strView];
-  classWorker("none", "add", otherTwo[0], otherTwo[1]);
+  classWorker("none", "add", otherTwo[0], otherTwo[1], otherTwo[2]);
   if (containsClass(body, "not-home") && nilCheck(popup)) {
     classWorker("blur", "add", body);
     checkFlag = 1;
@@ -105,11 +108,16 @@ export function creditsView() {
   viewWorker(credits, "credits");
 }
 
+export function modesView() {
+  viewWorker(modes, "modes");
+}
+
 export function check(arg) {
   let menuItemsCheck =
     containsClass(info, "none") &&
     nilCheck(credits) &&
-    containsClass(settings, "none");
+    containsClass(settings, "none") &&
+    containsClass(modes, "none");
   if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
     classWorker("blur", "remove", body);
   } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {

@@ -2,7 +2,8 @@ html {
   overflow-x: hidden;
 }
 
-.main {
+.main,
+.modes {
   flex: 1;
   padding: 8rem 0;
   font-size: var(--title);
@@ -34,12 +35,16 @@ html {
   height: clamp(50px, 15vw, 120px);
 }
 
-.orange{
+.main__survival, .main__bonus {
+  margin-left: 2rem;
+}
+
+.orange {
   color: var(--orange);
 }
 
-.not-active{
-  opacity: .5;
+.not-active {
+  opacity: 0.5;
   cursor: default;
 }
 
@@ -63,7 +68,8 @@ html {
 }
 
 .footer__level:hover,
-.footer__credit:hover {
+.footer__credit:hover,
+.footer__modes:hover {
   color: var(--orange);
 }
 

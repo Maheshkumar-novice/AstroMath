@@ -14,6 +14,9 @@ import {
   creditMenu,
   settingIcon,
   levelMenu,
+  modesMenu,
+  modes,
+  modesView,
   popup,
   settingsView,
   infoView,
@@ -32,12 +35,12 @@ import {
 } from "./modules/utils.js";
 
 const themeAud = document.querySelector(".audio__theme");
-
 // Utils
 let editing = true;
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 creditMenu.addEventListener("click", creditsView);
+modesMenu.addEventListener("click", modesView);
 nameEditIcon.addEventListener("click", () => {
   editing = editName(editing);
 });
@@ -64,7 +67,7 @@ let playable;
 // let menubtn = document.querySelectorAll(".main__option");
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
-const survival = document.querySelector(".main__survival--link");
+// const survival = document.querySelector(".main__survival--link");
 
 // menubtn.forEach((menu) => {
 //   menu.addEventListener("mouseenter", function () {
@@ -107,7 +110,7 @@ newgame.addEventListener("click", (e) => {
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
-  if(resume.classList.contains("not-active")) return;
+  if (resume.classList.contains("not-active")) return;
   let currentLevel = getLocal("currentLevel") || 1;
   let levelValue = JSON.parse(getLocal("levelValue")) || {
     1: ["current", null, null, 5],
@@ -121,22 +124,23 @@ resume.addEventListener("click", (e) => {
   location.href = "./astro-math.html";
 });
 
-survival.addEventListener("click", (e) => {
-  e.preventDefault();
-  if(!getLocal("survivalScore")){
-    updateLocal("survivalScore", 0);
-  }
-  updateLocal("gameTime", 10);
-  location.href = e.target.href;
-})
+// survival.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   if(!getLocal("survivalScore")){
+//     updateLocal("survivalScore", 0);
+//   }
+//   updateLocal("gameTime", 10);
+//   location.href = e.target.href;
+// })
 
 options.forEach((option) => {
-  option.addEventListener("mouseenter", function(){
-    if(this.dataset.value == "resume" && !getLocal("currentLevel")){
+  option.addEventListener("mouseenter", function () {
+    if (this.dataset.value == "resume" && !getLocal("currentLevel")) {
       return;
     }
     this.querySelector("a").classList.add("orange");
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
+    console.log(fire);
     classWorker("none", "remove", fire);
     if (playable) {
       hoverMusic();
@@ -184,7 +188,7 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  if(!getLocal("currentLevel")){
+  if (!getLocal("currentLevel")) {
     options[0].querySelector("a").classList.add("not-active");
   }
   updateCurrentLevel();
