@@ -247,12 +247,16 @@ import {
     let giphyAttr = document.querySelector(".giphy__attr");
     let quoteTag = document.querySelector(".result__quotes");
 
-    console.log(score, bestScore)
+    console.log(score, bestScore);
 
     if(score > bestScore){
         classWorker("none", "remove", giphyAttr);
         classWorker("none", "remove", highImg);
         quoteTag.innerText = quotes.positve[qono];
+        console.log("ins");
+        updateLocal("hell", "fun");
+        updateLocal("survivalScore", score);
+        console.log("out");
     }
     else if(score < bestScore){
       quoteTag.innerText = quotes.negative[qono];
