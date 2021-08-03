@@ -127,5 +127,5 @@ function init(e) {
 }
 
 window.addEventListener("keyup", init);
-itemRight.addEventListener("click", right);
-itemLeft.addEventListener("click", wrong);
+itemRight.addEventListener("click", wrong);
+itemLeft.addEventListener("click", right);
