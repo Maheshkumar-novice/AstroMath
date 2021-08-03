@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.main__item {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  font-size: 5rem;
+  transition: background-color 0.2s ease;
+}
+
+.main__item:first-child {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.main__item:last-child {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+#bg-correct {
+  font-size: 0;
+  background-color: greenyellow;
+}
+
+#bg-wrong {
+  font-size: 0;
+  background-color: red;
+}
+
+.exit {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(43, 41, 41);
+  font-size: 2rem;
+}
+
