@@ -96,14 +96,13 @@ window.onload = function () {
         (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
+  localStorage.removeItem("soundTime");
+  if (location.href.includes("survival.html")) {
+    document.querySelector(".header__info--time").textContent =
+    "120 s";
+    return;
+  }
   document.querySelector(".header__info--time").textContent =
     getLocal("gameTime") + " s";
-  localStorage.removeItem("soundTime");
-  if (location.href.includes("survival.html")){
-    // if(!getLocal("survivalScor")){
-
-    // }
-    return
-  }
-    level.textContent = getLocal("gameLevel");
+  level.textContent = getLocal("gameLevel");
 };
