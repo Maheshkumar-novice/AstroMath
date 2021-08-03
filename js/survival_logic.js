@@ -189,14 +189,38 @@ import {
     2: gameOptions[1],
     3: gameOptions[2],
   };
+
+  let ast_cnt=3, ans_cnt=0;
+  const lifeCnt = document.querySelector(`.life`);
   
+  function updateBonus(){
+    if(ans_cnt == 5 && ast_cnt<7){
+      ans_cnt = 0;
+      let img = `<img
+        data-value="${++ast_cnt}"
+        src="./assets/images/meteorlife.svg"
+        alt="Life"
+        class="life__img"
+        />`;
+      lifeCnt.innerHTML += img;
+    }
+    else if(ans_cnt==5){ans_cnt=0;}
+  }
+
   function answerValidate(value) {
     let target = document.querySelector(`[data-ans="${value}"]`);
     if (target) {
       target.remove();
       scoreTag.innerText = ++score;
+      ans_cnt++;
+      updateBonus();
     } else {
-      randomAsteroid.querySelector("h2").style.color = "red";
+        ans_cnt = 1;
+        document.querySelector(`.life__img[data-value='${ast_cnt--}']`).remove();
+        randomAsteroid.querySelector("h2").style.color = "red";
+        if(ast_cnt == 0){
+          endGame();
+        }
     }
     assignOptions();
   }
@@ -315,7 +339,7 @@ import {
   start.addEventListener("click", () => {
     window.addEventListener("keyup", listenKeys);
     footer.style.pointerEvents = "unset";
-    timer(30);
+    timer(120);
     timerCheck();
     classWorker("none", "add", start.parentElement);
     classWorker("none", "remove", document.querySelector(".main__asteroids"));
