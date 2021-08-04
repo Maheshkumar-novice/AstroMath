@@ -4,7 +4,6 @@ import { getLocal, updateLocal, getLevelTime } from "./modules/utils.js";
 const levelContainer = document.querySelector(".levels");
 const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="levels__star"/>`;
 const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;
-
 let newLevel = JSON.stringify({
   1: ["current", null, null, 5],
   2: ["locked", null, null, 6],
@@ -16,8 +15,7 @@ let newLevel = JSON.stringify({
   8: ["locked", null, null, 12],
   9: ["locked", null, null, 15],
   10: ["locked", null, null, 15],
-})
-
+});
 let levelValueBak = {
   1: ["played", 40, 100, 5],
   2: ["played", 40, 100, 6],
@@ -30,8 +28,12 @@ let levelValueBak = {
   9: ["locked", null, null, 15],
   10: ["locked", null, null, 15],
 };
-// updateLocal("levelValue", JSON.stringify(levelValueBak));
-
+let levelValue;
+let clickedLevel;
+let clickedGameTime;
+let clickedGameBestTime;
+let clickedLevelPercentage;
+let clickedLevelQuestions;
 
 function returnLevelStatus(status, level) {
   if (status === "played") {
@@ -79,13 +81,12 @@ function fillLevel() {
   return levelHTML;
 }
 
-function updateNewGame(){
+function updateNewGame() {
   updateLocal("levelValue", newLevel);
   updateLocal("currentLevel", "1");
-  return newLevel
+  return newLevel;
 }
 
-let levelValue;
 async function parseLevel() {
   levelValue = JSON.parse(getLocal("levelValue") || updateNewGame());
 }
@@ -96,27 +97,6 @@ async function updateData() {
   clickLevel();
 }
 
-// updateData();
-
-// set data for game page
-// function getLevelTime(level) {
-//   console.log(level);
-//   if (level == 1) {
-//     return 45;
-//   } else if (level <= 4) {
-//     return 43;
-//   } else if (level <= 8) {
-//     return 40;
-//   } else if (level <= 10) {
-//     return 35;
-//   }
-// }
-
-let clickedLevel,
-  clickedGameTime,
-  clickedGameBestTime,
-  clickedLevelPercentage,
-  clickedLevelQuestions;
 function clickLevel() {
   const levels = document.querySelectorAll(".levels__level-cnt");
   levels.forEach((level) => {
@@ -131,11 +111,13 @@ function clickLevel() {
         clickedGameBestTime = level.dataset.besttime;
         clickedLevelPercentage = level.dataset.per;
         clickedLevelQuestions = level.dataset.questions;
+
         updateLocal("gameTime", clickedGameTime);
         updateLocal("gameBestTime", clickedGameBestTime);
         updateLocal("gameLevel", clickedLevel);
         updateLocal("gamePercentage", clickedLevelPercentage);
         updateLocal("gameQuestions", clickedLevelQuestions);
+
         location.href = "./astro-math.html";
       }
     });
@@ -143,16 +125,3 @@ function clickLevel() {
 }
 
 updateData();
-
-// async function checkparams(){
-//   const params = new URLSearchParams(window.location.search);
-//   await updateData();
-//   if(!params.has("next")){ 
-//     return
-//   }
-//   const next = params.get("next");
-//   let toLoad = document.querySelector(`.levels__level-cnt[data-level='${next}']`)
-//   toLoad.click();
-// }
-
-// checkparams();
