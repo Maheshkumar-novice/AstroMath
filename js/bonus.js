@@ -10,6 +10,9 @@ import {
   clearTime,
 } from "./modules/utils.js";
 
+const header = document.querySelector("header");
+const result = document.querySelector(".result");
+const options = document.querySelectorAll("button");
 const questions = document.querySelectorAll(".main__question");
 const operators = ["+", "-", "*"];
 const item = document.querySelectorAll(".main__item");
@@ -17,7 +20,24 @@ const itemRight = document.querySelector(".main__item--right");
 const itemLeft = document.querySelector(".main__item--left");
 const start = document.querySelector(".popup__button--start");
 const score = document.querySelector(".header__info--score");
+const quote = document.querySelector(".result__quotes");
+const highImg = document.querySelector(".result__high-score");
+const resultImg = document.querySelector(".result__img");
+const pyro = document.querySelector(".pyro");
+let highScore = document.querySelector(".result__highscore");
+let currentScore = document.querySelector(".result__score");
+const quotes = {
+  positve: ["You Did it!", "You crushed your high score!", "AHHHH Improved!"],
+  negative: [
+    "OOOPS! You didn't make it.",
+    "No worries! Try again.",
+    "Don't lose hope, you can!",
+  ],
+  nothin: ["Yep! Same level"],
+};
+let timeUp = false;
 let correctAnswer = undefined;
+let timeOut;
 let soundSrc;
 let playable;
 itemRight.style.pointerEvents = "none";
@@ -120,7 +140,7 @@ function addListeners() {
 
 function update() {
   removeListeners();
-  setTimeout(() => {
+  timeOut = setTimeout(() => {
     item[0].removeAttribute("id");
     item[1].removeAttribute("id");
     populate();
@@ -158,25 +178,56 @@ function init(e) {
   }
 }
 
-let timeUp = false;
 function timerCheck() {
   if (secondsLeft < 0) {
     timeUp = true;
+    clearTimeout(timeOut);
     endGame();
     return;
   }
   setTimeout(timerCheck, 1000);
 }
 
+function updateScore() {
+  let qono = Math.floor(Math.random() * 3);
+  let high = +getLocal("bonusHighScore") || 0;
+  let current = +score.textContent;
+  highScore.innerHTML = `Previous High Score: <span class="secondary-color">${high}</span>`;
+  currentScore.innerHTML = `Current Score: <span class="secondary-color">${current}</span>`;
+  if (current > high) {
+    quote.textContent = quotes.positve[qono];
+    classWorker("none", "add", resultImg);
+    classWorker("none", "remove", highImg, pyro);
+  } else if (current < high) {
+    quote.textContent = quotes.negative[qono];
+  } else {
+    quote.textContent = quotes.nothin[0];
+  }
+}
+
 function endGame() {
   clearTime();
   removeListeners();
-  updateLocal("bonusScore", score.textContent);
+  updateScore();
+  updateLocal("bonusHighScore", score.textContent);
+  classWorker("none", "add", header, itemRight, itemLeft);
+  classWorker("none", "remove", result);
+}
+
+function navigate(e) {
+  if (e.target.dataset.value === "again") {
+    location.reload();
+  } else if (e.target.dataset.value === "exit") {
+    location.href = "./astro-math-levels.html";
+  }
 }
 
 // event listeners
 itemRight.addEventListener("click", init);
 itemLeft.addEventListener("click", init);
+options.forEach((option) => {
+  option.addEventListener("click", navigate);
+});
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {

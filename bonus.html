@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/pyro.css" />
     <link rel="stylesheet" href="./css/bonus.css" />
     <title>AstroMath | bonus</title>
   </head>
@@ -34,12 +35,57 @@
         <p class="popup__description">Click Start to Play!</p>
         <button class="popup__button popup__button--start">Start</button>
       </section>
+      <!-- items -->
       <div class="main__item main__item--right" data-side="right">
         <p class="main__question"></p>
       </div>
       <div class="main__item main__item--left" data-side="left">
         <p class="main__question"></p>
       </div>
+      <!-- results -->
+      <section class="result none">
+        <div class="pyro none">
+          <div class="before"></div>
+          <div class="after"></div>
+        </div>
+        <h2 class="result__title secondary-color">Results</h2>
+        <div class="result__details">
+          <div class="result__images">
+            <img
+              src="./assets/images/asteroid.png"
+              alt=""
+              class="result__img"
+            />
+            <img
+              src="./assets/gifs/high_score.gif"
+              alt=""
+              class="result__high-score none"
+            />
+            <p class="result__quotes popup__description primary-color">20%</p>
+          </div>
+
+          <div class="result__data">
+            <div>
+              <p class="result__highscore popup__description primary-color">
+                High Score: <span class="secondary-color">2</span>
+              </p>
+              <p class="result__score popup__description primary-color">
+                Score: <span class="secondary-color">2</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="result__buttons">
+          <button class="result__button popup__button" data-value="again">
+            Play Again
+          </button>
+          <a href="./astro-math-levels.html">
+            <button class="result__button popup__button exit__button">
+              Exit
+            </button></a
+          >
+        </div>
+      </section>
     </main>
     <!-- js -->
     <script src="./js/bonus.js" type="module"></script>
