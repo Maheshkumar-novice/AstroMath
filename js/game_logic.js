@@ -19,6 +19,15 @@ const resultImg = document.querySelector(".result__img");
 const highImg = document.querySelector(".result__high-score");
 const pbImg = document.querySelector(".result__pb");
 const giphyAttr = document.querySelector(".giphy__attr");
+const keys = {
+  a: gameOptions[0],
+  s: gameOptions[1],
+  d: gameOptions[2],
+  1: gameOptions[0],
+  2: gameOptions[1],
+  3: gameOptions[2],
+};
+const starsCnt = document.querySelector(".result__stars");
 let qaMap = {};
 let randomAnswer1;
 let randomAnswer2;
@@ -32,15 +41,19 @@ let asteroids = "";
 let eqAnswer;
 let gameOptions = document.querySelectorAll(".footer__option");
 let randomAsteroid;
-const keys = {
-  a: gameOptions[0],
-  s: gameOptions[1],
-  d: gameOptions[2],
-  1: gameOptions[0],
-  2: gameOptions[1],
-  3: gameOptions[2],
-};
+let goldenTemplate = `<img
+src="./assets/images/goldenstar.svg"
+alt=""
+class="result__star"
+/>`;
+let silverTemplate = `<img
+src="./assets/images/silverstar.svg"
+alt=""
+class="result__star"
+/>`;
+footer.style.pointerEvents = "none";
 
+// QA generation
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
 }
@@ -152,10 +165,9 @@ for (let q in qaMap) {
 }
 asteroids_container.innerHTML = asteroids;
 
-// after page updation
+// don't replace
 let gameAsteroids = [...document.querySelectorAll(".main__asteroid-container")];
 
-// options
 function randIndex(index) {
   return Math.floor(Math.random() * index);
 }
@@ -180,7 +192,7 @@ function assignOptions() {
   });
 }
 
-function answerValidate(value) {
+function validateAnswer(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);
   if (target) {
     target.remove();
@@ -193,25 +205,11 @@ function answerValidate(value) {
 
 gameOptions.forEach((option) => {
   option.addEventListener("click", (e) => {
-    answerValidate(e.target.textContent.trim());
+    validateAnswer(e.target.textContent.trim());
   });
 });
 
-//Update Stars
-const starsCnt = document.querySelector(".result__stars");
-
-let goldenTemplate = `<img
-src="./assets/images/goldenstar.svg"
-alt=""
-class="result__star"
-/>`;
-
-let silverTemplate = `<img
-src="./assets/images/silverstar.svg"
-alt=""
-class="result__star"
-/>`;
-
+// star updation
 function updateStars(percent) {
   if (percent < 50) return;
 
@@ -224,7 +222,7 @@ function updateStars(percent) {
   }
 }
 
-// end Game
+// game end
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
 }
@@ -342,7 +340,6 @@ function endResult(gameQues, seconds, percent) {
   updateText(".result__time span", `${seconds} s`);
   updateText(".result__targets span", `${gameQues}`);
   updateText(".result__missed span", `${gameQues - scoreTag.textContent}`);
-  // closeFullscreen();
 }
 
 function timerCheck() {
@@ -358,10 +355,11 @@ function listenKeys(e) {
     case "a":
     case "s":
     case "d":
-      answerValidate(keys[e.key].textContent.trim());
+      validateAnswer(keys[e.key].textContent.trim());
   }
 }
 
+// event listeners
 buttons.forEach((data) => {
   data.addEventListener("click", naviCaller);
 });
@@ -373,37 +371,6 @@ start.addEventListener("click", () => {
   timerCheck();
   classWorker("none", "add", start.parentElement);
   classWorker("none", "remove", document.querySelector(".main__asteroids"));
-  // openFullscreen();
 });
 
 window.addEventListener("load", assignOptions);
-
-footer.style.pointerEvents = "none";
-
-// Add on
-let elem = document.documentElement;
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) {
-    /* IE11 */
-    document.msExitFullscreen();
-  }
-}
