@@ -1,14 +1,27 @@
 import { soundToggle, playMusic, checkPlayable } from "./modules/music.js";
-import { body, getLocal, updateLocal, containsClass } from "./modules/utils.js";
+import {
+  body,
+  getLocal,
+  updateLocal,
+  containsClass,
+  secondsLeft,
+  timer,
+  classWorker,
+  clearTime,
+} from "./modules/utils.js";
 
 const questions = document.querySelectorAll(".main__question");
 const operators = ["+", "-", "*"];
 const item = document.querySelectorAll(".main__item");
-const itemRight = document.querySelector(".main__item:first-child");
-const itemLeft = document.querySelector(".main__item:last-child");
+const itemRight = document.querySelector(".main__item--right");
+const itemLeft = document.querySelector(".main__item--left");
+const start = document.querySelector(".popup__button--start");
+const score = document.querySelector(".header__info--score");
 let correctAnswer = undefined;
 let soundSrc;
 let playable;
+itemRight.style.pointerEvents = "none";
+itemLeft.style.pointerEvents = "none";
 
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -111,7 +124,6 @@ function update() {
     item[0].removeAttribute("id");
     item[1].removeAttribute("id");
     populate();
-    console.log("Date");
     addListeners();
   }, 500);
 }
@@ -119,6 +131,7 @@ function update() {
 function right() {
   if (correctAnswer) {
     correctBg();
+    score.textContent = +score.textContent + 1;
   } else {
     wrongBg();
   }
@@ -128,6 +141,7 @@ function right() {
 function wrong() {
   if (!correctAnswer) {
     correctBg();
+    score.textContent = +score.textContent + 1;
   } else {
     wrongBg();
   }
@@ -142,8 +156,20 @@ function init(e) {
   }
 }
 
+function timerCheck() {
+  if (secondsLeft < 0) {
+    endGame();
+    return;
+  }
+  setTimeout(timerCheck, 1000);
+}
+
+function endGame() {
+  clearTime();
+  removeListeners();
+}
+
 // event listeners
-window.addEventListener("keyup", init);
 itemRight.addEventListener("click", init);
 itemLeft.addEventListener("click", init);
 soundToggle.addEventListener("click", (e) => {
@@ -175,6 +201,14 @@ window.onload = function () {
   }
   localStorage.removeItem("soundTime");
 };
+start.addEventListener("click", () => {
+  window.addEventListener("keyup", init);
+  itemRight.style.pointerEvents = "unset";
+  itemLeft.style.pointerEvents = "unset";
+  timer(5);
+  timerCheck();
+  classWorker("none", "add", start.parentElement);
+});
 
 // start
 populate();

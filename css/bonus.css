@@ -80,15 +80,15 @@ a {
   align-items: center;
   flex: 1;
   font-size: 5rem;
-  transition: background-color 0.2s ease;
+  /* transition: background-color 0.2s ease; */
 }
 
-.main__item:first-child {
+.main__item--right {
   background-color: var(--primary-color);
   color: var(--secondary-color);
 }
 
-.main__item:last-child {
+.main__item--left {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -111,6 +111,25 @@ a {
   color: rgb(43, 41, 41);
   font-size: 2rem;
 }
+.popup--game {
+  position: absolute;
+  left: 50%;
+
+  transform: translateX(-50%);
+  background-color: #000d1b;
+  width: 95vw;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 0;
+  border: 2px solid var(--danger-color);
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20rem;
+}
+
 @media (max-width: 950px) {
   .header {
     display: grid;

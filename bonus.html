@@ -21,19 +21,23 @@
           src="./assets/images/soundon.svg"
         />
       </h2>
-      <h2 class="header__info header__info--level">
-        Bonus
-      </h2>
+      <h2 class="header__info header__info--level">Bonus</h2>
       <h2 class="header__info header__info--exit">
         <a href="./astro-math-levels.html" id="exit">Exit</a>
       </h2>
     </header>
     <!-- main -->
     <main class="main">
-      <div class="main__item" data-side="right">
+      <!-- start popup -->
+      <section class="popup--game">
+        <h2 class="popup__title">Get Ready</h2>
+        <p class="popup__description">Click Start to Play!</p>
+        <button class="popup__button popup__button--start">Start</button>
+      </section>
+      <div class="main__item main__item--right" data-side="right">
         <p class="main__question"></p>
       </div>
-      <div class="main__item" data-side="left">
+      <div class="main__item main__item--left" data-side="left">
         <p class="main__question"></p>
       </div>
     </main>
