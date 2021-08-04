@@ -93,10 +93,10 @@ const viewWorkMap = {
 
 export function check(arg) {
   let menuItemsCheck =
+    containsClass(settings, "none") &&
     containsClass(info, "none") &&
     nilCheck(credits) &&
-    containsClass(settings, "none") &&
-    containsClass(modes, "none");
+    nilCheck(modes);
   if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
     classWorker("blur", "remove", body);
   } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
