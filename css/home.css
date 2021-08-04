@@ -143,6 +143,16 @@ html {
   }
 }
 
+.main__status{
+  font-size: clamp(1rem, 5vw, 3rem);
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  color: var(--danger-color);
+  /* white-space: nowrap; */
+  transform: translateY(-50%);
+}
+
 @media (max-width: 435px) {
   .main__options__cnt img {
     transform: translateY(-25%);

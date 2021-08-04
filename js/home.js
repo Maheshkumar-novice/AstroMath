@@ -43,6 +43,7 @@ let soundSrc;
 let playable;
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
+const survival = document.querySelector(".main__survival--link");
 let editing = true;
 let levelValue = JSON.stringify({
   1: ["current", null, null, 5],
@@ -126,7 +127,8 @@ resume.addEventListener("click", (e) => {
 
 options.forEach((option) => {
   option.addEventListener("mouseenter", function () {
-    if (this.dataset.value == "resume" && !getLocal("currentLevel")) {
+    console.log(this.dataset.value == "survival", +getLocal("currentLevel") >= 6)
+    if ((this.dataset.value == "resume" && !getLocal("currentLevel")) || (this.dataset.value == "survival" && +getLocal("currentLevel") <= 6)) {
       return;
     }
     this.querySelector("a").classList.add("orange");
@@ -183,8 +185,12 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
+  console.log(survival)
   if (!getLocal("currentLevel")) {
     options[0].querySelector("a").classList.add("not-active");
+  }
+  if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
+    survival.classList.add("not-active");
   }
   updateCurrentLevel();
   nameInput.value = getLocal("user") || "Jaam";
