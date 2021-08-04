@@ -151,15 +151,23 @@ a {
   margin-top: 20rem;
 }
 
-.popup__title,
-.credits__title {
+.popup__title {
   font-size: var(--title);
 }
 
 .popup__description,
-.credits__item,
 .info__levels {
   font-size: var(--description-text);
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+.credits__title {
+  font-size: var(--description-text);
+}
+
+.credits__item {
+  font-size: clamp(1rem, 5vw, 2.7rem);
   text-align: center;
   color: var(--secondary-color);
 }
