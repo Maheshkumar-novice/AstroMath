@@ -55,7 +55,6 @@ function getRandomAnswer(ans) {
 function getRandomAnswers(ans) {
   randomAnswer1 = getRandomAnswer(ans);
   randomAnswer2 = getRandomAnswer(ans);
-  console.log(randomAnswer1, randomAnswer2);
   if (ans < 0) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
