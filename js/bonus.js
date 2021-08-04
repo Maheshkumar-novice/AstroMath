@@ -124,8 +124,10 @@ function update() {
     item[0].removeAttribute("id");
     item[1].removeAttribute("id");
     populate();
-    addListeners();
-  }, 500);
+    if (!timeUp) {
+      addListeners();
+    }
+  }, 300);
 }
 
 function right() {
@@ -156,8 +158,10 @@ function init(e) {
   }
 }
 
+let timeUp = false;
 function timerCheck() {
   if (secondsLeft < 0) {
+    timeUp = true;
     endGame();
     return;
   }
@@ -167,6 +171,7 @@ function timerCheck() {
 function endGame() {
   clearTime();
   removeListeners();
+  updateLocal("bonusScore", score.textContent);
 }
 
 // event listeners
@@ -208,7 +213,5 @@ start.addEventListener("click", () => {
   timer(5);
   timerCheck();
   classWorker("none", "add", start.parentElement);
+  populate();
 });
-
-// start
-populate();
