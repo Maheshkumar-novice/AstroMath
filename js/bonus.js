@@ -77,7 +77,6 @@ function populate() {
   correctAnswer = items[2];
   questions[0].textContent = items[0];
   questions[1].textContent = items[1];
-  console.log(items);
 }
 
 function wrongBg() {

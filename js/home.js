@@ -130,7 +130,6 @@ options.forEach((option) => {
     }
     this.querySelector("a").classList.add("orange");
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-    console.log(fire);
     classWorker("none", "remove", fire);
     if (playable) {
       hoverMusic();
