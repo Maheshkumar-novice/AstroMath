@@ -34,7 +34,14 @@ import {
   getLevelTime,
 } from "./modules/utils.js";
 
+getLocal('videoplay')?'':updateLocal('videoplay','0');
 const themeAud = document.querySelector(".audio__theme");
+const header=document.querySelector('header');
+const main=document.querySelector('main');
+const footer=document.querySelector('footer');
+const video=document.querySelector('.video');
+const video_player=document.querySelector('video');
+const skipBtn=document.querySelector('.skip');
 // Utils
 let editing = true;
 settingIcon.addEventListener("click", settingsView);
@@ -157,17 +164,37 @@ options.forEach((option) => {
   //   }
   // });
 });
-
-popupButton.addEventListener("click", (e) => {
+function video_remover(){
+  video_player.pause();
+  classWorker('none','add',video);
+  classWorker('none','remove',header,main,footer);
   classWorker("blur", "remove", body);
   classWorker("not-home", "add", body);
-  classWorker("popup__active", "remove", popup);
   classWorker("none", "add", popup);
+  classWorker("popup__active", "remove", popup);
   if (checkPlayable()) {
     playMusic(playable);
   }
+}
+popupButton.addEventListener("click", (e) => {
+  if(getLocal('videoplay')==='0'){
+  classWorker('none','add',header,footer,main,popup);
+  classWorker('none','remove',video);
+  video_player.play();
+  updateLocal('videoplay','1');
+  skipBtn.addEventListener("click",video_remover);
+  }
+  else{
+  classWorker("blur", "remove", body);
+  classWorker("not-home", "add", body);
+  classWorker("none", "add", popup);
+  classWorker("popup__active", "remove", popup);
+  if (checkPlayable()) {
+    playMusic(playable);
+  }
+  }
 });
-
+video_player.addEventListener('ended',video_remover);
 levelMenu.addEventListener("click", (e) => {
   updateLocal("currentSoundSrc", soundToggle.src);
   updateLocal("soundTime", themeAud.currentTime);
