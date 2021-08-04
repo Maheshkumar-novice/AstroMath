@@ -20,6 +20,7 @@ let editing = true;
 let soundSrc;
 let playable;
 
+// event listeners
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 nameEditIcon.addEventListener("click", () => {

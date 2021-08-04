@@ -125,6 +125,10 @@ function init(e) {
   }
 }
 
+// event listeners
 window.addEventListener("keyup", init);
 itemRight.addEventListener("click", wrong);
 itemLeft.addEventListener("click", right);
+
+// start
+populate();

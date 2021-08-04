@@ -76,6 +76,7 @@ function video_remover() {
   }
 }
 
+// event listeners
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 creditMenu.addEventListener("click", creditsView);

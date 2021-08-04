@@ -1,6 +1,5 @@
 import { getLocal, updateLocal, getLevelTime } from "./modules/utils.js";
 
-// display levels
 const levelContainer = document.querySelector(".levels");
 const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="levels__star"/>`;
 const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;

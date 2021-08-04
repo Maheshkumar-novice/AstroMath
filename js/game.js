@@ -1,7 +1,6 @@
 import { playMusic, checkPlayable, soundToggle } from "./modules/music.js";
 import { body, containsClass, updateLocal, getLocal } from "./modules/utils.js";
 
-// Utils - Options
 const options = [...document.querySelectorAll(".footer__option")];
 const colorMap = {
   invertedColor: "var(--primary-color)",
@@ -42,6 +41,7 @@ function normaliseColor(key) {
   key.style.boxShadow = "5px 5px black";
 }
 
+// event listeners
 options.forEach((option) => {
   option.addEventListener("click", (e) => {
     triggerOption(option.dataset.option);
@@ -57,7 +57,6 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
-// Music
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
@@ -72,14 +71,12 @@ soundToggle.addEventListener("click", (e) => {
   playMusic(playable);
 });
 
-//exit
 exit.addEventListener("click", (e) => {
   e.preventDefault();
   updateLocal("soundTime", themeAud.currentTime);
   location.href = exit.href;
 });
 
-// onload
 window.onload = function () {
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
