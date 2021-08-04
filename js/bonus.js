@@ -89,14 +89,27 @@ function correctBg() {
   item[1].setAttribute("id", "bg-correct");
 }
 
-function update() {
+function removeListeners() {
   window.removeEventListener("keyup", init);
+  itemRight.removeEventListener("click", init);
+  itemLeft.removeEventListener("click", init);
+}
+
+function addListeners() {
+  window.addEventListener("keyup", init);
+  itemRight.addEventListener("click", init);
+  itemLeft.addEventListener("click", init);
+}
+
+function update() {
+  removeListeners();
   setTimeout(() => {
     item[0].removeAttribute("id");
     item[1].removeAttribute("id");
     populate();
-    window.addEventListener("keyup", init);
-  }, 400);
+    console.log("Date");
+    addListeners();
+  }, 1000);
 }
 
 function right() {
@@ -118,17 +131,17 @@ function wrong() {
 }
 
 function init(e) {
-  if (e.key === "ArrowRight") {
+  if (e.key === "ArrowRight" || e.target.dataset.side === "left") {
     right();
-  } else if (e.key === "ArrowLeft") {
+  } else if (e.key === "ArrowLeft" || e.target.dataset.side === "right") {
     wrong();
   }
 }
 
 // event listeners
 window.addEventListener("keyup", init);
-itemRight.addEventListener("click", wrong);
-itemLeft.addEventListener("click", right);
+itemRight.addEventListener("click", init);
+itemLeft.addEventListener("click", init);
 
 // start
 populate();
