@@ -29,6 +29,7 @@ const quotes = {
   nothin: ["Yep! Same level"],
 };
 const operators = ["+", "-", "*", "/"];
+const lifeCnt = document.querySelector(`.life`);
 let randomAsteroid;
 let qaMap = {};
 let randomAnswer1,
@@ -43,7 +44,6 @@ let asteroids = "";
 let eqAnswer, gameAsteroids;
 let ast_cnt = 3;
 let ans_cnt = 0;
-const lifeCnt = document.querySelector(`.life`);
 let gameOptions = document.querySelectorAll(".footer__option");
 const keys = {
   a: gameOptions[0],
@@ -53,7 +53,9 @@ const keys = {
   2: gameOptions[1],
   3: gameOptions[2],
 };
+footer.style.pointerEvents = "none";
 
+// QA generation
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
 }
@@ -299,6 +301,7 @@ function listenKeys(e) {
   }
 }
 
+// event listeners
 start.addEventListener("click", () => {
   window.addEventListener("keyup", listenKeys);
   footer.style.pointerEvents = "unset";
@@ -306,7 +309,6 @@ start.addEventListener("click", () => {
   timerCheck();
   classWorker("none", "add", start.parentElement);
   classWorker("none", "remove", document.querySelector(".main__asteroids"));
-  // openFullscreen();
 });
 
 buttons.forEach((data) => {
@@ -314,34 +316,3 @@ buttons.forEach((data) => {
 });
 
 window.addEventListener("load", assignOptions);
-
-footer.style.pointerEvents = "none";
-
-// add-ons
-let elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) {
-    /* IE11 */
-    document.msExitFullscreen();
-  }
-}

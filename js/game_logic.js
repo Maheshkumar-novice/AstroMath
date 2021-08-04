@@ -19,14 +19,6 @@ const resultImg = document.querySelector(".result__img");
 const highImg = document.querySelector(".result__high-score");
 const pbImg = document.querySelector(".result__pb");
 const giphyAttr = document.querySelector(".giphy__attr");
-const keys = {
-  a: gameOptions[0],
-  s: gameOptions[1],
-  d: gameOptions[2],
-  1: gameOptions[0],
-  2: gameOptions[1],
-  3: gameOptions[2],
-};
 const starsCnt = document.querySelector(".result__stars");
 let qaMap = {};
 let randomAnswer1;
@@ -40,6 +32,14 @@ let asteroid_containers = document.querySelectorAll(
 let asteroids = "";
 let eqAnswer;
 let gameOptions = document.querySelectorAll(".footer__option");
+const keys = {
+  a: gameOptions[0],
+  s: gameOptions[1],
+  d: gameOptions[2],
+  1: gameOptions[0],
+  2: gameOptions[1],
+  3: gameOptions[2],
+};
 let randomAsteroid;
 let goldenTemplate = `<img
 src="./assets/images/goldenstar.svg"
