@@ -13,7 +13,6 @@ const resultCont = document.querySelector(".result");
 const buttons = resultCont.querySelectorAll("button");
 const footer = document.querySelector(".footer");
 const highImg = document.querySelector(".result__high-score");
-const giphyAttr = document.querySelector(".giphy__attr");
 const quoteTag = document.querySelector(".result__quotes");
 const quotes = {
   positve: [
@@ -251,7 +250,7 @@ function endGame() {
   let score = +scoreTag.innerText;
 
   if (score > bestScore) {
-    classWorker("none", "remove", giphyAttr, highImg);
+    classWorker("none", "remove", highImg);
     quoteTag.innerText = quotes.positve[qono];
     updateLocal("hell", "fun");
     updateLocal("survivalScore", score);

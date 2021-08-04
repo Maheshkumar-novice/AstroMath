@@ -18,7 +18,6 @@ const pyro = document.querySelector(".pyro");
 const resultImg = document.querySelector(".result__img");
 const highImg = document.querySelector(".result__high-score");
 const pbImg = document.querySelector(".result__pb");
-const giphyAttr = document.querySelector(".giphy__attr");
 const starsCnt = document.querySelector(".result__stars");
 let qaMap = {};
 let randomAnswer1;
@@ -228,12 +227,12 @@ function calculatePercentage(ques, score) {
 }
 
 function showHighScoreGif() {
-  classWorker("none", "remove", pyro, highImg, giphyAttr);
+  classWorker("none", "remove", pyro, highImg);
   classWorker("none", "add", resultImg);
 }
 
 function showPersonalBestGif() {
-  classWorker("none", "remove", pyro, pbImg, giphyAttr);
+  classWorker("none", "remove", pyro, pbImg);
   classWorker("none", "add", resultImg);
 }
 
