@@ -4,22 +4,21 @@ import {
   soundToggle,
   playMusic,
   hoverMusic,
-  clickMusic,
   checkPlayable,
 } from "./modules/music.js";
 
 import {
   body,
-  infoIcon,
-  creditMenu,
-  settingIcon,
-  levelMenu,
-  modesMenu,
-  modes,
-  modesView,
   popup,
+  levelMenu,
+  settingIcon,
+  infoIcon,
+  modesMenu,
+  creditMenu,
+  settings,
   settingsView,
   infoView,
+  modesView,
   creditsView,
   nameEditIcon,
   nameInput,
@@ -30,20 +29,53 @@ import {
   updatePopup,
   updateLocal,
   getLocal,
-  settings,
   getLevelTime,
 } from "./modules/utils.js";
 
-getLocal('videoplay')?'':updateLocal('videoplay','0');
 const themeAud = document.querySelector(".audio__theme");
-const header=document.querySelector('header');
-const main=document.querySelector('main');
-const footer=document.querySelector('footer');
-const video=document.querySelector('.video');
-const video_player=document.querySelector('video');
-const skipBtn=document.querySelector('.skip');
-// Utils
+const header = document.querySelector("header");
+const main = document.querySelector("main");
+const footer = document.querySelector("footer");
+const video = document.querySelector(".video");
+const video_player = document.querySelector("video");
+const skipBtn = document.querySelector(".skip");
+let soundSrc;
+let playable;
+const newgame = document.querySelector(".main__newgame--link");
+const resume = document.querySelector(".main__resume--link");
 let editing = true;
+let levelValue = JSON.stringify({
+  1: ["current", null, null, 5],
+  2: ["locked", null, null, 6],
+  3: ["locked", null, null, 7],
+  4: ["locked", null, null, 8],
+  5: ["locked", null, null, 9],
+  6: ["locked", null, null, 10],
+  7: ["locked", null, null, 11],
+  8: ["locked", null, null, 12],
+  9: ["locked", null, null, 15],
+  10: ["locked", null, null, 15],
+});
+getLocal("videoplay") ? "" : updateLocal("videoplay", "0");
+
+function updateCurrentLevel() {
+  levelMenu.querySelector(".footer__currentlevel").innerText =
+    getLocal("currentLevel") || 1;
+}
+
+function video_remover() {
+  video_player.pause();
+  classWorker("none", "add", video);
+  classWorker("none", "remove", header, main, footer);
+  classWorker("blur", "remove", body);
+  classWorker("not-home", "add", body);
+  classWorker("none", "add", popup);
+  classWorker("popup__active", "remove", popup);
+  if (checkPlayable()) {
+    playMusic(playable);
+  }
+}
+
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 creditMenu.addEventListener("click", creditsView);
@@ -61,46 +93,6 @@ window.addEventListener("keyup", (e) => {
 userChangeButton.addEventListener("click", (e) => {
   settingsView();
   nameEditIcon.click();
-});
-
-function updateCurrentLevel() {
-  levelMenu.querySelector(".footer__currentlevel").innerText =
-    getLocal("currentLevel") || 1;
-}
-
-// Music
-let soundSrc;
-let playable;
-// let menubtn = document.querySelectorAll(".main__option");
-const newgame = document.querySelector(".main__newgame--link");
-const resume = document.querySelector(".main__resume--link");
-// const survival = document.querySelector(".main__survival--link");
-
-// menubtn.forEach((menu) => {
-//   menu.addEventListener("mouseenter", function () {
-//     if(this.dataset.value == "resume" && !getLocal("currentLevel")){
-//       return;
-//     }
-//     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-//     classWorker("none", "remove", fire);
-//   });
-//   menu.addEventListener("mouseleave", function () {
-//     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
-//     classWorker("none", "add", fire);
-//   });
-// });
-
-let levelValue = JSON.stringify({
-  1: ["current", null, null, 5],
-  2: ["locked", null, null, 6],
-  3: ["locked", null, null, 7],
-  4: ["locked", null, null, 8],
-  5: ["locked", null, null, 9],
-  6: ["locked", null, null, 10],
-  7: ["locked", null, null, 11],
-  8: ["locked", null, null, 12],
-  9: ["locked", null, null, 15],
-  10: ["locked", null, null, 15],
 });
 
 newgame.addEventListener("click", (e) => {
@@ -131,15 +123,6 @@ resume.addEventListener("click", (e) => {
   location.href = "./astro-math.html";
 });
 
-// survival.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   if(!getLocal("survivalScore")){
-//     updateLocal("survivalScore", 0);
-//   }
-//   updateLocal("gameTime", 10);
-//   location.href = e.target.href;
-// })
-
 options.forEach((option) => {
   option.addEventListener("mouseenter", function () {
     if (this.dataset.value == "resume" && !getLocal("currentLevel")) {
@@ -158,43 +141,28 @@ options.forEach((option) => {
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
     classWorker("none", "add", fire);
   });
-  // option.addEventListener("click", () => {
-  //   if (playable) {
-  //     clickMusic();
-  //   }
-  // });
 });
-function video_remover(){
-  video_player.pause();
-  classWorker('none','add',video);
-  classWorker('none','remove',header,main,footer);
-  classWorker("blur", "remove", body);
-  classWorker("not-home", "add", body);
-  classWorker("none", "add", popup);
-  classWorker("popup__active", "remove", popup);
-  if (checkPlayable()) {
-    playMusic(playable);
-  }
-}
+
 popupButton.addEventListener("click", (e) => {
-  if(getLocal('videoplay')==='0'){
-  classWorker('none','add',header,footer,main,popup);
-  classWorker('none','remove',video);
-  video_player.play();
-  updateLocal('videoplay','1');
-  skipBtn.addEventListener("click",video_remover);
-  }
-  else{
-  classWorker("blur", "remove", body);
-  classWorker("not-home", "add", body);
-  classWorker("none", "add", popup);
-  classWorker("popup__active", "remove", popup);
-  if (checkPlayable()) {
-    playMusic(playable);
-  }
+  if (getLocal("videoplay") === "0") {
+    classWorker("none", "add", header, footer, main, popup);
+    classWorker("none", "remove", video);
+    video_player.play();
+    updateLocal("videoplay", "1");
+    skipBtn.addEventListener("click", video_remover);
+  } else {
+    classWorker("blur", "remove", body);
+    classWorker("not-home", "add", body);
+    classWorker("none", "add", popup);
+    classWorker("popup__active", "remove", popup);
+    if (checkPlayable()) {
+      playMusic(playable);
+    }
   }
 });
-video_player.addEventListener('ended',video_remover);
+
+video_player.addEventListener("ended", video_remover);
+
 levelMenu.addEventListener("click", (e) => {
   updateLocal("currentSoundSrc", soundToggle.src);
   updateLocal("soundTime", themeAud.currentTime);
