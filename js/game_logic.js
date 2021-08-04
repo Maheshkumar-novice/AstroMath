@@ -9,11 +9,29 @@ import {
 } from "./modules/utils.js";
 
 const operators = ["+", "-", "*", "/"];
+const scoreTag = document.querySelector(".header__info--score");
+const start = document.querySelector(".popup__button--start");
+const resultCont = document.querySelector(".result");
+const footer = document.querySelector(".footer");
+const buttons = resultCont.querySelectorAll("button");
+const pyro = document.querySelector(".pyro");
+const resultImg = document.querySelector(".result__img");
+const highImg = document.querySelector(".result__high-score");
+const pbImg = document.querySelector(".result__pb");
+const giphyAttr = document.querySelector(".giphy__attr");
 let qaMap = {};
-let randomAnswer1,
-  randomAnswer2,
-  score = 0;
+let randomAnswer1;
+let randomAnswer2;
+let score = 0;
 let answers = [];
+let asteroids_container = document.querySelector(".main__asteroids");
+let asteroid_containers = document.querySelectorAll(
+  ".main__asteroid-containerr"
+);
+let asteroids = "";
+let eqAnswer;
+let gameOptions = document.querySelectorAll(".footer__option");
+let randomAsteroid;
 
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -81,10 +99,6 @@ function returnAnswer(op1, op2, op) {
   }
 }
 
-function checkEquation(eq) {
-  return eq in qaMap;
-}
-
 function generateProblem() {
   let [op1, op2, op] = [
     getRandomNumber(),
@@ -116,17 +130,8 @@ function generateQA() {
 }
 
 generateQA();
-console.table(qaMap);
 
 // asteroids
-let asteroids_container = document.querySelector(".main__asteroids");
-let asteroid_containers = document.querySelectorAll(
-  ".main__asteroid-containerr"
-);
-let asteroids = "";
-let eqAnswer;
-let gameOptions = document.querySelectorAll(".footer__option");
-
 asteroid_containers.forEach((container) => {
   container.remove();
 });
@@ -139,15 +144,14 @@ for (let q in qaMap) {
 </div>`;
 }
 asteroids_container.innerHTML = asteroids;
+
+// after page updation
 let gameAsteroids = [...document.querySelectorAll(".main__asteroid-container")];
 
 // options
 function randIndex(index) {
   return Math.floor(Math.random() * index);
 }
-
-let randomAsteroid;
-const scoreTag = document.querySelector(".header__info--score");
 
 function assignOptions() {
   randomAsteroid = gameAsteroids.splice(randIndex(gameAsteroids.length), 1)[0];
@@ -168,8 +172,6 @@ function assignOptions() {
     gameOptions[ri].dataset.value = e;
   });
 }
-
-window.addEventListener("load", assignOptions);
 
 const keys = {
   a: gameOptions[0],
@@ -212,36 +214,56 @@ alt=""
 class="result__star"
 />`;
 
-function updateStars(percent){
-  if(percent < 50) return;
-  
-  if(percent >= 50 && percent <75){
+function updateStars(percent) {
+  if (percent < 50) return;
+
+  if (percent >= 50 && percent < 75) {
     starsCnt.innerHTML = goldenTemplate + silverTemplate + silverTemplate;
-  }
-  else if(percent >= 75 && percent < 100){
+  } else if (percent >= 75 && percent < 100) {
     starsCnt.innerHTML = goldenTemplate + goldenTemplate + silverTemplate;
-  }
-  else{
+  } else {
     starsCnt.innerHTML = goldenTemplate + goldenTemplate + goldenTemplate;
   }
 }
 
 // end Game
-const resultCont = document.querySelector(".result");
-const footer = document.querySelector(".footer");
-
 function calculatePercentage(ques, score) {
   return (score / ques) * 100;
+}
+
+function showHighScoreGif() {
+  classWorker("none", "remove", pyro, highImg, giphyAttr);
+  classWorker("none", "add", resultImg);
+}
+
+function showPersonalBestGif() {
+  classWorker("none", "remove", pyro, pbImg, giphyAttr);
+  classWorker("none", "add", resultImg);
+}
+
+function updateNewScore(localjson, currLevel, currTime, currPercentage) {
+  showHighScoreGif();
+  localjson[currLevel][0] = "played";
+  localjson[currLevel][1] = currTime;
+  localjson[currLevel][2] = currPercentage;
+
+  let next = `${(+currLevel + 1) % 10}`;
+  if (next === 0) {
+    next = 10;
+    updateLocal("allDone", "yes");
+  }
+  if (getLocal("allDone") === "yes") {
+    updateLocal("currentLevel", 10);
+    localjson[10][0] = "current";
+  } else {
+    updateLocal("currentLevel", next);
+    localjson[next][0] = "current";
+  }
 }
 
 function endGame() {
   clearTime();
   window.removeEventListener("keyup", listenKeys);
-  let pyro = document.querySelector(".pyro");
-  let resultImg = document.querySelector(".result__img");
-  let highImg = document.querySelector(".result__high-score");
-  let pbImg = document.querySelector(".result__pb");
-  let giphyAttr = document.querySelector(".giphy__attr");
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
   let ques = getLocal("gameQuestions");
@@ -256,61 +278,35 @@ function endGame() {
   const buttons = resultCont.querySelectorAll("button");
   buttons[1].disabled = false;
 
-  updateStars(currPercentage)
+  updateStars(currPercentage);
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
-    classWorker("none", "remove", pyro);
-    classWorker("none", "add", resultImg);
-    classWorker("none", "remove", highImg);
-    classWorker("none", "remove", giphyAttr);
-    console.log("hisdfdsf");
-    localjson[currLevel][0] = "played";
-    localjson[currLevel][1] = currTime;
-    localjson[currLevel][2] = currPercentage;
-
-    let next = `${(+currLevel + 1) % 10}`;
-    if (next === 0) {
-      next = 10;
-      updateLocal("allDone", "yes");
-    }
-    if (getLocal("allDone") === "yes") {
-      updateLocal("currentLevel", 10);
-      localjson[10][0] = "current";
-    } else {
-      updateLocal("currentLevel", next);
-      localjson[next][0] = "current";
-    }
+    updateNewScore(localjson, currLevel, currTime, currPercentage);
   } else if (currPercentage > previousPercentage) {
-    classWorker("none", "remove", pyro);
-    classWorker("none", "add", resultImg);
-    classWorker("none", "remove", highImg);
-    classWorker("none", "remove", giphyAttr);
+    showHighScoreGif();
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
   }
-  console.log(currPercentage, previousPercentage, currTime, currBestTime);
+
   if (
     currPercentage >= 50 &&
     currPercentage === previousPercentage &&
     currTime <= currBestTime
   ) {
-    classWorker("none", "remove", pyro);
-    classWorker("none", "add", resultImg);
-    classWorker("none", "remove", pbImg);
-    classWorker("none", "remove", giphyAttr);
-    console.log("hi");
+    showPersonalBestGif();
     localjson[currLevel][1] = currTime;
   }
+
   if (localjson[currLevel][0] === "current") {
     buttons[1].disabled = true;
   }
+
   updateLocal("gameBestTime", localjson[currLevel][1]);
   updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("levelValue", JSON.stringify(localjson));
 }
 
 function naviCaller() {
-  console.log("clicked");
   if (this.dataset.value === "next") {
     let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
     if (nextLevel === 0) {
@@ -351,11 +347,6 @@ function endResult(gameQues, seconds, percent) {
   // closeFullscreen();
 }
 
-const buttons = resultCont.querySelectorAll("button");
-buttons.forEach((data) => {
-  data.addEventListener("click", naviCaller);
-});
-
 function timerCheck() {
   if (secondsLeft < 0) {
     endGame();
@@ -373,8 +364,26 @@ function listenKeys(e) {
   }
 }
 
-let elem = document.documentElement;
+buttons.forEach((data) => {
+  data.addEventListener("click", naviCaller);
+});
 
+start.addEventListener("click", () => {
+  window.addEventListener("keyup", listenKeys);
+  footer.style.pointerEvents = "unset";
+  timer(getLocal("gameTime"));
+  timerCheck();
+  classWorker("none", "add", start.parentElement);
+  classWorker("none", "remove", document.querySelector(".main__asteroids"));
+  // openFullscreen();
+});
+
+window.addEventListener("load", assignOptions);
+
+footer.style.pointerEvents = "none";
+
+// Add on
+let elem = document.documentElement;
 /* View in fullscreen */
 function openFullscreen() {
   if (elem.requestFullscreen) {
@@ -400,16 +409,3 @@ function closeFullscreen() {
     document.msExitFullscreen();
   }
 }
-
-const start = document.querySelector(".popup__button--start");
-start.addEventListener("click", () => {
-  window.addEventListener("keyup", listenKeys);
-  footer.style.pointerEvents = "unset";
-  timer(getLocal("gameTime"));
-  timerCheck();
-  classWorker("none", "add", start.parentElement);
-  classWorker("none", "remove", document.querySelector(".main__asteroids"));
-  // openFullscreen();
-});
-
-footer.style.pointerEvents = "none";
