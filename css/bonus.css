@@ -1,3 +1,73 @@
+:root {
+  --game-info-text: clamp(1.5rem, 4vw, 3.5rem);
+  --asteroid-text: clamp(2rem, 2vw, 3.25rem);
+}
+
+a {
+  color: inherit;
+}
+
+.header {
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  background-color: #000d1b;
+}
+
+.header > * {
+  flex: 1;
+}
+
+.header__info {
+  font-size: var(--game-info-text);
+}
+
+.header__info--score {
+  color: var(--primary-color);
+}
+
+.header__info--time {
+  color: var(--primary-color);
+}
+
+.header__info--exit {
+  color: var(--danger-color);
+}
+
+.header__info--exit a {
+  cursor: pointer;
+}
+
+.header__info--sound {
+  cursor: pointer;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__info--sound-icon {
+  height: 4rem;
+  width: 6rem;
+  margin-left: 1rem;
+}
+
+.header__info--time::before {
+  content: "Time: ";
+  color: var(--secondary-color);
+}
+
+.header__info--score::before {
+  content: "Score: ";
+  color: var(--secondary-color);
+}
+
+.header__info--sound::before {
+  content: "Sound: ";
+}
 .main {
   display: flex;
   flex: 1;
@@ -41,4 +111,22 @@
   color: rgb(43, 41, 41);
   font-size: 2rem;
 }
+@media (max-width: 950px) {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
 
+  .header__info--exit {
+    grid-column: 1/3;
+  }
+  .header__info--sound-icon {
+    width: 4rem;
+  }
+}
+@media (max-width: 700px) {
+  .header__info--sound-icon {
+    width: 3rem;
+  }
+}

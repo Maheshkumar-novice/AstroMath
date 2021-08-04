@@ -1,10 +1,14 @@
+import { soundToggle, playMusic, checkPlayable } from "./modules/music.js";
+import { body, getLocal, updateLocal, containsClass } from "./modules/utils.js";
+
 const questions = document.querySelectorAll(".main__question");
 const operators = ["+", "-", "*"];
 const item = document.querySelectorAll(".main__item");
-let correctAnswer = undefined;
-let comment = document.querySelector(".comment");
 const itemRight = document.querySelector(".main__item:first-child");
 const itemLeft = document.querySelector(".main__item:last-child");
+let correctAnswer = undefined;
+let soundSrc;
+let playable;
 
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -109,7 +113,7 @@ function update() {
     populate();
     console.log("Date");
     addListeners();
-  }, 1000);
+  }, 500);
 }
 
 function right() {
@@ -142,6 +146,35 @@ function init(e) {
 window.addEventListener("keyup", init);
 itemRight.addEventListener("click", init);
 itemLeft.addEventListener("click", init);
+soundToggle.addEventListener("click", (e) => {
+  soundSrc = soundToggle.src;
+  if (soundSrc.includes("soundon")) {
+    soundToggle.src = "./assets/images/soundoff.svg";
+    updateLocal("currentSoundSrc", "./assets/images/soundoff.svg");
+    playable = false;
+  } else {
+    soundToggle.src = "./assets/images/soundon.svg";
+    updateLocal("currentSoundSrc", "./assets/images/soundon.svg");
+    playable = true;
+  }
+  playMusic(playable);
+});
+window.onload = function () {
+  if (containsClass(body, "not-home")) {
+    soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
+
+    if (checkPlayable()) {
+      playable = true;
+    }
+    playMusic(playable);
+  } else {
+    getLocal("currentSoundSrc")
+      ? ((soundToggle.src = getLocal("currentSoundSrc")),
+        (playable = checkPlayable()))
+      : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
+  }
+  localStorage.removeItem("soundTime");
+};
 
 // start
 populate();
