@@ -240,6 +240,7 @@ import {
 
     clearTime();
     window.removeEventListener("keyup", listenKeys);
+    lifeCnt.style.display = "none";
 
     let bestScore = +getLocal("survivalScore");
     let score = +scoreTag.innerText;
