@@ -17,21 +17,11 @@ const keys = {
   2: options[1],
   3: options[2],
 };
-
-options.forEach((option) => {
-  option.addEventListener("click", (e) => {
-    triggerOption(option.dataset.option);
-  });
-});
-
-window.addEventListener("keyup", (e) => {
-  switch (e.key) {
-    case "a":
-    case "s":
-    case "d":
-      triggerOption(e.key);
-  }
-});
+const level = document.querySelector(".header__info--level");
+const exit = document.getElementById("exit");
+const themeAud = document.querySelector(".audio__theme");
+let soundSrc;
+let playable;
 
 function triggerOption(key) {
   invertColor(keys[key]);
@@ -52,9 +42,22 @@ function normaliseColor(key) {
   key.style.boxShadow = "5px 5px black";
 }
 
+options.forEach((option) => {
+  option.addEventListener("click", (e) => {
+    triggerOption(option.dataset.option);
+  });
+});
+
+window.addEventListener("keyup", (e) => {
+  switch (e.key) {
+    case "a":
+    case "s":
+    case "d":
+      triggerOption(e.key);
+  }
+});
+
 // Music
-let soundSrc;
-let playable;
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
@@ -70,10 +73,6 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 //exit
-
-const exit = document.getElementById("exit");
-const themeAud = document.querySelector(".audio__theme");
-
 exit.addEventListener("click", (e) => {
   e.preventDefault();
   updateLocal("soundTime", themeAud.currentTime);
@@ -81,7 +80,6 @@ exit.addEventListener("click", (e) => {
 });
 
 // onload
-const level = document.querySelector(".header__info--level");
 window.onload = function () {
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
@@ -98,8 +96,7 @@ window.onload = function () {
   }
   localStorage.removeItem("soundTime");
   if (location.href.includes("survival.html")) {
-    document.querySelector(".header__info--time").textContent =
-    "120 s";
+    document.querySelector(".header__info--time").textContent = "120 s";
     return;
   }
   document.querySelector(".header__info--time").textContent =
