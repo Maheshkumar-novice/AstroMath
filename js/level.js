@@ -1,14 +1,10 @@
-import {
-  soundToggle,
-  playMusic,
-  checkPlayable,
-} from "./modules/music.js";
+import { soundToggle, playMusic, checkPlayable } from "./modules/music.js";
 
 import {
   body,
+  settingIcon,
   infoIcon,
   settings,
-  settingIcon,
   settingsView,
   infoView,
   nameEditIcon,
@@ -17,11 +13,13 @@ import {
   containsClass,
   updatePopup,
   updateLocal,
-  getLocal
+  getLocal,
 } from "./modules/utils.js";
 
-// Utils
 let editing = true;
+let soundSrc;
+let playable;
+
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 nameEditIcon.addEventListener("click", () => {
@@ -29,13 +27,10 @@ nameEditIcon.addEventListener("click", () => {
 });
 
 window.addEventListener("keyup", (e) => {
-  if(settings.classList.contains("none") || !(e.code=="Enter") || editing) return;
+  if (settings.classList.contains("none") || !(e.code == "Enter") || editing)
+    return;
   editing = editName(editing);
 });
-
-// Music
-let soundSrc;
-let playable;
 
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
@@ -63,7 +58,8 @@ window.onload = function () {
     playMusic(playable);
   } else {
     getLocal("currentSoundSrc")
-      ? ((soundToggle.src = getLocal("currentSoundSrc")), (playable = checkPlayable()))
+      ? ((soundToggle.src = getLocal("currentSoundSrc")),
+        (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
   localStorage.removeItem("soundTime");
