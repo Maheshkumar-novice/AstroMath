@@ -11,7 +11,9 @@
     <title>AstroMath | survival</title>
   </head>
   <body class="not-home">
+    <!-- theme -->
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
+    <!-- header -->
     <header class="header">
       <h2 class="header__info header__info--time">120 s</h2>
       <h2 class="header__info header__info--score">0</h2>
@@ -26,7 +28,9 @@
         <a href="./astro-math-levels.html" id="exit">Exit</a>
       </h2>
     </header>
+    <!-- main -->
     <main class="main">
+      <!-- lives -->
       <section class="life">
         <img
           data-value="1"
@@ -47,40 +51,15 @@
           class="life__img"
         />
       </section>
-
+      <!-- start popup -->
       <section class="popup--game">
         <h2 class="popup__title">Get Ready</h2>
         <p class="popup__description">Click Start to Play!</p>
         <button class="popup__button popup__button--start">Start</button>
       </section>
-      <div class="main__asteroids none">
-        <div class="main__asteroid-container">
-          <h2 class="main__asteroid-problem">5 * 5</h2>
-          <img
-            src="./assets/images/asteroid.png"
-            alt=""
-            class="main__asteroid"
-          />
-        </div>
-        <div class="main__asteroid-container">
-          <h2 class="main__asteroid-problem">5 * 5</h2>
-          <img
-            src="./assets/images/asteroid.png"
-            alt=""
-            class="main__asteroid"
-          />
-        </div>
-        <div class="main__asteroid-container">
-          <h2 class="main__asteroid-problem">5 * 5</h2>
-          <img
-            src="./assets/images/asteroid.png"
-            alt=""
-            class="main__asteroid"
-          />
-        </div>
-      </div>
-      <!-- Result Page -->
-
+      <!-- asteroids -->
+      <div class="main__asteroids none"></div>
+      <!-- results -->
       <div class="result none">
         <div class="pyro none">
           <div class="before"></div>
@@ -161,30 +140,25 @@
         </div>
       </div>
     </main>
+    <!-- footer -->
     <footer class="footer">
       <button
         class="footer__option footer__option1"
         data-option="1"
         data-value="1"
-      >
-        1
-      </button>
+      ></button>
       <button
         class="footer__option footer__option2"
         data-option="2"
         data-value="1"
-      >
-        1
-      </button>
+      ></button>
       <button
         class="footer__option footer__option3"
         data-option="3"
         data-value="1"
-      >
-        1
-      </button>
+      ></button>
     </footer>
-
+    <!-- js -->
     <script type="module" src="./js/game.js"></script>
     <script type="module" src="./js/survival_logic.js"></script>
   </body>
