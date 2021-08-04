@@ -32,6 +32,14 @@ let asteroids = "";
 let eqAnswer;
 let gameOptions = document.querySelectorAll(".footer__option");
 let randomAsteroid;
+const keys = {
+  a: gameOptions[0],
+  s: gameOptions[1],
+  d: gameOptions[2],
+  1: gameOptions[0],
+  2: gameOptions[1],
+  3: gameOptions[2],
+};
 
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -171,15 +179,6 @@ function assignOptions() {
     gameOptions[ri].dataset.value = e;
   });
 }
-
-const keys = {
-  a: gameOptions[0],
-  s: gameOptions[1],
-  d: gameOptions[2],
-  1: gameOptions[0],
-  2: gameOptions[1],
-  3: gameOptions[2],
-};
 
 function answerValidate(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);

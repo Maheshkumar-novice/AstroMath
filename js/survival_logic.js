@@ -8,7 +8,9 @@ import {
 } from "./modules/utils.js";
 
 const scoreTag = document.querySelector(".header__info--score");
+const start = document.querySelector(".popup__button--start");
 const resultCont = document.querySelector(".result");
+const buttons = resultCont.querySelectorAll("button");
 const footer = document.querySelector(".footer");
 const highImg = document.querySelector(".result__high-score");
 const giphyAttr = document.querySelector(".giphy__attr");
@@ -33,6 +35,24 @@ let randomAnswer1,
   randomAnswer2,
   score = 0;
 let answers = [];
+let asteroids_container = document.querySelector(".main__asteroids");
+let asteroid_containers = document.querySelectorAll(
+  ".main__asteroid-containerr"
+);
+let asteroids = "";
+let eqAnswer, gameAsteroids;
+let ast_cnt = 3;
+let ans_cnt = 0;
+const lifeCnt = document.querySelector(`.life`);
+let gameOptions = document.querySelectorAll(".footer__option");
+const keys = {
+  a: gameOptions[0],
+  s: gameOptions[1],
+  d: gameOptions[2],
+  1: gameOptions[0],
+  2: gameOptions[1],
+  3: gameOptions[2],
+};
 
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -131,25 +151,6 @@ function generateQA(questions) {
 generateQA(5);
 
 // asteroids
-let asteroids_container = document.querySelector(".main__asteroids");
-let asteroid_containers = document.querySelectorAll(
-  ".main__asteroid-containerr"
-);
-let asteroids = "";
-let eqAnswer, gameAsteroids;
-let ast_cnt = 3;
-let ans_cnt = 0;
-const lifeCnt = document.querySelector(`.life`);
-let gameOptions = document.querySelectorAll(".footer__option");
-const keys = {
-  a: gameOptions[0],
-  s: gameOptions[1],
-  d: gameOptions[2],
-  1: gameOptions[0],
-  2: gameOptions[1],
-  3: gameOptions[2],
-};
-
 function updateAsteroids() {
   asteroid_containers.forEach((container) => {
     container.remove();
@@ -281,11 +282,6 @@ function endResult(bs) {
   updateText(".result__prescore span", `${bs}`);
 }
 
-const buttons = resultCont.querySelectorAll("button");
-buttons.forEach((data) => {
-  data.addEventListener("click", naviCaller);
-});
-
 function timerCheck() {
   if (secondsLeft < 0) {
     endGame();
@@ -303,7 +299,6 @@ function listenKeys(e) {
   }
 }
 
-const start = document.querySelector(".popup__button--start");
 start.addEventListener("click", () => {
   window.addEventListener("keyup", listenKeys);
   footer.style.pointerEvents = "unset";
@@ -312,6 +307,10 @@ start.addEventListener("click", () => {
   classWorker("none", "add", start.parentElement);
   classWorker("none", "remove", document.querySelector(".main__asteroids"));
   // openFullscreen();
+});
+
+buttons.forEach((data) => {
+  data.addEventListener("click", naviCaller);
 });
 
 window.addEventListener("load", assignOptions);
