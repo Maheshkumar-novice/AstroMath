@@ -9,8 +9,9 @@
     <title>AstroMath | home</title>
   </head>
   <body class="blur">
+    <!-- theme music -->
     <audio class="audio__theme" src="./assets/Music/themeMusic.mp3"></audio>
-
+    <!-- header -->
     <header class="header">
       <div class="header__icon">
         <i class="fas fa-cog header__settings-icon"></i>
@@ -22,9 +23,10 @@
         <i class="fas fa-question-circle header__info-icon"></i>
       </div>
     </header>
-
+    <!-- main -->
     <main class="main">
       <div class="main__options">
+        <!-- sounds -->
         <audio
           class="audio__hover"
           src="./assets/Music/selection/hover2.mp3"
@@ -33,6 +35,7 @@
           class="audio__click"
           src="./assets/Music/selection/click.mp3"
         ></audio>
+        <!-- options -->
         <div class="main__options__cnt">
           <img
             src="./assets/images/Fire.svg"
@@ -57,7 +60,7 @@
         </div>
       </div>
     </main>
-
+    <!-- footer -->
     <footer class="footer">
       <a href="#" class="footer__modes">Modes</a>
       <a href="./astro-math-levels.html" class="footer__level">
@@ -65,7 +68,6 @@
       </a>
       <a href="#" class="footer__credit">Credits</a>
     </footer>
-
     <!-- init pop up -->
     <section class="popup popup__active">
       <h2 class="popup__title">
@@ -85,7 +87,7 @@
         </button>
       </div>
     </section>
-
+    <!-- video -->
     <section class="video none">
       <button class="skip">Skip</button>
       <video>
@@ -117,7 +119,71 @@
         </div>
       </div>
     </section>
-
+    <!-- info -->
+    <section class="info none">
+      <h3 class="info__tagline">
+        Destroy <span class="secondary-color">Asteroids</span> by Solving
+        <span class="secondary-color">Math</span> and Save
+        <span class="secondary-color">The Earth</span>
+      </h3>
+      <div class="info__stars">
+        <h2 class="info__star-heading">Star Calculation</h2>
+        <div class="info__star-details">
+          <div class="info__star-item-100">
+            <img src="./assets/images/3.png" alt="" />
+            <p>-> 100%</p>
+          </div>
+          <div class="info__star-item-75">
+            <img src="./assets/images/2.png" alt="" />
+            <p>-> 76% - 99%</p>
+          </div>
+          <div class="info__star-item-50">
+            <img src="./assets/images/1.png" alt="" />
+            <p>-> 50% - 75%</p>
+          </div>
+        </div>
+      </div>
+      <p class="info__levels">
+        Click <span class="info__level-text">Current Level</span> to see all
+        levels
+      </p>
+      <a href="./howto.html"><p class="info__howto">How To Play?</p></a>
+    </section>
+    <!-- modes -->
+    <section class="modes none">
+      <div class="main__options">
+        <audio
+          class="audio__hover"
+          src="./assets/Music/selection/hover2.mp3"
+        ></audio>
+        <audio
+          class="audio__click"
+          src="./assets/Music/selection/click.mp3"
+        ></audio>
+        <div class="main__options__cnt">
+          <img
+            src="./assets/images/Fire.svg"
+            class="none"
+            data-tag="survival"
+            alt=""
+          />
+          <h2 data-value="survival" class="main__option main__survival">
+            <a href="./survival.html" class="main__survival--link">Survival</a>
+          </h2>
+        </div>
+        <div class="main__options__cnt">
+          <img
+            src="./assets/images/Fire.svg"
+            class="none"
+            data-tag="bonus"
+            alt=""
+          />
+          <h2 data-value="bonus" class="main__option main__bonus">
+            <a href="./bonus.html" class="main__bonus--link">Bonus (Beta)</a>
+          </h2>
+        </div>
+      </div>
+    </section>
     <!-- credits -->
     <section class="credits none">
       <div class="credits__wrapper">
@@ -156,76 +222,6 @@
         >
       </div>
     </section>
-
-    <!-- modes -->
-    <section class="modes none">
-      <div class="main__options">
-        <audio
-          class="audio__hover"
-          src="./assets/Music/selection/hover2.mp3"
-        ></audio>
-        <audio
-          class="audio__click"
-          src="./assets/Music/selection/click.mp3"
-        ></audio>
-        <div class="main__options__cnt">
-          <img
-            src="./assets/images/Fire.svg"
-            class="none"
-            data-tag="survival"
-            alt=""
-          />
-          <h2 data-value="survival" class="main__option main__survival">
-            <a href="./survival.html" class="main__survival--link">Survival</a>
-          </h2>
-        </div>
-        <div class="main__options__cnt">
-          <img
-            src="./assets/images/Fire.svg"
-            class="none"
-            data-tag="bonus"
-            alt=""
-          />
-          <h2 data-value="bonus" class="main__option main__bonus">
-            <a href="./bonus.html" class="main__bonus--link">Bonus (Beta)</a>
-          </h2>
-        </div>
-      </div>
-    </section>
-
-    <!-- info -->
-    <section class="info none">
-      <h3 class="info__tagline">
-        Destroy <span class="secondary-color">Asteroids</span> by Solving
-        <span class="secondary-color">Math</span> and Save
-        <span class="secondary-color">The Earth</span>
-      </h3>
-      <div class="info__stars">
-        <h2 class="info__star-heading">Star Calculation</h2>
-        <div class="info__star-details">
-          <div class="info__star-item-100">
-            <img src="./assets/images/3.png" alt="" />
-            <p>-> 100%</p>
-          </div>
-          <div class="info__star-item-75">
-            <img src="./assets/images/2.png" alt="" />
-            <p>-> 76% - 99%</p>
-          </div>
-          <div class="info__star-item-50">
-            <img src="./assets/images/1.png" alt="" />
-            <p>-> 50% - 75%</p>
-          </div>
-        </div>
-      </div>
-      <p class="info__levels">
-        Click <span class="info__level-text">Current Level</span> to see all
-        levels
-      </p>
-      <a href="./howto.html"><p class="info__howto">How To Play?</p></a>
-    </section>
-    <!-- icon-link -->
-    <!--iconify-->
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <!--font awesome-->
     <script
       src="https://kit.fontawesome.com/a6cc4a65f2.js"
