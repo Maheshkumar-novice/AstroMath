@@ -4,7 +4,6 @@ export const clickAudio = document.querySelector(".audio__click");
 export const options = document.querySelectorAll(".main__option");
 export const popupButton = document.querySelector(".popup__button");
 export const gameSound = document.querySelector(".header__info--sound");
-
 export const soundToggle = document.querySelector(".settings__sound--icon");
 
 export function updateLocalSoundSrc(src) {

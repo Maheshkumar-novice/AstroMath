@@ -1,16 +1,31 @@
-// Section Navigation
 export const body = document.body;
-export const settings = document.querySelector(".settings");
-export const modes = document.querySelector(".modes");
-export const info = document.querySelector(".info");
-export const infoIcon = document.querySelector(".header__info-icon");
-export const creditMenu = document.querySelector(".footer__credit");
-export const settingIcon = document.querySelector(".header__settings-icon");
-export const levelMenu = document.querySelector(".footer__level");
 export const popup = document.querySelector(".popup");
-export const modesMenu = document.querySelector(".footer__modes");
+export const levelMenu = document.querySelector(".footer__level");
+
+export const settings = document.querySelector(".settings");
+export const info = document.querySelector(".info");
+export const modes = document.querySelector(".modes");
 export const credits = document.querySelector(".credits");
 
+export const settingIcon = document.querySelector(".header__settings-icon");
+export const infoIcon = document.querySelector(".header__info-icon");
+export const modesMenu = document.querySelector(".footer__modes");
+export const creditMenu = document.querySelector(".footer__credit");
+
+const homeIcon = document.querySelector(".fa-home");
+
+export const nameEditIcon = document.querySelector(".settings__edit--icon");
+export const nameInput = document.querySelector(".settings__input");
+export const popupUsername = document.querySelector(".popup__username");
+export const userChangeButton = document.querySelector(
+  ".popup__button--change-user"
+);
+
+const timeHolder = document.querySelector(".header__info--time");
+export let secondsLeft;
+let countdown;
+
+// local storage helpers
 export function updateLocal(key, val) {
   localStorage.setItem(key, val);
 }
@@ -19,6 +34,7 @@ export function getLocal(key) {
   return localStorage.getItem(key);
 }
 
+// class work helpers
 function addClass(elements, classValue) {
   elements.forEach((element) => {
     if (element) {
@@ -67,6 +83,7 @@ function nilCheck(element) {
   return element ? containsClass(element, "none") : true;
 }
 
+// view helpers
 const viewWorkMap = {
   info: [settings, credits, modes],
   settings: [info, credits, modes],
@@ -74,11 +91,25 @@ const viewWorkMap = {
   modes: [info, settings, credits],
 };
 
-let homeIcon = document.querySelector(".fa-home");
+export function check(arg) {
+  let menuItemsCheck =
+    containsClass(info, "none") &&
+    nilCheck(credits) &&
+    containsClass(settings, "none") &&
+    containsClass(modes, "none");
+  if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
+    classWorker("blur", "remove", body);
+  } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
+    popup
+      ? classWorker("none", "remove", popup)
+      : console.log("no-pop-up-buddy");
+  }
+}
+
 function viewWorker(view, strView) {
   let checkFlag;
-  let otherTwo = viewWorkMap[strView];
-  classWorker("none", "add", otherTwo[0], otherTwo[1], otherTwo[2]);
+  let others = viewWorkMap[strView];
+  classWorker("none", "add", others[0], others[1], others[2]);
   if (containsClass(body, "not-home") && nilCheck(popup)) {
     classWorker("blur", "add", body);
     checkFlag = 1;
@@ -112,29 +143,7 @@ export function modesView() {
   viewWorker(modes, "modes");
 }
 
-export function check(arg) {
-  let menuItemsCheck =
-    containsClass(info, "none") &&
-    nilCheck(credits) &&
-    containsClass(settings, "none") &&
-    containsClass(modes, "none");
-  if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
-    classWorker("blur", "remove", body);
-  } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
-    popup
-      ? classWorker("none", "remove", popup)
-      : console.log("no-pop-up-buddy");
-  }
-}
-
 // Settings of UserName
-export const nameEditIcon = document.querySelector(".settings__edit--icon");
-export const nameInput = document.querySelector(".settings__input");
-export const popupUsername = document.querySelector(".popup__username");
-export const userChangeButton = document.querySelector(
-  ".popup__button--change-user"
-);
-
 export function editName(editing) {
   if (editing) {
     classWorker("border-bottom", "add", nameInput);
@@ -148,7 +157,6 @@ export function editName(editing) {
     if (nameInput.value == "") {
       nameInput.value = "Jaam";
     }
-    // setUserName(nameInput.value);
     updateLocal("user", nameInput.value);
     updatePopup(nameInput.value);
     settingsView();
@@ -175,9 +183,6 @@ export function updatePopup(value) {
 }
 
 // Timer
-const timeHolder = document.querySelector(".header__info--time");
-export let secondsLeft;
-let countdown;
 export function timer(seconds) {
   clearInterval(countdown);
 
