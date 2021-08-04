@@ -43,7 +43,7 @@ let soundSrc;
 let playable;
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
-const survival = document.querySelector(".main__survival");
+const survival = document.querySelector(".main__survival--link");
 let editing = true;
 let levelValue = JSON.stringify({
   1: ["current", null, null, 5],
@@ -190,7 +190,7 @@ window.onload = function () {
     options[0].querySelector("a").classList.add("not-active");
   }
   if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
-    survival.classList.add("non-active");
+    survival.classList.add("not-active");
   }
   updateCurrentLevel();
   nameInput.value = getLocal("user") || "Jaam";
