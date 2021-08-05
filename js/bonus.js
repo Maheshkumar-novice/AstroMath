@@ -1,5 +1,5 @@
 import { soundToggle, playMusic, checkPlayable,  highScoreAudio,
-  lowScoreAudio} from "./modules/music.js";
+  lowScoreAudio, gameAudioPlay} from "./modules/music.js";
 import {
   body,
   getLocal,
@@ -174,12 +174,18 @@ function streakHelper(wrong = false) {
 }
 
 function rightHelper() {
+  if(checkPlayable()){
+    gameAudioPlay(0);
+  }
   streakHelper();
   correctBg();
   score.textContent = +score.textContent + 1;
 }
 
 function wrongHelper() {
+  if(checkPlayable()){
+    gameAudioPlay(1);
+  }
   streakHelper(true);
   wrongBg();
   lifeContainer.lastElementChild.remove();

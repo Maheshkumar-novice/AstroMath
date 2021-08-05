@@ -1,4 +1,4 @@
-import { checkPlayable, highScoreAudio, lowScoreAudio } from "./modules/music.js";
+import { checkPlayable, highScoreAudio, lowScoreAudio, gameAudioPlay} from "./modules/music.js";
 import {
   getLocal,
   updateLocal,
@@ -8,6 +8,8 @@ import {
   clearTime,
 } from "./modules/utils.js";
 
+const body = document.querySelector("body");
+const main = document.querySelector("main");
 const scoreTag = document.querySelector(".header__info--score");
 const start = document.querySelector(".popup__button--start");
 const resultCont = document.querySelector(".result");
@@ -221,6 +223,8 @@ function answerValidate(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);
   if (target) {
     target.remove();
+    if(checkPlayable())
+      gameAudioPlay(0);
     scoreTag.innerText = ++score;
     ans_cnt++;
     updateBonus();
@@ -228,12 +232,27 @@ function answerValidate(value) {
     ans_cnt = 1;
     document.querySelector(`.life__img[data-value='${ast_cnt--}']`).remove();
     randomAsteroid.querySelector("h2").style.color = "red";
+    if(checkPlayable())
+      gameAudioPlay(1);
+    activateAnimation();
     if (ast_cnt == 0) {
       endGame();
     }
   }
   assignOptions();
 }
+
+function activateAnimation(){
+  main.style.animation = "shake .3s linear 1";
+  body.style.backgroundColor = "#ff000070";
+  body.style.overflow = "hidden";
+}
+
+main.addEventListener("animationend", function(e){
+  body.style.backgroundColor = "initial";
+  body.style.overflow = "initial";
+  main.style.animation = "none";
+});
 
 gameOptions.forEach((option) => {
   option.addEventListener("click", (e) => {
