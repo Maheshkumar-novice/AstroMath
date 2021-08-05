@@ -1,4 +1,5 @@
-import { soundToggle, playMusic, checkPlayable } from "./modules/music.js";
+import { soundToggle, playMusic, checkPlayable,  highScoreAudio,
+  lowScoreAudio} from "./modules/music.js";
 import {
   body,
   getLocal,
@@ -235,9 +236,18 @@ function updateScore() {
     quote.textContent = quotes.positve[qono];
     classWorker("none", "add", resultImg);
     classWorker("none", "remove", highImg, pyro);
+    if(checkPlayable()){
+      highScoreAudio.play();
+    }
   } else if (current < high) {
+    if(checkPlayable()){
+      lowScoreAudio.play();
+    }
     quote.textContent = quotes.negative[qono];
   } else {
+    if(checkPlayable()){
+      lowScoreAudio.play();
+    }
     quote.textContent = quotes.nothin[0];
   }
 }
