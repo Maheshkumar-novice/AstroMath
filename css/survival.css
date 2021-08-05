@@ -12,13 +12,25 @@
   margin: 1rem 0;
 }
 
+.main {
+  position: relative;
+}
 .life{
-  position: absolute;
+  /* position: absolute;
   left: 20px;
   top: 45%;
   transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateX(-50%);
+  /* background-color: #000d1b; */
+  padding: 1rem;
 }
 
 .life__img{
@@ -31,5 +43,9 @@
   .result__data {
       margin-top: 0;
     align-items: center;
+  }
+  .life__img {
+    width: 40px;
+    height: 40px;
   }
 }
