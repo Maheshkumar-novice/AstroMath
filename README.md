@@ -1,4 +1,4 @@
-# AstroMath - (Work In Progress - will be completed on aug 5)
+# AstroMath Beta
 ## Destroy Asteroids By Solving Math and Save The Earth
 ## The Odin Project - [Jam](https://itch.io/jam/top-jam-1) - 1
    ![home](./assets/readme/home.png)
