@@ -124,7 +124,6 @@ a {
 
 .popup__description {
   font-size: var(--text);
-  font-weight: normal;
 }
 
 .result {
