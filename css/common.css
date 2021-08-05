@@ -246,6 +246,17 @@ a {
   display: flex;
   justify-content: flex-end;
   margin-left: 2rem;
+  position: relative;
+}
+
+.settings__input--length-cnt{
+  top: 100%;
+  position: absolute;
+  font-size: clamp(1rem, 3vw, 3rem);
+}
+
+.settings__input--length{
+  color: var(--danger-color);
 }
 
 .credits__item {
