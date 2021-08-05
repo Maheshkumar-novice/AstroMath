@@ -39,11 +39,14 @@ const footer = document.querySelector("footer");
 const video = document.querySelector(".video");
 const video_player = document.querySelector("video");
 const skipBtn = document.querySelector(".skip");
-let soundSrc;
-let playable;
 const newgame = document.querySelector(".main__newgame--link");
 const resume = document.querySelector(".main__resume--link");
 const survival = document.querySelector(".main__survival--link");
+const bonus = document.querySelector(".main__bonus--link");
+
+let activeBtn = {};
+let soundSrc;
+let playable;
 let editing = true;
 let levelValue = JSON.stringify({
   1: ["current", null, null, 5],
@@ -111,7 +114,7 @@ newgame.addEventListener("click", (e) => {
 
 resume.addEventListener("click", (e) => {
   e.preventDefault();
-  if (resume.classList.contains("not-active")) return;
+  if (!activeBtn["resume"]) return;
   let currentLevel = getLocal("currentLevel") || 1;
   let levelValue = JSON.parse(getLocal("levelValue")) || {
     1: ["current", null, null, 5],
@@ -125,12 +128,25 @@ resume.addEventListener("click", (e) => {
   location.href = "./astro-math.html";
 });
 
+survival.addEventListener("click", (e) => {
+  e.preventDefault();
+  // if(!activeBtn["survival"]) return;
+  location.href = e.target.href;
+});
+
+bonus.addEventListener("click", (e) => {
+  e.preventDefault();
+  if(!activeBtn["bonus"]) return;
+  location.href = e.target.href;
+});
+
 options.forEach((option) => {
   option.addEventListener("mouseenter", function () {
-    console.log(this.dataset.value == "survival", +getLocal("currentLevel") >= 6)
-    if ((this.dataset.value == "resume" && !getLocal("currentLevel")) || (this.dataset.value == "survival" && +getLocal("currentLevel") <= 6)) {
+    let currCheck = activeBtn[this.dataset.value];
+    if(currCheck != undefined && !currCheck){
       return;
     }
+
     this.querySelector("a").classList.add("orange");
     let fire = document.querySelector(`img[data-tag="${this.dataset.value}"]`);
     classWorker("none", "remove", fire);
@@ -184,14 +200,30 @@ soundToggle.addEventListener("click", (e) => {
   containsClass(popup, "popup__active") ? "" : playMusic(playable);
 });
 
+function checkActive(){
+  // if (!getLocal("currentLevel")) {
+  //   options[0].querySelector("a").classList.add("not-active");
+  // }
+
+  !getLocal("currentLevel") ? (options[0].querySelector("a").classList.add("not-active"), activeBtn["resume"]=false) : activeBtn["resume"]=true;
+
+  // if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
+  //   survival.classList.add("not-active");
+  // }
+
+  !getLocal("currentLevel") || getLocal("currentLevel")<6 ? (survival.classList.add("not-active"), activeBtn["survival"]=false) : activeBtn["survival"]=true;
+
+  // if(!getLocal("currentLevel") || getLocal("currentLevel")<=10){
+  //   survival.classList.add("not-active");
+  // }
+
+  !getLocal("currentLevel") || getLocal("currentLevel")<6 ? (bonus.classList.add("not-active"), activeBtn["bonus"]=false) : activeBtn["bonus"]=true;
+
+  console.log(activeBtn);
+}
+
 window.onload = function () {
-  console.log(survival)
-  if (!getLocal("currentLevel")) {
-    options[0].querySelector("a").classList.add("not-active");
-  }
-  if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
-    survival.classList.add("not-active");
-  }
+  checkActive();
   updateCurrentLevel();
   nameInput.value = getLocal("user") || "Jaam";
   updatePopup(nameInput.value);
