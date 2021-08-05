@@ -8,6 +8,11 @@ import {
   getLevelTime,
 } from "./modules/utils.js";
 
+import {
+  checkPlayable,
+  gameAudioPlay
+} from "./modules/music.js"
+
 const operators = ["+", "-", "*", "/"];
 const body = document.querySelector("body");
 const main = document.querySelector("main");
@@ -197,9 +202,13 @@ function validateAnswer(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);
   if (target) {
     target.remove();
+    if(checkPlayable())
+      gameAudioPlay(0);
     scoreTag.innerText = ++score;
   } else {
     randomAsteroid.querySelector("h2").style.color = "red";
+    if(checkPlayable())
+      gameAudioPlay(1);
     activateAnimation();
   }
   assignOptions();

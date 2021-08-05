@@ -5,6 +5,7 @@ export const options = document.querySelectorAll(".main__option");
 export const popupButton = document.querySelector(".popup__button");
 export const gameSound = document.querySelector(".header__info--sound");
 export const soundToggle = document.querySelector(".settings__sound--icon");
+export const audioGame = document.querySelectorAll(".audio__game");
 
 export function updateLocalSoundSrc(src) {
   localStorage.setItem("currentSoundSrc", src);
@@ -48,4 +49,9 @@ export function checkPlayable() {
   return (getLocalSoundSrc() || soundToggle.src).includes("soundon")
     ? true
     : false;
+}
+
+export function gameAudioPlay(val){
+  audioGame[0].currentTime = audioGame[1].currentTime = 0;
+  audioGame[val].play();
 }
