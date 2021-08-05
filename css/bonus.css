@@ -69,6 +69,7 @@ a {
   content: "Sound: ";
 }
 .main {
+  position: relative;
   display: flex;
   flex: 1;
 }
@@ -178,6 +179,23 @@ a {
   color: var(--danger-color);
 }
 
+.life {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateX(-50%);
+  background-color: #000d1b;
+  padding: 1rem;
+}
+
+.life__img {
+  width: 60px;
+  height: 60px;
+}
+
 @media (max-width: 950px) {
   .header {
     display: grid;
@@ -204,6 +222,10 @@ a {
   .result__data {
     gap: 3rem;
   }
+  .life__img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -224,5 +246,9 @@ a {
   .result__img {
     width: 15rem;
     height: 15rem;
+  }
+  .life__img {
+    width: 30px;
+    height: 30px;
   }
 }

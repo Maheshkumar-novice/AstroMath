@@ -26,6 +26,7 @@ const resultImg = document.querySelector(".result__img");
 const pyro = document.querySelector(".pyro");
 let highScore = document.querySelector(".result__highscore");
 let currentScore = document.querySelector(".result__score");
+const lifeContainer = document.querySelector(".life");
 const quotes = {
   positve: ["You Did it!", "You crushed your high score!", "AHHHH Improved!"],
   negative: [
@@ -40,6 +41,7 @@ let correctAnswer = undefined;
 let timeOut;
 let soundSrc;
 let playable;
+
 itemRight.style.pointerEvents = "none";
 itemLeft.style.pointerEvents = "none";
 
@@ -150,42 +152,77 @@ function update() {
   }, 300);
 }
 
+let bonusStreak = 0;
+// updateLocal("bonusStreak", bonusStreak);
+function streakHelper(wrong = false) {
+  console.log(bonusStreak);
+  if (wrong) {
+    bonusStreak = 0;
+    return;
+  }
+  if (bonusStreak === 4 && lifeContainer.childElementCount < 6) {
+    lifeContainer.innerHTML += `<img
+    src="./assets/images/meteorlife.svg"
+    alt="Life"
+    class="life__img"
+  />`;
+    bonusStreak = 0;
+  } else {
+    bonusStreak = (bonusStreak + 1) % 5;
+  }
+}
+
+function rightHelper() {
+  streakHelper();
+  correctBg();
+  score.textContent = +score.textContent + 1;
+}
+
+function wrongHelper() {
+  streakHelper(true);
+  wrongBg();
+  lifeContainer.lastElementChild.remove();
+  if (lifeContainer.childElementCount === 0) {
+    endGame();
+  }
+}
+
 function right() {
   if (correctAnswer) {
-    correctBg();
-    score.textContent = +score.textContent + 1;
+    rightHelper();
   } else {
-    wrongBg();
+    wrongHelper();
   }
   update();
 }
 
 function wrong() {
   if (!correctAnswer) {
-    correctBg();
-    score.textContent = +score.textContent + 1;
+    rightHelper();
   } else {
-    wrongBg();
+    wrongHelper();
   }
   update();
 }
 
 function init(e) {
-  if (e.key === "ArrowRight" || e.target.dataset.side === "left") {
+  if (e.key === "d" || e.target.dataset.side === "left") {
     right();
-  } else if (e.key === "ArrowLeft" || e.target.dataset.side === "right") {
+  } else if (e.key === "a" || e.target.dataset.side === "right") {
     wrong();
   }
 }
 
+let timerCheckTimeout;
 function timerCheck() {
   if (secondsLeft < 0) {
     timeUp = true;
     clearTimeout(timeOut);
     endGame();
+    clearTimeout(timerCheckTimeout);
     return;
   }
-  setTimeout(timerCheck, 1000);
+  timerCheckTimeout = setTimeout(timerCheck, 1000);
 }
 
 function updateScore() {
@@ -210,7 +247,7 @@ function endGame() {
   removeListeners();
   updateScore();
   updateLocal("bonusHighScore", score.textContent);
-  classWorker("none", "add", header, itemRight, itemLeft);
+  classWorker("none", "add", header, itemRight, itemLeft, lifeContainer);
   classWorker("none", "remove", result);
 }
 
@@ -225,9 +262,11 @@ function navigate(e) {
 // event listeners
 itemRight.addEventListener("click", init);
 itemLeft.addEventListener("click", init);
+
 options.forEach((option) => {
   option.addEventListener("click", navigate);
 });
+
 soundToggle.addEventListener("click", (e) => {
   soundSrc = soundToggle.src;
   if (soundSrc.includes("soundon")) {
@@ -241,6 +280,7 @@ soundToggle.addEventListener("click", (e) => {
   }
   playMusic(playable);
 });
+
 window.onload = function () {
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
@@ -257,11 +297,12 @@ window.onload = function () {
   }
   localStorage.removeItem("soundTime");
 };
+
 start.addEventListener("click", () => {
   window.addEventListener("keyup", init);
   itemRight.style.pointerEvents = "unset";
   itemLeft.style.pointerEvents = "unset";
-  timer(5);
+  timer(120);
   timerCheck();
   classWorker("none", "add", start.parentElement);
   populate();
