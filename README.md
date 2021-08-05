@@ -11,4 +11,4 @@
 ## How To Play?
   **The User** needs to choose the answer that will match the problem of one of the asteroids in the screen.
 
-  
+  ![howToPlay](./assets/images/how-to-play/howToPlay.png)
