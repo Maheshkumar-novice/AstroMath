@@ -157,7 +157,7 @@ export function editName(editing) {
     classWorker("border-bottom", "remove", nameInput);
     nameInput.setAttribute("readonly", true);
     nameEditIcon.src = "./assets/images/edit.svg";
-    if (nameInput.value == "") {
+    if (nameInput.value.trim() == "") {
       nameInput.value = "Odinite";
     }
     updateLocal("user", nameInput.value);
