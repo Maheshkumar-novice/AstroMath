@@ -26,7 +26,7 @@ html {
   position: relative;
 }
 
-.main__options__cnt img {
+.main__options__cnt .main__fire{
   position: absolute;
   top: 50%;
   transform: translateY(-35%);
@@ -39,13 +39,39 @@ html {
   margin-left: 2rem;
 }
 
+/* Styles for locked state */
+
+.main__lock, .main__status{
+  display: none;
+}
+
+.not-active .main__lock, .not-active .main__status{
+  display: initial;
+}
+
 .orange {
   color: var(--orange);
 }
 
-.not-active {
+.not-active a{
   opacity: 0.5;
   cursor: default;
+  margin: 0 1rem;
+}
+
+h2.not-active{
+  display: flex;
+  align-items: center;
+}
+
+.not-active .main__status{
+  font-size: clamp(1rem, 3vw, 3rem);
+  color: var(--danger-color);
+}
+
+.not-active .main__lock{
+  height: clamp(30px, 5vw, 70px);
+  width: clamp(30px, 5vw, 70px);
 }
 
 /* .main__resume a:hover,
@@ -143,18 +169,16 @@ html {
   }
 }
 
-.main__status{
-  font-size: clamp(1rem, 5vw, 3rem);
-  position: absolute;
-  top: 50%;
-  left: 110%;
-  color: var(--danger-color);
-  /* white-space: nowrap; */
-  transform: translateY(-50%);
+@media (max-width: 435px) {
+  .main__options__cnt .main__fire {
+    transform: translateY(-25%);
+  }
 }
 
-@media (max-width: 435px) {
-  .main__options__cnt img {
-    transform: translateY(-25%);
+@media (max-width: 350px) {
+  .not-active .main__status{
+    flex-basis: 60%;
+    display: flex;
+    justify-content: flex-start;
   }
 }
