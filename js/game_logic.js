@@ -272,7 +272,7 @@ function updateNewScore(localjson, currLevel, currTime, currPercentage) {
 }
 
 function endGame() {
-  debugger;
+  // debugger;
   clearTime();
   window.removeEventListener("keyup", listenKeys);
   let localjson = JSON.parse(getLocal("levelValue"));
@@ -293,7 +293,7 @@ function endGame() {
 
   if (localjson[currLevel][0] === "current" && currPercentage >= 50) {
     updateNewScore(localjson, currLevel, currTime, currPercentage);
-  } else if (currPercentage > previousPercentage) {
+  } else if (currPercentage > previousPercentage && currPercentage >= 50) {
     showHighScoreGif();
     localjson[currLevel][1] = currTime;
     localjson[currLevel][2] = currPercentage;
