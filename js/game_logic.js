@@ -249,7 +249,7 @@ function updateNewScore(localjson, currLevel, currTime, currPercentage) {
   }
   if (getLocal("allDone") === "yes") {
     updateLocal("currentLevel", 10);
-    localjson[10][0] = "current";
+    localjson[10][0] = "played";
   } else {
     updateLocal("currentLevel", next);
     localjson[next][0] = "current";

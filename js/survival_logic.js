@@ -254,7 +254,6 @@ function endGame() {
     classWorker("none", "remove", highImg);
     classWorker("none", "add", resultImg);
     quoteTag.innerText = quotes.positve[qono];
-    updateLocal("hell", "fun");
     updateLocal("survivalScore", score);
   } else if (score < bestScore) {
     quoteTag.innerText = quotes.negative[qono];
