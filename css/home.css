@@ -67,6 +67,20 @@ html {
 h2.not-active{
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+h2::after{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0%;
+  text-align: left;
+  margin-left: 1.5rem;
+  top: 100%;
+  font-size: var(--small-text);
+  color: var(--danger-color);
+  content: attr(data-cnt);
 }
 
 .not-active .main__status{
