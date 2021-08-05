@@ -123,7 +123,7 @@ h2.not-active{
   left: 0;
 }
 .popup__title::before {
-  background: #000d1b;
+  background: black;
   animation: typewriter var(--typewriterSpeed)
     steps(var(--typewriterCharacters)) 1s forwards;
 }

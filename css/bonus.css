@@ -247,6 +247,11 @@ a {
     width: 15rem;
     height: 15rem;
   }
+  
+  .result__high-score {
+    height: 200px;
+  }
+
   .life__img {
     width: 30px;
     height: 30px;

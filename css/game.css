@@ -278,6 +278,9 @@ a {
     width: 15rem;
     height: 15rem;
   }
+  .result__high-score {
+    height: 200px;
+  }
 }
 
 @media (max-width: 350px) {
