@@ -289,6 +289,13 @@ a {
 
 .info__levels {
   color: var(--primary-color);
+  font-size: var(--text);
+}
+
+.info__ls {
+  color: var(--secondary-color);
+  font-size: var(--small-text);
+  text-align: center;
 }
 
 .info__level-text {
