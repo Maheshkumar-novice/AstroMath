@@ -10,6 +10,7 @@ import {
 
 import {
   checkPlayable,
+  fireworksPlay,
   gameAudioPlay
 } from "./modules/music.js"
 
@@ -251,11 +252,17 @@ function calculatePercentage(ques, score) {
 }
 
 function showHighScoreGif() {
+  if(checkPlayable()){
+    fireworksPlay();
+  }
   classWorker("none", "remove", pyro, highImg);
   classWorker("none", "add", resultImg);
 }
 
 function showPersonalBestGif() {
+  if(checkPlayable()){
+    fireworksPlay();
+  }
   classWorker("none", "remove", pyro, pbImg);
   classWorker("none", "add", resultImg);
 }

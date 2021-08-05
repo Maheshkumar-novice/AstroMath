@@ -6,6 +6,7 @@ export const popupButton = document.querySelector(".popup__button");
 export const gameSound = document.querySelector(".header__info--sound");
 export const soundToggle = document.querySelector(".settings__sound--icon");
 export const audioGame = document.querySelectorAll(".audio__game");
+export const fireworks = document.querySelectorAll(".audio__fireworks");
 
 export function updateLocalSoundSrc(src) {
   localStorage.setItem("currentSoundSrc", src);
@@ -56,7 +57,20 @@ export function gameAudioPlay(val){
     audio.pause();
     audio.currentTime = 0;
   });
-  // audioGame[0].currentTime = 0;
-  // audioGame[1].currentTime = 0;
   audioGame[val].play();
+}
+
+function crackerPlay(firework){
+  console.log(firework)
+  firework.play();
+}
+
+export function fireworksPlay(){
+  let delay = 0;
+  fireworks.forEach(firework => {
+    setTimeout(()=>{
+      crackerPlay(firework);
+    }, delay);
+    delay += 500;
+  });
 }
