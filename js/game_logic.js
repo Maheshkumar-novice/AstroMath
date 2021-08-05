@@ -9,6 +9,8 @@ import {
 } from "./modules/utils.js";
 
 const operators = ["+", "-", "*", "/"];
+const body = document.querySelector("body");
+const main = document.querySelector("main");
 const scoreTag = document.querySelector(".header__info--score");
 const start = document.querySelector(".popup__button--start");
 const resultCont = document.querySelector(".result");
@@ -198,9 +200,25 @@ function validateAnswer(value) {
     scoreTag.innerText = ++score;
   } else {
     randomAsteroid.querySelector("h2").style.color = "red";
+    activateAnimation();
   }
   assignOptions();
 }
+
+function activateAnimation(){
+  main.style.animation = "shake .3s linear 1";
+  body.style.backgroundColor = "#ff000070";
+  body.style.overflow = "hidden";
+}
+
+body.addEventListener("animationend", function(e){
+  body.style.backgroundColor = "initial";
+  body.style.overflow = "initial";
+  main.style.animation = "none";
+  if (!randomAsteroid){
+    endGame();
+  }
+});
 
 gameOptions.forEach((option) => {
   option.addEventListener("click", (e) => {

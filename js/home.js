@@ -216,13 +216,13 @@ function checkActive(){
   //   survival.classList.add("not-active");
   // }
 
-  !getLocal("currentLevel") || getLocal("currentLevel")<6 ? (survival_cnt.classList.add("not-active"), activeBtn["survival"]=false) : activeBtn["survival"]=true;
+  !getLocal("currentLevel") || getLocal("currentLevel")<5 ? (survival_cnt.classList.add("not-active"), activeBtn["survival"]=false) : activeBtn["survival"]=true;
 
   // if(!getLocal("currentLevel") || getLocal("currentLevel")<=10){
   //   survival.classList.add("not-active");
   // }
 
-  !getLocal("currentLevel") || getLocal("currentLevel")<10 ? (bonus_cnt.classList.add("not-active"), activeBtn["bonus"]=false) : activeBtn["bonus"]=true;
+  !getLocal("currentLevel") || getLocal("allDone") != "yes" ? (bonus_cnt.classList.add("not-active"), activeBtn["bonus"]=false) : activeBtn["bonus"]=true;
 
   console.log(activeBtn);
 }
