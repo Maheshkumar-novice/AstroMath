@@ -257,6 +257,7 @@ function updateNewScore(localjson, currLevel, currTime, currPercentage) {
 }
 
 function endGame() {
+  debugger;
   clearTime();
   window.removeEventListener("keyup", listenKeys);
   let localjson = JSON.parse(getLocal("levelValue"));
@@ -266,7 +267,7 @@ function endGame() {
     calculatePercentage(ques, +scoreTag.innerText)
   );
   let currBestTime = +getLocal("gameBestTime") || 0;
-  let previousPercentage = +getLocal("gamePercentage");
+  let previousPercentage = +getLocal("gamePercentage") || 0;
   let currLevel = `${getLocal("gameLevel")}`;
 
   endResult(ques, currTime, currPercentage);
