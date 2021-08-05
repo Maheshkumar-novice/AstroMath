@@ -140,7 +140,9 @@ export function creditsView() {
 }
 
 export function modesView() {
-  modesMenu.innerText === "Modes" ? modesMenu.innerText = "Home" : modesMenu.innerText = "Modes";
+  modesMenu.innerText === "Modes"
+    ? (modesMenu.innerText = "Home")
+    : (modesMenu.innerText = "Modes");
   viewWorker(modes, "modes");
 }
 
@@ -156,10 +158,10 @@ export function editName(editing) {
     nameInput.setAttribute("readonly", true);
     nameEditIcon.src = "./assets/images/edit.svg";
     if (nameInput.value == "") {
-      nameInput.value = "Jaam";
+      nameInput.value = "Odinite";
     }
     updateLocal("user", nameInput.value);
-    updatePopup(nameInput.value);
+    updatePopup(nameInput.value.slice(0, 15));
     settingsView();
   }
   return !editing;

@@ -135,25 +135,27 @@ resume.addEventListener("click", (e) => {
 
 survival.addEventListener("click", (e) => {
   e.preventDefault();
-  if(!activeBtn["survival"]) return;
+  if (!activeBtn["survival"]) return;
   location.href = e.target.href;
 });
 
 bonus.addEventListener("click", (e) => {
   e.preventDefault();
-  if(!activeBtn["bonus"]) return;
+  if (!activeBtn["bonus"]) return;
   location.href = e.target.href;
 });
 
 options.forEach((option) => {
   option.addEventListener("mouseenter", function () {
     let currCheck = activeBtn[this.dataset.value];
-    if(currCheck != undefined && !currCheck){
+    if (currCheck != undefined && !currCheck) {
       return;
     }
 
     this.querySelector("a").classList.add("orange");
-    let fire = document.querySelector(`.main__fire[data-tag="${this.dataset.value}"]`);
+    let fire = document.querySelector(
+      `.main__fire[data-tag="${this.dataset.value}"]`
+    );
     classWorker("none", "remove", fire);
     if (playable) {
       hoverMusic();
@@ -205,24 +207,31 @@ soundToggle.addEventListener("click", (e) => {
   containsClass(popup, "popup__active") ? "" : playMusic(playable);
 });
 
-function checkActive(){
+function checkActive() {
   // if (!getLocal("currentLevel")) {
   //   options[0].querySelector("a").classList.add("not-active");
   // }
 
-  !getLocal("currentLevel") ? (options[0].classList.add("not-active"), activeBtn["resume"]=false) : activeBtn["resume"]=true;
+  !getLocal("currentLevel")
+    ? (options[0].classList.add("not-active"), (activeBtn["resume"] = false))
+    : (activeBtn["resume"] = true);
 
   // if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
   //   survival.classList.add("not-active");
   // }
 
-  !getLocal("currentLevel") || getLocal("currentLevel")<5 ? (survival_cnt.classList.add("not-active"), activeBtn["survival"]=false) : activeBtn["survival"]=true;
+  !getLocal("currentLevel") || getLocal("currentLevel") < 5
+    ? (survival_cnt.classList.add("not-active"),
+      (activeBtn["survival"] = false))
+    : (activeBtn["survival"] = true);
 
   // if(!getLocal("currentLevel") || getLocal("currentLevel")<=10){
   //   survival.classList.add("not-active");
   // }
 
-  !getLocal("currentLevel") || getLocal("allDone") != "yes" ? (bonus_cnt.classList.add("not-active"), activeBtn["bonus"]=false) : activeBtn["bonus"]=true;
+  !getLocal("currentLevel") || getLocal("allDone") != "yes"
+    ? (bonus_cnt.classList.add("not-active"), (activeBtn["bonus"] = false))
+    : (activeBtn["bonus"] = true);
 
   console.log(activeBtn);
 }
@@ -230,8 +239,8 @@ function checkActive(){
 window.onload = function () {
   checkActive();
   updateCurrentLevel();
-  nameInput.value = getLocal("user") || "Jaam";
-  updatePopup(nameInput.value);
+  nameInput.value = getLocal("user") || "Odinite";
+  updatePopup(nameInput.value.slice(0, 15));
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 

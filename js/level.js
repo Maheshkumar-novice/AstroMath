@@ -48,8 +48,8 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  nameInput.value = getLocal("user") || "Jaam";
-  updatePopup(nameInput.value);
+  nameInput.value = getLocal("user") || "Odinite";
+  updatePopup(nameInput.value.slice(0, 15));
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 
