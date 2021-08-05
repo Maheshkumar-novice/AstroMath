@@ -52,6 +52,11 @@ export function checkPlayable() {
 }
 
 export function gameAudioPlay(val){
-  audioGame[0].currentTime = audioGame[1].currentTime = 0;
+  audioGame.forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+  // audioGame[0].currentTime = 0;
+  // audioGame[1].currentTime = 0;
   audioGame[val].play();
 }
