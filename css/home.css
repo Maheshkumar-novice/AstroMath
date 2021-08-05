@@ -53,10 +53,15 @@ html {
   color: var(--orange);
 }
 
+.not-active{
+  cursor: default;
+}
+
 .not-active a{
   opacity: 0.5;
-  cursor: default;
   margin: 0 1rem;
+  cursor: default;
+
 }
 
 h2.not-active{
