@@ -211,13 +211,10 @@ function activateAnimation(){
   body.style.overflow = "hidden";
 }
 
-body.addEventListener("animationend", function(e){
+main.addEventListener("animationend", function(e){
   body.style.backgroundColor = "initial";
   body.style.overflow = "initial";
   main.style.animation = "none";
-  if (!randomAsteroid){
-    endGame();
-  }
 });
 
 gameOptions.forEach((option) => {
