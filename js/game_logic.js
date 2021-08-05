@@ -242,7 +242,7 @@ function updateNewScore(localjson, currLevel, currTime, currPercentage) {
   localjson[currLevel][1] = currTime;
   localjson[currLevel][2] = currPercentage;
 
-  let next = `${(+currLevel + 1) % 10}`;
+  let next = (+currLevel + 1) % 10;
   if (next === 0) {
     next = 10;
     updateLocal("allDone", "yes");
@@ -303,7 +303,7 @@ function endGame() {
 
 function naviCaller() {
   if (this.dataset.value === "next") {
-    let nextLevel = `${(+getLocal("gameLevel") + 1) % 10}`;
+    let nextLevel = (+getLocal("gameLevel") + 1) % 10;
     if (nextLevel === 0) {
       nextLevel = 10;
     }
