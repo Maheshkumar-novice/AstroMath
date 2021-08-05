@@ -129,9 +129,12 @@ a {
 .result {
   width: 100%;
   height: 100vh;
-  background-color: #000d1b;
-  background: url(../assets/images/result.jpg);
-  background-size: cover;
+  background-color: #001833;
+  /* background-color: #260029; */
+  /* background-color: #000; */
+  /* background-color: #000d1b; */
+  /* background: url(../assets/images/result.jpg); */
+  /* background-size: cover; */
   padding: 1rem;
   z-index: 100;
 
