@@ -149,6 +149,7 @@ a {
   height: 100vh;
   background-color: #000d1b;
   background: url(../assets/images/result.jpg);
+  background-size: cover;
   padding: 1rem;
   z-index: 100;
 
