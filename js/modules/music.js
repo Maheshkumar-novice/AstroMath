@@ -8,6 +8,8 @@ export const soundToggle = document.querySelector(".settings__sound--icon");
 export const audioGame = document.querySelectorAll(".audio__game");
 export const fireworks = document.querySelectorAll(".audio__fireworks");
 
+export const highScoreAudio=document.querySelector('.audio__high');
+export const lowScoreAudio=document.querySelector('.audio__low');
 export function updateLocalSoundSrc(src) {
   localStorage.setItem("currentSoundSrc", src);
 }

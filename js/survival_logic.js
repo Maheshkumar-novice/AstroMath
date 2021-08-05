@@ -1,4 +1,4 @@
-import { checkPlayable, gameAudioPlay } from "./modules/music.js";
+import { checkPlayable, highScoreAudio, lowScoreAudio, gameAudioPlay} from "./modules/music.js";
 import {
   getLocal,
   updateLocal,
@@ -18,6 +18,7 @@ const buttons = resultCont.querySelectorAll("button");
 const footer = document.querySelector(".footer");
 const highImg = document.querySelector(".result__high-score");
 const quoteTag = document.querySelector(".result__quotes");
+const pyro=document.querySelector('.pyro');
 const quotes = {
   positve: [
     "You Did it!",
@@ -271,13 +272,22 @@ function endGame() {
   let score = +scoreTag.innerText;
 
   if (score > bestScore) {
-    classWorker("none", "remove", highImg);
+    classWorker("none", "remove", highImg,pyro);
     classWorker("none", "add", resultImg);
     quoteTag.innerText = quotes.positve[qono];
     updateLocal("survivalScore", score);
+    if(checkPlayable()){
+      highScoreAudio.play();
+    }
   } else if (score < bestScore) {
     quoteTag.innerText = quotes.negative[qono];
+    if(checkPlayable()){
+      lowScoreAudio.play();
+    }
   } else {
+    if(checkPlayable()){
+      lowScoreAudio.play();
+    }
     quoteTag.innerText = quotes.nothin[0];
   }
   endResult(bestScore);

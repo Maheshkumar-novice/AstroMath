@@ -11,7 +11,9 @@ import {
 import {
   checkPlayable,
   fireworksPlay,
-  gameAudioPlay
+  gameAudioPlay,
+  highScoreAudio,
+  lowScoreAudio
 } from "./modules/music.js"
 
 const operators = ["+", "-", "*", "/"];
@@ -254,6 +256,7 @@ function calculatePercentage(ques, score) {
 function showHighScoreGif() {
   if(checkPlayable()){
     fireworksPlay();
+    highScoreAudio.play();
   }
   classWorker("none", "remove", pyro, highImg);
   classWorker("none", "add", resultImg);
@@ -262,6 +265,7 @@ function showHighScoreGif() {
 function showPersonalBestGif() {
   if(checkPlayable()){
     fireworksPlay();
+    highScoreAudio.play();
   }
   classWorker("none", "remove", pyro, pbImg);
   classWorker("none", "add", resultImg);
@@ -327,7 +331,11 @@ function endGame() {
   if (localjson[currLevel][0] === "current") {
     buttons[1].disabled = true;
   }
-
+  if(currPercentage<50){
+    if(checkPlayable()){
+      lowScoreAudio.play();
+    }
+  }
   updateLocal("gameBestTime", localjson[currLevel][1]);
   updateLocal("gamePercentage", localjson[currLevel][2]);
   updateLocal("levelValue", JSON.stringify(localjson));
