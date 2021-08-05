@@ -140,6 +140,7 @@ export function creditsView() {
 }
 
 export function modesView() {
+  modesMenu.innerText === "Modes" ? modesMenu.innerText = "Home" : modesMenu.innerText = "Modes";
   viewWorker(modes, "modes");
 }
 
