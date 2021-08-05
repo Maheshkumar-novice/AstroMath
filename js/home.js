@@ -118,6 +118,7 @@ newgame.addEventListener("click", (e) => {
   updateLocal("gameTime", 45);
   updateLocal("gameLevel", 1);
   updateLocal("gameQuestions", 5);
+  updateLocal("gamePercentage", null);
   updateLocal("currentLevel", 1);
   updateLocal("allDone", "no");
   updateLocal("soundTime", themeAud.currentTime);
