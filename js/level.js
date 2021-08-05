@@ -9,6 +9,8 @@ import {
   infoView,
   nameEditIcon,
   nameInput,
+  updateCharactersLength,
+  charLenCnt,
   editName,
   containsClass,
   updatePopup,
@@ -24,12 +26,15 @@ let playable;
 settingIcon.addEventListener("click", settingsView);
 infoIcon.addEventListener("click", infoView);
 nameEditIcon.addEventListener("click", () => {
+  updateCharactersLength();
+  charLenCnt.classList.toggle("none");
   editing = editName(editing);
 });
-
+nameInput.addEventListener("input", updateCharactersLength);
 window.addEventListener("keyup", (e) => {
   if (settings.classList.contains("none") || !(e.code == "Enter") || editing)
     return;
+  charLenCnt.classList.toggle("none");
   editing = editName(editing);
 });
 

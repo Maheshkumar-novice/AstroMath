@@ -16,6 +16,8 @@ const homeIcon = document.querySelector(".fa-home");
 
 export const nameEditIcon = document.querySelector(".settings__edit--icon");
 export const nameInput = document.querySelector(".settings__input");
+export const charLenCnt = document.querySelector(".settings__input--length-cnt");
+export const charLen = document.querySelector(".settings__input--length");
 export const popupUsername = document.querySelector(".popup__username");
 export const userChangeButton = document.querySelector(
   ".popup__button--change-user"
@@ -165,6 +167,14 @@ export function editName(editing) {
     settingsView();
   }
   return !editing;
+}
+
+export function updateCharactersLength(){
+  console.log(nameInput.value)
+  if(nameInput.value.length > 15){
+    nameInput.value = nameInput.value.slice(0, 15);
+  }
+  charLen.innerText = 15 - nameInput.value.length; 
 }
 
 export function positionCursor(end) {

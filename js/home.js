@@ -22,6 +22,8 @@ import {
   creditsView,
   nameEditIcon,
   nameInput,
+  charLenCnt,
+  updateCharactersLength,
   userChangeButton,
   editName,
   classWorker,
@@ -90,12 +92,17 @@ infoIcon.addEventListener("click", infoView);
 creditMenu.addEventListener("click", creditsView);
 modesMenu.addEventListener("click", modesView);
 nameEditIcon.addEventListener("click", () => {
+  updateCharactersLength();
+  charLenCnt.classList.toggle("none");
   editing = editName(editing);
 });
+
+nameInput.addEventListener("input", updateCharactersLength);
 
 window.addEventListener("keyup", (e) => {
   if (settings.classList.contains("none") || !(e.code == "Enter") || editing)
     return;
+  charLenCnt.classList.toggle("none");
   editing = editName(editing);
 });
 
