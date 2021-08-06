@@ -62,7 +62,7 @@
     </main>
     <!-- footer -->
     <footer class="footer">
-      <a href="#" class="footer__modes">Modes</a>
+      <a href="#" class="footer__modes secondary-color">Modes</a>
       <a href="./astro-math-levels.html" class="footer__level">
         Current Level: <span class="footer__currentlevel">10</span>
       </a>
@@ -80,9 +80,7 @@
       </p>
       <div class="popup__buttons">
         <button class="popup__button">Play</button>
-        <button
-          class="popup__button popup__button--change-user"
-        >
+        <button class="popup__button popup__button--change-user">
           Change User
         </button>
       </div>
@@ -116,17 +114,19 @@
             value=""
             readonly
           />
-          <p class="settings__input--length-cnt none"><span class="settings__input--length">15</span> Characters left</p>
+          <p class="settings__input--length-cnt none">
+            <span class="settings__input--length">15</span> Characters left
+          </p>
         </div>
       </div>
     </section>
     <!-- info -->
     <section class="info none">
-      <h3 class="info__tagline">
+      <!-- <h3 class="info__tagline">
         Destroy <span class="secondary-color">Asteroids</span> by Solving
         <span class="secondary-color">Math</span> and Save
         <span class="secondary-color">The Earth</span>
-      </h3>
+      </h3> -->
       <div class="info__stars">
         <h2 class="info__star-heading">Star Calculation</h2>
         <div class="info__star-details">
@@ -153,6 +153,9 @@
         ensure it works correctly
       </p>
       <a href="./howto.html"><p class="info__howto">How To Play?</p></a>
+      <a href="https://github.com/Maheshkumar-novice/top-jam-1"
+        ><p class="info__howto secondary-color">GitHub</p></a
+      >
     </section>
     <!-- modes -->
     <section class="modes none">
@@ -172,7 +175,11 @@
             data-tag="survival"
             alt=""
           />
-          <h2 data-value="survival" data-cnt="Requires Level 5" class="main__option main__survival">
+          <h2
+            data-value="survival"
+            data-cnt="Requires Level 5"
+            class="main__option main__survival"
+          >
             <a href="./survival.html" class="main__survival--link">Survival</a>
           </h2>
         </div>
@@ -183,7 +190,11 @@
             data-tag="bonus"
             alt=""
           />
-          <h2 data-value="bonus" data-cnt="Requires Level 10" class="main__option main__bonus">
+          <h2
+            data-value="bonus"
+            data-cnt="Requires Level 10"
+            class="main__option main__bonus"
+          >
             <a href="./bonus.html" class="main__bonus--link">Bonus (Beta)</a>
           </h2>
         </div>
