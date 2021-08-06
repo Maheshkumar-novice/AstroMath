@@ -215,26 +215,15 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 function checkActive() {
-  // if (!getLocal("currentLevel")) {
-  //   options[0].querySelector("a").classList.add("not-active");
-  // }
 
   !getLocal("currentLevel")
     ? (options[0].classList.add("not-active"), (activeBtn["resume"] = false))
     : (activeBtn["resume"] = true);
 
-  // if(!getLocal("currentLevel") || getLocal("currentLevel")<6){
-  //   survival.classList.add("not-active");
-  // }
-
   !getLocal("currentLevel") || getLocal("currentLevel") < 5
     ? (survival_cnt.classList.add("not-active"),
       (activeBtn["survival"] = false))
     : (activeBtn["survival"] = true);
-
-  // if(!getLocal("currentLevel") || getLocal("currentLevel")<=10){
-  //   survival.classList.add("not-active");
-  // }
 
   !getLocal("currentLevel") || getLocal("allDone") != "yes"
     ? (bonus_cnt.classList.add("not-active"), (activeBtn["bonus"] = false))

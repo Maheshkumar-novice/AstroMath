@@ -81,6 +81,12 @@ h2::after{
   font-size: var(--small-text);
   color: var(--danger-color);
   content: attr(data-cnt);
+  text-shadow: none;
+  display: none;
+}
+
+h2.not-active::after{
+  display: initial;
 }
 
 .not-active .main__status{
