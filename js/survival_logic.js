@@ -86,12 +86,12 @@ function getRandomAnswers(ans) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
   }
-  if (!Number.isInteger(ans)) {
-    let randomValue1 = Math.random();
-    let randomValue2 = Math.random();
-    randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
-    randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
-  }
+  // if (!Number.isInteger(ans)) {
+  //   let randomValue1 = Math.random();
+  //   let randomValue2 = Math.random();
+  //   randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
+  //   randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
+  // }
   if (
     randomAnswer1 === ans ||
     randomAnswer2 === ans ||
@@ -121,7 +121,8 @@ function returnAnswer(op1, op2, op) {
     case "*":
       return op1 * op2;
     case "/":
-      return +(op1 / op2).toFixed(1);
+      // return +(op1 / op2).toFixed(1);
+      return (op1 * op2) / op2;
   }
 }
 
@@ -132,6 +133,9 @@ function generateProblem() {
     getRandomOperator(),
   ];
   let eq = `${op1} ${op} ${op2}`;
+  if (op === "/") {
+    eq = `${op1 * op2} / ${op2}`;
+  }
   let ans = returnAnswer(op1, op2, op);
 
   while (answers.includes(ans)) {
@@ -141,6 +145,9 @@ function generateProblem() {
       getRandomOperator(),
     ];
     eq = `${op1} ${op} ${op2}`;
+    if (op === "/") {
+      eq = `${op1 * op2} / ${op2}`;
+    }
     ans = returnAnswer(op1, op2, op);
   }
   answers.push(ans);

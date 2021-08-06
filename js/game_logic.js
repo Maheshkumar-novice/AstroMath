@@ -13,8 +13,8 @@ import {
   fireworksPlay,
   gameAudioPlay,
   highScoreAudio,
-  lowScoreAudio
-} from "./modules/music.js"
+  lowScoreAudio,
+} from "./modules/music.js";
 
 const operators = ["+", "-", "*", "/"];
 const body = document.querySelector("body");
@@ -89,12 +89,12 @@ function getRandomAnswers(ans) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
   }
-  if (!Number.isInteger(ans)) {
-    let randomValue1 = Math.random();
-    let randomValue2 = Math.random();
-    randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
-    randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
-  }
+  // if (!Number.isInteger(ans)) {
+  //   let randomValue1 = Math.random();
+  //   let randomValue2 = Math.random();
+  //   randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
+  //   randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
+  // }
   if (
     randomAnswer1 === ans ||
     randomAnswer2 === ans ||
@@ -124,7 +124,8 @@ function returnAnswer(op1, op2, op) {
     case "*":
       return op1 * op2;
     case "/":
-      return +(op1 / op2).toFixed(1);
+      // return +(op1 / op2).toFixed(1);
+      return (op1 * op2) / op2;
   }
 }
 
@@ -135,6 +136,9 @@ function generateProblem() {
     getRandomOperator(),
   ];
   let eq = `${op1} ${op} ${op2}`;
+  if (op === "/") {
+    eq = `${op1 * op2} / ${op2}`;
+  }
   let ans = returnAnswer(op1, op2, op);
 
   while (answers.includes(ans)) {
@@ -144,6 +148,9 @@ function generateProblem() {
       getRandomOperator(),
     ];
     eq = `${op1} ${op} ${op2}`;
+    if (op === "/") {
+      eq = `${op1 * op2} / ${op2}`;
+    }
     ans = returnAnswer(op1, op2, op);
   }
   answers.push(ans);
@@ -155,6 +162,7 @@ function generateQA() {
   for (let i = 0; i < questions; i++) {
     generateProblem();
   }
+  console.table(qaMap);
   generateRandomChoices(qaMap);
 }
 
@@ -205,25 +213,23 @@ function validateAnswer(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);
   if (target) {
     target.remove();
-    if(checkPlayable())
-      gameAudioPlay(0);
+    if (checkPlayable()) gameAudioPlay(0);
     scoreTag.innerText = ++score;
   } else {
     randomAsteroid.querySelector("h2").style.color = "red";
-    if(checkPlayable())
-      gameAudioPlay(1);
+    if (checkPlayable()) gameAudioPlay(1);
     activateAnimation();
   }
   assignOptions();
 }
 
-function activateAnimation(){
+function activateAnimation() {
   main.style.animation = "shake .3s linear 1";
   body.style.backgroundColor = "#ff000070";
   body.style.overflow = "hidden";
 }
 
-main.addEventListener("animationend", function(e){
+main.addEventListener("animationend", function (e) {
   body.style.backgroundColor = "initial";
   body.style.overflow = "initial";
   main.style.animation = "none";
@@ -254,7 +260,7 @@ function calculatePercentage(ques, score) {
 }
 
 function showHighScoreGif() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     fireworksPlay();
     highScoreAudio.play();
   }
@@ -263,7 +269,7 @@ function showHighScoreGif() {
 }
 
 function showPersonalBestGif() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     fireworksPlay();
     highScoreAudio.play();
   }
@@ -331,8 +337,8 @@ function endGame() {
   if (localjson[currLevel][0] === "current") {
     buttons[1].disabled = true;
   }
-  if(currPercentage<50){
-    if(checkPlayable()){
+  if (currPercentage < 50) {
+    if (checkPlayable()) {
       lowScoreAudio.play();
     }
   }
