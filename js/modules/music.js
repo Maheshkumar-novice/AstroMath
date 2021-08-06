@@ -69,23 +69,6 @@ audioGame.forEach(audio => {
   });
 });
 
-// let cnt=0;
-// function crackerPlay(firework){
-//   console.log(firework)
-//   firework.play();
-// }
-
 export function fireworksPlay(){
   fireworks.play(); 
-  // let delay = 0;
-  // fireworks.forEach(firework => {
-  //   setTimeout(()=>{
-  //     crackerPlay(firework);
-  //   }, delay);
-  //   delay += 1000;
-  // });
-  // cnt++;
-  // if(cnt < 2){
-  //   setTimeout(fireworksPlay, 5000);
-  // }
 }

@@ -1,5 +1,5 @@
 import { soundToggle, playMusic, checkPlayable,  highScoreAudio,
-  lowScoreAudio, gameAudioPlay} from "./modules/music.js";
+  lowScoreAudio, gameAudioPlay, themeAudio, fireworksPlay} from "./modules/music.js";
 import {
   body,
   getLocal,
@@ -243,6 +243,8 @@ function updateScore() {
     classWorker("none", "add", resultImg);
     classWorker("none", "remove", highImg, pyro);
     if(checkPlayable()){
+      themeAudio.pause();
+      fireworksPlay();
       highScoreAudio.play();
     }
   } else if (current < high) {
@@ -298,7 +300,7 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  if(!getLocal('allDone')==='no'){
+  if(getLocal('allDone')==='no'){
     body.innerHTML='';
     body.innerHTML=`<div class="popup__blocker">
     <h1>You Need to unlock <span class="secondary-color">level 10</span> to access this Game</h1>

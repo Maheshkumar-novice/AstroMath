@@ -3,6 +3,8 @@ import {
   highScoreAudio,
   lowScoreAudio,
   gameAudioPlay,
+  themeAudio,
+  fireworksPlay
 } from "./modules/music.js";
 import {
   getLocal,
@@ -287,6 +289,8 @@ function endGame() {
     quoteTag.innerText = quotes.positve[qono];
     updateLocal("survivalScore", score);
     if (checkPlayable()) {
+      themeAudio.pause();
+      fireworksPlay();
       highScoreAudio.play();
     }
   } else if (score < bestScore) {
@@ -356,7 +360,7 @@ buttons.forEach((data) => {
 });
 
 window.addEventListener("load", () => {
-  if (+getLocal("currentLevel") < 5) {
+  if (+getLocal("currentLevel") < 0) {
     body.innerHTML = "";
     body.innerHTML = `<div class="popup__blocker">
     <h1>You Need to unlock <span class="secondary-color">level 5</span> to access this Game</h1>
