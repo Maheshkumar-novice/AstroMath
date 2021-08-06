@@ -65,7 +65,7 @@ function getRandomOperator() {
 }
 
 function getRandomNumber() {
-  return Math.floor(Math.random() * 10 + 1);
+  return Math.floor(Math.random() * 15 + 1);
 }
 
 function getRandomAnswer(ans) {
@@ -352,4 +352,15 @@ buttons.forEach((data) => {
   data.addEventListener("click", naviCaller);
 });
 
-window.addEventListener("load", assignOptions);
+window.addEventListener("load", ()=>{
+  if(+getLocal('currentLevel')<5){
+    body.innerHTML='';
+    body.innerHTML=`<div class="popup__blocker">
+    <h1>You Need to Complete level 5 to access this Game</h1>
+  </div>`;
+    setTimeout(()=>{
+      location.href='./index.html'
+    },3000);
+    return;
+  }
+  assignOptions()});
