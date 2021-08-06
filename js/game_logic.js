@@ -68,13 +68,13 @@ function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
 }
 
-function getRandomNumber() {
-  return Math.floor(Math.random() * 10 + 1);
+function getRandomNumber(no) {
+  return Math.floor(Math.random() * no + 1);
 }
 
 function getRandomAnswer(ans) {
   if (ans < 10) {
-    return getRandomNumber();
+    return getRandomNumber(10);
   }
   let randomAnswers = [
     Math.floor(Math.random() * ans),
@@ -131,9 +131,10 @@ function returnAnswer(op1, op2, op) {
 }
 
 function generateProblem() {
+  let no = +getLocal("currentLevel") < 9 ? 10 : 15; 
   let [op1, op2, op] = [
-    getRandomNumber(),
-    getRandomNumber(),
+    getRandomNumber(no),
+    getRandomNumber(no),
     getRandomOperator(),
   ];
   let eq = `${op1} ${op} ${op2}`;
@@ -144,8 +145,8 @@ function generateProblem() {
 
   while (answers.includes(ans)) {
     [op1, op2, op] = [
-      getRandomNumber(),
-      getRandomNumber(),
+      getRandomNumber(no),
+      getRandomNumber(no),
       getRandomOperator(),
     ];
     eq = `${op1} ${op} ${op2}`;
@@ -338,7 +339,7 @@ function endGame() {
   }
 
   if (localjson[currLevel][0] === "current") {
-    buttons[1].disabled = true;
+    document.getElementById("next-lvl").classList.add("none");
   }
   if (currPercentage < 50) {
     if (checkPlayable()) {

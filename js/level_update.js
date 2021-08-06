@@ -12,21 +12,10 @@ let newLevel = JSON.stringify({
   6: ["locked", null, null, 10],
   7: ["locked", null, null, 11],
   8: ["locked", null, null, 12],
-  9: ["locked", null, null, 15],
-  10: ["locked", null, null, 15],
+  9: ["locked", null, null, 12],
+  10: ["locked", null, null, 12],
 });
-let levelValueBak = {
-  1: ["played", 40, 100, 5],
-  2: ["played", 40, 100, 6],
-  3: ["played", 40, 80, 7],
-  4: ["played", 40, 70, 8],
-  5: ["played", 40, 60, 9],
-  6: ["current", null, null, 10],
-  7: ["locked", null, null, 11],
-  8: ["locked", null, null, 12],
-  9: ["locked", null, null, 15],
-  10: ["locked", null, null, 15],
-};
+
 let levelValue;
 let clickedLevel;
 let clickedGameTime;

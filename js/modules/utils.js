@@ -236,9 +236,7 @@ export function getLevelTime(level) {
     return 45;
   } else if (level <= 4) {
     return 43;
-  } else if (level <= 8) {
-    return 40;
   } else if (level <= 10) {
-    return 35;
+    return 40;
   }
 }
