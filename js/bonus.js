@@ -86,7 +86,6 @@ function generateRandomProblem() {
   let ans2 = returnAnswer(op1, op2, op);
 
   while (ans1 === ans2 || eq1 === eq2) {
-    console.log("hi");
     [op1, op2, op] = getItems();
     eq2 = `${op1} ${op} ${op2}`;
     ans2 = returnAnswer(op1, op2, op);
@@ -171,43 +170,43 @@ function streakHelper(wrong = false) {
 }
 
 function left() {
-  // removeListeners();
+  removeListeners();
   if (checkPlayable()) {
     gameAudioPlay(1);
   }
   streakHelper(true);
   lifeContainer.lastElementChild ? lifeContainer.lastElementChild.remove() : "";
-  // classWorker("bg-wrong", "add", item[0], item[1]);
+  classWorker("bg-wrong", "add", item[0], item[1]);
   if (lifeContainer.childElementCount === 0) {
     endGame();
     return;
   }
   populate();
-  // setTimeout(() => {
-  //   classWorker("bg-wrong", "remove", item[0], item[1]);
-  //   if (lifeContainer.childElementCount === 0) {
-  //     endGame();
-  //     return;
-  //   }
-  //   populate();
-  //   addListeners();
-  // }, 300);
+  setTimeout(() => {
+    classWorker("bg-wrong", "remove", item[0], item[1]);
+    if (lifeContainer.childElementCount === 0) {
+      endGame();
+      return;
+    }
+    populate();
+    addListeners();
+  }, 300);
 }
 
 function right() {
-  // removeListeners();
+  removeListeners();
   if (checkPlayable()) {
     gameAudioPlay(0);
   }
   streakHelper();
   score.textContent = +score.textContent + 1;
-  // classWorker("bg-correct", "add", item[0], item[1]);
+  classWorker("bg-correct", "add", item[0], item[1]);
   populate();
-  // setTimeout(() => {
-  //   classWorker("bg-correct", "remove", item[0], item[1]);
-  //   populate();
-  //   addListeners();
-  // }, 300);
+  setTimeout(() => {
+    classWorker("bg-correct", "remove", item[0], item[1]);
+    populate();
+    addListeners();
+  }, 300);
 }
 
 function init(e) {
