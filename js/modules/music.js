@@ -6,7 +6,7 @@ export const popupButton = document.querySelector(".popup__button");
 export const gameSound = document.querySelector(".header__info--sound");
 export const soundToggle = document.querySelector(".settings__sound--icon");
 export const audioGame = document.querySelectorAll(".audio__game");
-export const fireworks = document.querySelectorAll(".audio__fireworks");
+export const fireworks = document.querySelector(".audio__fireworks");
 
 export const highScoreAudio=document.querySelector('.audio__high');
 export const lowScoreAudio=document.querySelector('.audio__low');
@@ -69,22 +69,6 @@ audioGame.forEach(audio => {
   });
 });
 
-let cnt=0;
-function crackerPlay(firework){
-  console.log(firework)
-  firework.play();
-}
-
 export function fireworksPlay(){
-  let delay = 0;
-  fireworks.forEach(firework => {
-    setTimeout(()=>{
-      crackerPlay(firework);
-    }, delay);
-    delay += 1000;
-  });
-  cnt++;
-  if(cnt < 2){
-    setTimeout(fireworksPlay, 5000);
-  }
+  fireworks.play(); 
 }

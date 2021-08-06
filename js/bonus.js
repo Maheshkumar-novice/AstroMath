@@ -1,5 +1,5 @@
 import { soundToggle, playMusic, checkPlayable,  highScoreAudio,
-  lowScoreAudio, gameAudioPlay} from "./modules/music.js";
+  lowScoreAudio, gameAudioPlay, themeAudio, fireworksPlay} from "./modules/music.js";
 import {
   body,
   getLocal,
@@ -243,6 +243,8 @@ function updateScore() {
     classWorker("none", "add", resultImg);
     classWorker("none", "remove", highImg, pyro);
     if(checkPlayable()){
+      themeAudio.pause();
+      fireworksPlay();
       highScoreAudio.play();
     }
   } else if (current < high) {

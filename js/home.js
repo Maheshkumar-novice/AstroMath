@@ -251,4 +251,7 @@ window.onload = function () {
         (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
+  if(!getLocal("allDone")){
+    updateLocal("allDone", "no");
+  }
 };

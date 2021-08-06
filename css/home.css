@@ -26,7 +26,7 @@ html {
   position: relative;
 }
 
-.main__options__cnt .main__fire{
+.main__options__cnt .main__fire {
   position: absolute;
   top: 50%;
   transform: translateY(-35%);
@@ -35,17 +35,20 @@ html {
   height: clamp(50px, 15vw, 120px);
 }
 
-.main__survival, .main__bonus {
+.main__survival,
+.main__bonus {
   margin-left: 2rem;
 }
 
 /* Styles for locked state */
 
-.main__lock, .main__status{
+.main__lock,
+.main__status {
   display: none;
 }
 
-.not-active .main__lock, .not-active .main__status{
+.not-active .main__lock,
+.not-active .main__status {
   display: initial;
 }
 
@@ -53,24 +56,23 @@ html {
   color: var(--orange);
 }
 
-.not-active{
+.not-active {
   cursor: default;
 }
 
-.not-active a{
+.not-active a {
   opacity: 0.5;
   margin: 0 1rem;
   cursor: default;
-
 }
 
-h2.not-active{
+h2.not-active {
   display: flex;
   align-items: center;
   position: relative;
 }
 
-.modes h2::after{
+.modes h2::after {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -85,16 +87,16 @@ h2.not-active{
   display: none;
 }
 
-h2.not-active::after{
+h2.not-active::after {
   display: initial;
 }
 
-.not-active .main__status{
+.not-active .main__status {
   font-size: clamp(1rem, 3vw, 3rem);
   color: var(--danger-color);
 }
 
-.not-active .main__lock{
+.not-active .main__lock {
   height: clamp(30px, 5vw, 70px);
   width: clamp(30px, 5vw, 70px);
 }
@@ -116,6 +118,10 @@ h2.not-active::after{
 .footer__level {
   margin: 0 0 1rem 0;
   cursor: pointer;
+}
+
+.footer__modes {
+  font-size: 2rem;
 }
 
 .footer__level:hover,
@@ -154,7 +160,7 @@ h2.not-active::after{
       steps(var(--typewriterCharacters)) 1s forwards,
     blink 750ms steps(var(--typewriterCharacters)) infinite;
 }
-.video{
+.video {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -163,7 +169,7 @@ h2.not-active::after{
   align-items: center;
   background-color: black;
 }
-.video button{
+.video button {
   font-family: inherit;
   z-index: 999;
   position: absolute;
@@ -179,7 +185,7 @@ h2.not-active::after{
   outline: none;
   border-radius: 1rem;
 }
-.video video{
+.video video {
   max-height: 100vh;
   width: 100vw;
 }
@@ -201,7 +207,7 @@ h2.not-active::after{
 }
 
 @media (max-width: 350px) {
-  .not-active .main__status{
+  .not-active .main__status {
     flex-basis: 60%;
     display: flex;
     justify-content: flex-start;
