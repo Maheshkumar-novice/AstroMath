@@ -169,10 +169,13 @@ export function editName(editing) {
   return !editing;
 }
 
+let store;
 export function updateCharactersLength(){
-  console.log(nameInput.value)
-  if(nameInput.value.length > 15){
-    nameInput.value = nameInput.value.slice(0, 15);
+  if(nameInput.value.length == 15){
+    store = nameInput.value.slice(0, 15);
+  }
+  else if(nameInput.value.length > 15){
+    nameInput.value = store;
   }
   charLen.innerText = 15 - nameInput.value.length; 
 }
