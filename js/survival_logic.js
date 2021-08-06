@@ -1,4 +1,9 @@
-import { checkPlayable, highScoreAudio, lowScoreAudio, gameAudioPlay} from "./modules/music.js";
+import {
+  checkPlayable,
+  highScoreAudio,
+  lowScoreAudio,
+  gameAudioPlay,
+} from "./modules/music.js";
 import {
   getLocal,
   updateLocal,
@@ -18,7 +23,7 @@ const buttons = resultCont.querySelectorAll("button");
 const footer = document.querySelector(".footer");
 const highImg = document.querySelector(".result__high-score");
 const quoteTag = document.querySelector(".result__quotes");
-const pyro=document.querySelector('.pyro');
+const pyro = document.querySelector(".pyro");
 const quotes = {
   positve: [
     "You Did it!",
@@ -230,8 +235,7 @@ function answerValidate(value) {
   let target = document.querySelector(`[data-ans="${value}"]`);
   if (target) {
     target.remove();
-    if(checkPlayable())
-      gameAudioPlay(0);
+    if (checkPlayable()) gameAudioPlay(0);
     scoreTag.innerText = ++score;
     ans_cnt++;
     updateBonus();
@@ -239,8 +243,7 @@ function answerValidate(value) {
     ans_cnt = 1;
     document.querySelector(`.life__img[data-value='${ast_cnt--}']`).remove();
     randomAsteroid.querySelector("h2").style.color = "red";
-    if(checkPlayable())
-      gameAudioPlay(1);
+    if (checkPlayable()) gameAudioPlay(1);
     activateAnimation();
     if (ast_cnt == 0) {
       endGame();
@@ -249,13 +252,13 @@ function answerValidate(value) {
   assignOptions();
 }
 
-function activateAnimation(){
+function activateAnimation() {
   main.style.animation = "shake .3s linear 1";
   body.style.backgroundColor = "#ff000070";
   body.style.overflow = "hidden";
 }
 
-main.addEventListener("animationend", function(e){
+main.addEventListener("animationend", function (e) {
   body.style.backgroundColor = "initial";
   body.style.overflow = "initial";
   main.style.animation = "none";
@@ -279,20 +282,20 @@ function endGame() {
   let score = +scoreTag.innerText;
 
   if (score > bestScore) {
-    classWorker("none", "remove", highImg,pyro);
+    classWorker("none", "remove", highImg, pyro);
     classWorker("none", "add", resultImg);
     quoteTag.innerText = quotes.positve[qono];
     updateLocal("survivalScore", score);
-    if(checkPlayable()){
+    if (checkPlayable()) {
       highScoreAudio.play();
     }
   } else if (score < bestScore) {
     quoteTag.innerText = quotes.negative[qono];
-    if(checkPlayable()){
+    if (checkPlayable()) {
       lowScoreAudio.play();
     }
   } else {
-    if(checkPlayable()){
+    if (checkPlayable()) {
       lowScoreAudio.play();
     }
     quoteTag.innerText = quotes.nothin[0];
@@ -352,15 +355,16 @@ buttons.forEach((data) => {
   data.addEventListener("click", naviCaller);
 });
 
-window.addEventListener("load", ()=>{
-  if(+getLocal('currentLevel')<5){
-    body.innerHTML='';
-    body.innerHTML=`<div class="popup__blocker">
-    <h1>You Need to Complete level 5 to access this Game</h1>
+window.addEventListener("load", () => {
+  if (+getLocal("currentLevel") < 5) {
+    body.innerHTML = "";
+    body.innerHTML = `<div class="popup__blocker">
+    <h1>You Need to unlock <span class="secondary-color">level 5</span> to access this Game</h1>
   </div>`;
-    setTimeout(()=>{
-      location.href='./index.html'
-    },5000);
+    setTimeout(() => {
+      location.href = "./index.html";
+    }, 5000);
     return;
   }
-  assignOptions()});
+  assignOptions();
+});
