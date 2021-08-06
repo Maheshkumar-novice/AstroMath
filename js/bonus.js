@@ -298,7 +298,7 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  if(getLocal('allDone')==='no'){
+  if(!getLocal('allDone')==='no'){
     body.innerHTML='';
     body.innerHTML=`<div class="popup__blocker">
     <h1>You Need to unlock <span class="secondary-color">level 10</span> to access this Game</h1>

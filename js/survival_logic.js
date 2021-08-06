@@ -217,7 +217,7 @@ function assignOptions() {
 }
 
 function updateBonus() {
-  if (ans_cnt == 5 && ast_cnt < 7) {
+  if (ans_cnt == 5 && ast_cnt < 6) {
     ans_cnt = 0;
     let img = `<img
         data-value="${++ast_cnt}"
