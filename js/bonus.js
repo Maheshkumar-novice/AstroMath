@@ -1,5 +1,13 @@
-import { soundToggle, playMusic, checkPlayable,  highScoreAudio,
-  lowScoreAudio, gameAudioPlay, themeAudio, fireworksPlay} from "./modules/music.js";
+import {
+  soundToggle,
+  playMusic,
+  checkPlayable,
+  highScoreAudio,
+  lowScoreAudio,
+  gameAudioPlay,
+  themeAudio,
+  fireworksPlay,
+} from "./modules/music.js";
 import {
   body,
   getLocal,
@@ -37,9 +45,7 @@ const quotes = {
   ],
   nothin: ["Yep! Same level"],
 };
-let timeUp = false;
 let correctAnswer = undefined;
-let timeOut;
 let soundSrc;
 let playable;
 
@@ -122,11 +128,19 @@ function populate() {
 function wrongBg() {
   item[0].setAttribute("id", "bg-wrong");
   item[1].setAttribute("id", "bg-wrong");
+  setTimeout(() => {
+    item[0].removeAttribute("id");
+    item[1].removeAttribute("id");
+  }, 300);
 }
 
 function correctBg() {
   item[0].setAttribute("id", "bg-correct");
   item[1].setAttribute("id", "bg-correct");
+  setTimeout(() => {
+    item[0].removeAttribute("id");
+    item[1].removeAttribute("id");
+  }, 300);
 }
 
 function removeListeners() {
@@ -143,18 +157,15 @@ function addListeners() {
 
 function update() {
   removeListeners();
-  timeOut = setTimeout(() => {
-    item[0].removeAttribute("id");
-    item[1].removeAttribute("id");
-    populate();
-    if (!timeUp) {
-      addListeners();
-    }
-  }, 300);
+  if (lifeContainer.childElementCount === 0) {
+    endGame();
+    return;
+  }
+  populate();
+  addListeners();
 }
 
 let bonusStreak = 0;
-// updateLocal("bonusStreak", bonusStreak);
 function streakHelper(wrong = false) {
   console.log(bonusStreak);
   if (wrong) {
@@ -174,7 +185,7 @@ function streakHelper(wrong = false) {
 }
 
 function rightHelper() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     gameAudioPlay(0);
   }
   streakHelper();
@@ -183,15 +194,12 @@ function rightHelper() {
 }
 
 function wrongHelper() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     gameAudioPlay(1);
   }
   streakHelper(true);
   wrongBg();
-  lifeContainer.lastElementChild.remove();
-  if (lifeContainer.childElementCount === 0) {
-    endGame();
-  }
+  lifeContainer.lastElementChild ? lifeContainer.lastElementChild.remove() : "";
 }
 
 function right() {
@@ -203,7 +211,7 @@ function right() {
   update();
 }
 
-function wrong() {
+function left() {
   if (!correctAnswer) {
     rightHelper();
   } else {
@@ -216,20 +224,16 @@ function init(e) {
   if (e.key === "d" || e.target.dataset.side === "left") {
     right();
   } else if (e.key === "a" || e.target.dataset.side === "right") {
-    wrong();
+    left();
   }
 }
 
-let timerCheckTimeout;
 function timerCheck() {
   if (secondsLeft < 0) {
-    timeUp = true;
-    clearTimeout(timeOut);
     endGame();
-    clearTimeout(timerCheckTimeout);
     return;
   }
-  timerCheckTimeout = setTimeout(timerCheck, 1000);
+  setTimeout(timerCheck, 1000);
 }
 
 function updateScore() {
@@ -242,18 +246,18 @@ function updateScore() {
     quote.textContent = quotes.positve[qono];
     classWorker("none", "add", resultImg);
     classWorker("none", "remove", highImg, pyro);
-    if(checkPlayable()){
+    if (checkPlayable()) {
       themeAudio.pause();
       fireworksPlay();
       highScoreAudio.play();
     }
   } else if (current < high) {
-    if(checkPlayable()){
+    if (checkPlayable()) {
       lowScoreAudio.play();
     }
     quote.textContent = quotes.negative[qono];
   } else {
-    if(checkPlayable()){
+    if (checkPlayable()) {
       lowScoreAudio.play();
     }
     quote.textContent = quotes.nothin[0];
@@ -264,7 +268,9 @@ function endGame() {
   clearTime();
   removeListeners();
   updateScore();
-  updateLocal("bonusHighScore", score.textContent);
+  +score.textContent > +getLocal("bonusHighScore")
+    ? updateLocal("bonusHighScore", score.textContent)
+    : "";
   classWorker("none", "add", header, itemRight, itemLeft, lifeContainer);
   classWorker("none", "remove", result);
 }
@@ -300,14 +306,14 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
-  if(getLocal('allDone')==='no'){
-    body.innerHTML='';
-    body.innerHTML=`<div class="popup__blocker">
+  if (getLocal("allDone") === "no") {
+    body.innerHTML = "";
+    body.innerHTML = `<div class="popup__blocker">
     <h1>You Need to unlock <span class="secondary-color">level 10</span> to access this Game</h1>
   </div>`;
-    setTimeout(()=>{
-      location.href='./index.html'
-    },5000);
+    setTimeout(() => {
+      location.href = "./index.html";
+    }, 5000);
     return;
   }
   if (containsClass(body, "not-home")) {
@@ -327,11 +333,13 @@ window.onload = function () {
 };
 
 start.addEventListener("click", () => {
+  console.log("hi");
   window.addEventListener("keyup", init);
   itemRight.style.pointerEvents = "unset";
   itemLeft.style.pointerEvents = "unset";
   timer(120);
   timerCheck();
   classWorker("none", "add", start.parentElement);
+  console.log("hi");
   populate();
 });
