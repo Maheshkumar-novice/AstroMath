@@ -13,7 +13,8 @@ import {
   fireworksPlay,
   gameAudioPlay,
   highScoreAudio,
-  lowScoreAudio
+  lowScoreAudio,
+  themeAudio
 } from "./modules/music.js"
 
 const operators = ["+", "-", "*", "/"];
@@ -255,6 +256,7 @@ function calculatePercentage(ques, score) {
 
 function showHighScoreGif() {
   if(checkPlayable()){
+    themeAudio.pause();
     fireworksPlay();
     highScoreAudio.play();
   }
@@ -264,6 +266,7 @@ function showHighScoreGif() {
 
 function showPersonalBestGif() {
   if(checkPlayable()){
+    themeAudio.pause();
     fireworksPlay();
     highScoreAudio.play();
   }

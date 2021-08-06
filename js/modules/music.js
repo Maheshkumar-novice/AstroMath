@@ -55,6 +55,7 @@ export function checkPlayable() {
 }
 
 export function gameAudioPlay(val){
+  themeAudio.volume = 0.8;
   audioGame.forEach(audio => {
     audio.pause();
     audio.currentTime = 0;
@@ -62,6 +63,13 @@ export function gameAudioPlay(val){
   audioGame[val].play();
 }
 
+audioGame.forEach(audio => {
+  audio.addEventListener("ended", (e) =>{
+  themeAudio.volume = 1;
+  });
+});
+
+let cnt=0;
 function crackerPlay(firework){
   console.log(firework)
   firework.play();
@@ -73,6 +81,10 @@ export function fireworksPlay(){
     setTimeout(()=>{
       crackerPlay(firework);
     }, delay);
-    delay += 500;
+    delay += 1000;
   });
+  cnt++;
+  if(cnt < 2){
+    setTimeout(fireworksPlay, 5000);
+  }
 }
