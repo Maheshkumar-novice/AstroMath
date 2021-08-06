@@ -205,6 +205,21 @@ a {
   height: 60px;
 }
 
+.popup__blocker{
+  position: fixed;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  min-height: 100%;
+  height: 100vh;
+  min-width: 100vw;
+  background-color: black;
+}
+.popup__blocker h1{
+  font-size: var(--site-title);
+}
 @media (max-width: 950px) {
   .header {
     display: grid;

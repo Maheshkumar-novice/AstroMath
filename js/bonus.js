@@ -298,6 +298,16 @@ soundToggle.addEventListener("click", (e) => {
 });
 
 window.onload = function () {
+  if(getLocal('allDone')==='no'){
+    body.innerHTML='';
+    body.innerHTML=`<div class="popup__blocker">
+    <h1>You Need to Complete level 10 to access this Game</h1>
+  </div>`;
+    setTimeout(()=>{
+      location.href='./index.html'
+    },3000);
+    return;
+  }
   if (containsClass(body, "not-home")) {
     soundToggle.src = getLocal("currentSoundSrc") || soundToggle.src;
 
