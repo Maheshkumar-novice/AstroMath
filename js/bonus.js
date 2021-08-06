@@ -305,7 +305,7 @@ window.onload = function () {
   </div>`;
     setTimeout(()=>{
       location.href='./index.html'
-    },3000);
+    },5000);
     return;
   }
   if (containsClass(body, "not-home")) {

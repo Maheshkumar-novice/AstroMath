@@ -360,7 +360,7 @@ window.addEventListener("load", ()=>{
   </div>`;
     setTimeout(()=>{
       location.href='./index.html'
-    },3000);
+    },5000);
     return;
   }
   assignOptions()});
