@@ -3,10 +3,10 @@
   color: var(--secondary-color);
 }
 
-.result__data {
-  /* align-items: flex-start;
-  margin-top: 15rem; */
-}
+/* .result__data {
+  align-items: flex-start;
+  margin-top: 15rem;
+} */
 
 .result__data div p {
   margin: 1rem 0;
