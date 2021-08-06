@@ -260,6 +260,9 @@ a {
 }
 
 .credits__item {
+  font-size: 2rem;
+}
+.credits__item {
   display: block;
 }
 
@@ -380,6 +383,9 @@ a {
   }
   .header {
     padding: 1rem;
+  }
+  .credits__item {
+    font-size: 1.5rem;
   }
 }
 
