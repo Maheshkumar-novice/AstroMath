@@ -137,6 +137,7 @@ function populate() {
   correctAnswer = items[2];
   questions[0].textContent = items[0];
   questions[1].textContent = items[1];
+  console.table({items});
 }
 
 function addListeners() {
@@ -181,7 +182,6 @@ function left() {
     endGame();
     return;
   }
-  populate();
   setTimeout(() => {
     classWorker("bg-wrong", "remove", item[0], item[1]);
     if (lifeContainer.childElementCount === 0) {
@@ -201,7 +201,6 @@ function right() {
   streakHelper();
   score.textContent = +score.textContent + 1;
   classWorker("bg-correct", "add", item[0], item[1]);
-  populate();
   setTimeout(() => {
     classWorker("bg-correct", "remove", item[0], item[1]);
     populate();
@@ -235,7 +234,7 @@ function timerCheck() {
 
 function endGame() {
   clearTime();
-  // removeListeners();
+  removeListeners();
   updateScore();
   +score.textContent > +getLocal("bonusHighScore")
     ? updateLocal("bonusHighScore", score.textContent)
