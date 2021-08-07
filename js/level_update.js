@@ -1,8 +1,8 @@
 import { getLocal, updateLocal, getLevelTime } from "./modules/utils.js";
 
 const levelContainer = document.querySelector(".levels");
-const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="star" class="levels__star"/>`;
-const silverStar = `<img src="./assets/images/silverstar.svg" alt="star" class="levels__star" />`;
+const goldenStar = `<img src="./assets/images/goldenstar.svg" alt="golden-star" class="levels__star"/>`;
+const silverStar = `<img src="./assets/images/silverstar.svg" alt="silver-star" class="levels__star" />`;
 let newLevel = JSON.stringify({
   1: ["current", null, null, 5],
   2: ["locked", null, null, 6],
@@ -29,7 +29,7 @@ function returnLevelStatus(status, level) {
                 <div class="levels__level">${level}</div>`;
   } else if (status === "locked") {
     return `<img src="./assets/images/nextLevel.svg" alt="asteroid" />
-            <div class="levels__level"><img src="./assets/images/locked.svg" alt="" /></div>`;
+            <div class="levels__level"><img src="./assets/images/locked.svg" alt="locked" /></div>`;
   } else {
     return `<img src="./assets/images/nextLevel.svg" alt="asteroid" />
             <div class="levels__level">${level}</div>`;

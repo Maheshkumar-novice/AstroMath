@@ -53,12 +53,12 @@ const keys = {
 let randomAsteroid;
 let goldenTemplate = `<img
 src="./assets/images/goldenstar.svg"
-alt=""
+alt="golden-star"
 class="result__star"
 />`;
 let silverTemplate = `<img
 src="./assets/images/silverstar.svg"
-alt=""
+alt="silver-star"
 class="result__star"
 />`;
 footer.style.pointerEvents = "none";
@@ -172,7 +172,7 @@ for (let q in qaMap) {
   eqAnswer = qaMap[q][0];
   asteroids += `<div class="main__asteroid-container" data-ans="${eqAnswer}" data-all="${qaMap[q]}">
   <h2 class="main__asteroid-problem">${q}</h2>
-  <img src="./assets/images/asteroid.png" alt="" class="main__asteroid" />
+  <img src="./assets/images/asteroid.png" alt="asteroid" class="main__asteroid" />
 </div>`;
 }
 asteroids_container.innerHTML = asteroids;
