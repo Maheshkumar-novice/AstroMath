@@ -14,8 +14,8 @@ import {
   gameAudioPlay,
   highScoreAudio,
   lowScoreAudio,
-  themeAudio
-} from "./modules/music.js"
+  themeAudio,
+} from "./modules/music.js";
 
 const operators = ["+", "-", "*", "/"];
 const body = document.querySelector("body");
@@ -63,6 +63,7 @@ class="result__star"
 />`;
 footer.style.pointerEvents = "none";
 
+// functions
 // QA generation
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -90,12 +91,6 @@ function getRandomAnswers(ans) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
   }
-  // if (!Number.isInteger(ans)) {
-  //   let randomValue1 = Math.random();
-  //   let randomValue2 = Math.random();
-  //   randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
-  //   randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
-  // }
   if (
     randomAnswer1 === ans ||
     randomAnswer2 === ans ||
@@ -125,13 +120,12 @@ function returnAnswer(op1, op2, op) {
     case "*":
       return op1 * op2;
     case "/":
-      // return +(op1 / op2).toFixed(1);
       return (op1 * op2) / op2;
   }
 }
 
 function generateProblem() {
-  let no = +getLocal("currentLevel") < 9 ? 10 : 15; 
+  let no = +getLocal("currentLevel") < 9 ? 10 : 15;
   let [op1, op2, op] = [
     getRandomNumber(no),
     getRandomNumber(no),
@@ -193,7 +187,6 @@ function randIndex(index) {
 
 function assignOptions() {
   randomAsteroid = gameAsteroids.splice(randIndex(gameAsteroids.length), 1)[0];
-  console.log(randomAsteroid);
   if (!randomAsteroid) {
     endGame();
     return;
@@ -262,7 +255,7 @@ function calculatePercentage(ques, score) {
 }
 
 function showHighScoreGif() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     themeAudio.pause();
     fireworksPlay();
     highScoreAudio.play();
@@ -272,7 +265,7 @@ function showHighScoreGif() {
 }
 
 function showPersonalBestGif() {
-  if(checkPlayable()){
+  if (checkPlayable()) {
     themeAudio.pause();
     fireworksPlay();
     highScoreAudio.play();
@@ -302,16 +295,13 @@ function updateNewScore(localjson, currLevel, currTime, currPercentage) {
 }
 
 function endGame() {
-  // debugger;
   clearTime();
   window.removeEventListener("keyup", listenKeys);
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
-  console.log(currTime);
-  if(!currTime){
-    currTime=1;
+  if (!currTime) {
+    currTime = 1;
   }
-  console.log(currTime);
   let ques = getLocal("gameQuestions");
   let currPercentage = Math.floor(
     calculatePercentage(ques, +scoreTag.innerText)

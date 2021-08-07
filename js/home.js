@@ -42,14 +42,12 @@ const video = document.querySelector(".video");
 const video_player = document.querySelector("video");
 const skipBtn = document.querySelector(".skip");
 const newgame = document.querySelector(".main__newgame--link");
-
 const resume_cnt = document.querySelector(".main__resume");
 const resume = resume_cnt.querySelector(".main__resume--link");
 const survival_cnt = document.querySelector(".main__survival");
 const survival = survival_cnt.querySelector(".main__survival--link");
 const bonus_cnt = document.querySelector(".main__bonus");
 const bonus = bonus_cnt.querySelector(".main__bonus--link");
-
 let activeBtn = {};
 let soundSrc;
 let playable;
@@ -68,6 +66,7 @@ let levelValue = JSON.stringify({
 });
 getLocal("videoplay") ? "" : updateLocal("videoplay", "0");
 
+// function
 function updateCurrentLevel() {
   levelMenu.querySelector(".footer__currentlevel").innerText =
     getLocal("currentLevel") || 1;
@@ -84,6 +83,21 @@ function video_remover() {
   if (checkPlayable()) {
     playMusic(playable);
   }
+}
+
+function checkActive() {
+  !getLocal("currentLevel")
+    ? (options[0].classList.add("not-active"), (activeBtn["resume"] = false))
+    : (activeBtn["resume"] = true);
+
+  !getLocal("currentLevel") || getLocal("currentLevel") < 5
+    ? (survival_cnt.classList.add("not-active"),
+      (activeBtn["survival"] = false))
+    : (activeBtn["survival"] = true);
+
+  !getLocal("currentLevel") || getLocal("allDone") != "yes"
+    ? (bonus_cnt.classList.add("not-active"), (activeBtn["bonus"] = false))
+    : (activeBtn["bonus"] = true);
 }
 
 // event listeners
@@ -215,24 +229,6 @@ soundToggle.addEventListener("click", (e) => {
   containsClass(popup, "popup__active") ? "" : playMusic(playable);
 });
 
-function checkActive() {
-
-  !getLocal("currentLevel")
-    ? (options[0].classList.add("not-active"), (activeBtn["resume"] = false))
-    : (activeBtn["resume"] = true);
-
-  !getLocal("currentLevel") || getLocal("currentLevel") < 5
-    ? (survival_cnt.classList.add("not-active"),
-      (activeBtn["survival"] = false))
-    : (activeBtn["survival"] = true);
-
-  !getLocal("currentLevel") || getLocal("allDone") != "yes"
-    ? (bonus_cnt.classList.add("not-active"), (activeBtn["bonus"] = false))
-    : (activeBtn["bonus"] = true);
-
-  console.log(activeBtn);
-}
-
 window.onload = function () {
   checkActive();
   updateCurrentLevel();
@@ -251,7 +247,7 @@ window.onload = function () {
         (playable = checkPlayable()))
       : (updateLocal("currentSoundSrc", soundToggle.src), (playable = true));
   }
-  if(!getLocal("allDone")){
+  if (!getLocal("allDone")) {
     updateLocal("allDone", "no");
   }
 };

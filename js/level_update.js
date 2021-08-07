@@ -15,7 +15,6 @@ let newLevel = JSON.stringify({
   9: ["locked", null, null, 12],
   10: ["locked", null, null, 12],
 });
-
 let levelValue;
 let clickedLevel;
 let clickedGameTime;
@@ -23,6 +22,7 @@ let clickedGameBestTime;
 let clickedLevelPercentage;
 let clickedLevelQuestions;
 
+// functions
 function returnLevelStatus(status, level) {
   if (status === "played") {
     return `<img src="./assets/images/finished_level.svg" alt="asteroid" />

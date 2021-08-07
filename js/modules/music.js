@@ -7,9 +7,8 @@ export const gameSound = document.querySelector(".header__info--sound");
 export const soundToggle = document.querySelector(".settings__sound--icon");
 export const audioGame = document.querySelectorAll(".audio__game");
 export const fireworks = document.querySelector(".audio__fireworks");
-
-export const highScoreAudio=document.querySelector('.audio__high');
-export const lowScoreAudio=document.querySelector('.audio__low');
+export const highScoreAudio = document.querySelector(".audio__high");
+export const lowScoreAudio = document.querySelector(".audio__low");
 export function updateLocalSoundSrc(src) {
   localStorage.setItem("currentSoundSrc", src);
 }
@@ -27,7 +26,7 @@ export function handleThemePromise(promise) {
   });
 }
 export function handleAudioPromise(promise) {
-promise.catch(_=>{});
+  promise.catch((_) => {});
 }
 export function playMusic(playable) {
   if (!playable) {
@@ -56,21 +55,21 @@ export function checkPlayable() {
     : false;
 }
 
-export function gameAudioPlay(val){
+export function gameAudioPlay(val) {
   themeAudio.volume = 0.8;
-  audioGame.forEach(audio => {
+  audioGame.forEach((audio) => {
     audio.currentTime = 0;
   });
-  audioGame[(val===0)?1:0].pause();
+  audioGame[val === 0 ? 1 : 0].pause();
   handleAudioPromise(audioGame[val].play());
 }
 
-audioGame.forEach(audio => {
-  audio.addEventListener("ended", (e) =>{
-  themeAudio.volume = 1;
+audioGame.forEach((audio) => {
+  audio.addEventListener("ended", (e) => {
+    themeAudio.volume = 1;
   });
 });
 
-export function fireworksPlay(){
-  fireworks.play(); 
+export function fireworksPlay() {
+  fireworks.play();
 }
