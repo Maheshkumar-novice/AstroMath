@@ -23,19 +23,24 @@
   --btn-text: clamp(1.5rem, 5vw, 2rem);
   --small-text: clamp(1.2rem, 5vw, 2rem);
 }
+
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--primary-color);
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 15rem;
   background: var(--secondary-color);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--orange);
 }
+
 html {
   background: url("../assets/images/earth-space-scene/bg-compressed.jpg") center;
   background-size: cover;
@@ -167,9 +172,10 @@ a {
 }
 
 .credits__item {
-  font-size: clamp(1rem, 5vw, 2.7rem);
   text-align: center;
   color: var(--secondary-color);
+  display: block;
+  font-size: 2rem;
 }
 
 .popup__username {
@@ -249,21 +255,14 @@ a {
   position: relative;
 }
 
-.settings__input--length-cnt{
+.settings__input--length-cnt {
   top: 100%;
   position: absolute;
   font-size: clamp(1rem, 3vw, 3rem);
 }
 
-.settings__input--length{
+.settings__input--length {
   color: var(--danger-color);
-}
-
-.credits__item {
-  font-size: 2rem;
-}
-.credits__item {
-  display: block;
 }
 
 .info__tagline {
@@ -345,17 +344,39 @@ a {
 }
 
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(0px, 0px) rotate(0deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
 }
 
 @media (max-width: 700px) {
