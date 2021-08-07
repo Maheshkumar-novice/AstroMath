@@ -7,21 +7,28 @@
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/pyro.css" />
     <link rel="stylesheet" href="./css/bonus.css" />
-    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <title>AstroMath | bonus</title>
   </head>
   <body class="not-home">
+    <!--Loading Gif-->
+    <div class="loader">
+      <img src="./assets/gifs/loading.gif" alt="" />
+    </div>
     <!-- theme music -->
     <audio class="audio__theme" src="./assets/music/themeMusic.mp3"></audio>
-     <!--High Score-->
-     <audio class="audio__high" src="./assets/music/game/high_Score.mp3"></audio>
-     <!--Low Score-->
-     <audio class="audio__low" src="./assets/music/game/game_lost.mp3"></audio>
+    <!--High Score-->
+    <audio class="audio__high" src="./assets/music/game/high_Score.mp3"></audio>
+    <!--Low Score-->
+    <audio class="audio__low" src="./assets/music/game/game_lost.mp3"></audio>
     <!-- Game Music -->
     <audio class="audio__game" src="./assets/music/game/explode.wav"></audio>
     <audio class="audio__game" src="./assets/music/game/danger.mp3"></audio>
     <!-- Fireworks -->
-    <audio class="audio__fireworks" src="./assets/music/game/firework.wav"></audio>
+    <audio
+      class="audio__fireworks"
+      src="./assets/music/game/firework.wav"
+    ></audio>
     <!-- header -->
     <header class="header">
       <h2 class="header__info header__info--time">120 s</h2>
@@ -46,7 +53,8 @@
           Compare Answers and Click on the
           <span class="primary-color">Right</span> half
           <span class="primary-color">(D key)</span> if the answers are same or
-          Click on the <span class="primary-color">Left</span> half <span class="primary-color">(A key)</span>
+          Click on the <span class="primary-color">Left</span> half
+          <span class="primary-color">(A key)</span>
         </p>
         <button class="popup__button popup__button--start">Start</button>
       </section>

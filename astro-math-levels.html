@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/level-page.css" />
     <title>AstroMath | levels</title>
-    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
   </head>
   <body class="not-home">
+    <!--Loading Gif-->
+    <div class="loader">
+      <img src="./assets/gifs/loading.gif" alt="" />
+    </div>
     <!-- theme music -->
     <audio class="audio__theme" src="./assets/music/themeMusic.mp3"></audio>
     <!-- header -->
@@ -44,11 +48,10 @@
             alt=""
             class="settings__edit--icon"
           />
-          <input
-            class="settings__input settings__input--username"
-            readonly
-          />
-          <p class="settings__input--length-cnt none"><span class="settings__input--length">15</span> Characters left</p>
+          <input class="settings__input settings__input--username" readonly />
+          <p class="settings__input--length-cnt none">
+            <span class="settings__input--length">15</span> Characters left
+          </p>
         </div>
       </div>
     </section>

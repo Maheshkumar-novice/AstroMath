@@ -372,3 +372,10 @@ window.addEventListener("load", () => {
   }
   assignOptions();
 });
+document.onreadystatechange = function() {
+  if (document.readyState !== "complete") {
+      document.querySelector('.loader').classList.remove('none');
+  } else {
+    document.querySelector('.loader').classList.add('none');
+  }
+};
