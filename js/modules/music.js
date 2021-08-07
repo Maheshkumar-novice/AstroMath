@@ -26,7 +26,9 @@ export function handleThemePromise(promise) {
     }
   });
 }
-
+export function handleAudioPromise(promise) {
+promise.catch(_=>{});
+}
 export function playMusic(playable) {
   if (!playable) {
     themeAudio.pause();
@@ -57,10 +59,10 @@ export function checkPlayable() {
 export function gameAudioPlay(val){
   themeAudio.volume = 0.8;
   audioGame.forEach(audio => {
-    audio.pause();
     audio.currentTime = 0;
   });
-  audioGame[val].play();
+  audioGame[(val===0)?1:0].pause();
+  handleAudioPromise(audioGame[val].play());
 }
 
 audioGame.forEach(audio => {
