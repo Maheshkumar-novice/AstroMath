@@ -34,7 +34,7 @@ const highImg = document.querySelector(".result__high-score");
 const resultImg = document.querySelector(".result__img");
 const pyro = document.querySelector(".pyro");
 const lifeContainer = document.querySelector(".life");
-const operators = ["+", "-"];
+const operators = ["+", "-", "*"];
 const quotes = {
   positve: ["You Did it!", "You crushed your high score!", "AHHHH Improved!"],
   negative: [
@@ -93,6 +93,19 @@ function generateRandomProblem() {
   return [eq1, eq2, false];
 }
 
+let allPossible;
+
+function getAllDivisor(ans){
+  allPossible = [];
+  if(ans<0) {ans *= -1;}
+  allPossible.push(1);
+  for(let i=2; i<=(ans/2); i++){
+    if(!(ans % i)){
+      allPossible.push(i);
+    }
+  }
+}
+
 function generateCorrectProblem() {
   let eq1op1 = getRandomNumber();
   let x = getRandomNumber();
@@ -105,6 +118,31 @@ function generateCorrectProblem() {
   let eq2op2 = "z";
   let temp = eq2op1 * x * -1;
   eq2op2 = ans1 + temp;
+
+  if(eq2op === "*"){
+    let rand1, rand2, val, a, b, eq1, eq2;
+    getAllDivisor(ans1);
+    let randgen = allPossible.length === 1 ? 0 : Math.floor(Math.random() * (allPossible.length-1) + 1);
+    a = allPossible[randgen];
+    b = ans1/a;
+    if(ans1 === 0){
+      rand1 = `0 * ${getRandomNumber()}`;
+      rand2 = `${getRandomNumber()} * 0`;
+      val = [rand1, rand2];
+      eq2 = val[Math.floor(Math.random() * val.length)];
+    }
+    else if(ans1 < 0){
+      rand1 = `${a} * ${b}`;
+      rand2 = `${b} * ${a}`;
+      val = [rand1, rand2];
+      eq2 = val[Math.floor(Math.random() * val.length)];
+    }
+    else{
+      eq2 = `${a} * ${b}`;
+    }
+    eq1 = `${eq1op1 * x} ${eq1op} ${eq1op2}`;
+    return [eq1, eq2, true]
+  }
 
   if (eq2op === "-") {
     eq2op2 *= -1;
