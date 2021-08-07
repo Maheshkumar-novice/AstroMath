@@ -203,6 +203,12 @@ h2.not-active::after {
   }
 }
 
+@media (max-width: 700px) {
+  .modes h2::after {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 435px) {
   .main__options__cnt .main__fire {
     transform: translateY(-25%);
