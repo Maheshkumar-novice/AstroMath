@@ -307,6 +307,7 @@ a {
 }
 
 .info__ls {
+  margin-top: 2rem;
   color: var(--secondary-color);
   font-size: var(--small-text);
   text-align: center;
