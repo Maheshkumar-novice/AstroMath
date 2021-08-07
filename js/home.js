@@ -255,3 +255,10 @@ window.onload = function () {
     updateLocal("allDone", "no");
   }
 };
+document.onreadystatechange = function() {
+  if (document.readyState !== "complete") {
+      document.querySelector('.loader').classList.remove('none');
+  } else {
+    document.querySelector('.loader').classList.add('none');
+  }
+};
