@@ -1,5 +1,5 @@
 :root {
-  --game-info-text: clamp(1.5rem, 4vw, 3.5rem);
+  --game-info-text: clamp(1.3rem, 4vw, 3rem);
   --asteroid-text: clamp(2rem, 2vw, 3.25rem);
 }
 
@@ -219,7 +219,7 @@ a {
 .popup__blocker h1{
   font-size: var(--site-title);
 }
-@media (max-width: 950px) {
+@media (max-width: 1050px) {
   .header {
     display: grid;
     grid-template-columns: 1fr 1fr;
