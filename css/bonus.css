@@ -81,7 +81,6 @@ a {
   align-items: center;
   flex: 1;
   font-size: 5rem;
-  /* transition: background-color 0.2s ease; */
 }
 
 .main__item--right {
@@ -94,12 +93,12 @@ a {
   color: var(--primary-color);
 }
 
-#bg-correct {
+.bg-correct {
   font-size: 0;
   background-color: greenyellow;
 }
 
-#bg-wrong {
+.bg-wrong {
   font-size: 0;
   background-color: red;
 }

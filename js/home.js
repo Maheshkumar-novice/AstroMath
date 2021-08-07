@@ -63,8 +63,8 @@ let levelValue = JSON.stringify({
   6: ["locked", null, null, 10],
   7: ["locked", null, null, 11],
   8: ["locked", null, null, 12],
-  9: ["locked", null, null, 15],
-  10: ["locked", null, null, 15],
+  9: ["locked", null, null, 12],
+  10: ["locked", null, null, 12],
 });
 getLocal("videoplay") ? "" : updateLocal("videoplay", "0");
 
