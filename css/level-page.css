@@ -1,11 +1,13 @@
 body {
   background-color: rgba(0, 0, 0, 0.6);
 }
+
 .levels {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .levels__level-cnt {
   height: 280px;
   width: 200px;
@@ -16,10 +18,12 @@ body {
   align-items: center;
   margin: 2rem 6rem;
 }
+
 .levels__img-cnt {
   cursor: pointer;
   position: relative;
 }
+
 .levels__level {
   font-size: 8rem;
   position: absolute;
@@ -32,11 +36,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .levels__star-cnt {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
-.header__text a{
+
+.header__text a {
   font-size: var(--icon-size);
 }

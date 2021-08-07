@@ -1,30 +1,27 @@
 export const body = document.body;
 export const popup = document.querySelector(".popup");
 export const levelMenu = document.querySelector(".footer__level");
-
 export const settings = document.querySelector(".settings");
 export const info = document.querySelector(".info");
 export const modes = document.querySelector(".modes");
 export const credits = document.querySelector(".credits");
-
 export const settingIcon = document.querySelector(".header__settings-icon");
 export const infoIcon = document.querySelector(".header__info-icon");
 export const modesMenu = document.querySelector(".footer__modes");
 export const creditMenu = document.querySelector(".footer__credit");
-
-const homeIcon = document.querySelector(".fa-home");
-
 export const nameEditIcon = document.querySelector(".settings__edit--icon");
 export const nameInput = document.querySelector(".settings__input");
-export const charLenCnt = document.querySelector(".settings__input--length-cnt");
+export const charLenCnt = document.querySelector(
+  ".settings__input--length-cnt"
+);
 export const charLen = document.querySelector(".settings__input--length");
 export const popupUsername = document.querySelector(".popup__username");
 export const userChangeButton = document.querySelector(
   ".popup__button--change-user"
 );
-
-const timeHolder = document.querySelector(".header__info--time");
 export let secondsLeft;
+const homeIcon = document.querySelector(".fa-home");
+const timeHolder = document.querySelector(".header__info--time");
 let countdown;
 
 // local storage helpers
@@ -102,9 +99,7 @@ export function check(arg) {
   if (menuItemsCheck && containsClass(body, "blur") && arg === 1) {
     classWorker("blur", "remove", body);
   } else if (menuItemsCheck && nilCheck(popup) && arg === 2) {
-    popup
-      ? classWorker("none", "remove", popup)
-      : console.log("no-pop-up-buddy");
+    popup ? classWorker("none", "remove", popup) : "";
   }
 }
 
@@ -148,7 +143,7 @@ export function modesView() {
   viewWorker(modes, "modes");
 }
 
-// Settings of UserName
+// settings of username
 export function editName(editing) {
   if (editing) {
     classWorker("border-bottom", "add", nameInput);
@@ -170,14 +165,13 @@ export function editName(editing) {
 }
 
 let store;
-export function updateCharactersLength(){
-  if(nameInput.value.length == 15){
+export function updateCharactersLength() {
+  if (nameInput.value.length == 15) {
     store = nameInput.value.slice(0, 15);
-  }
-  else if(nameInput.value.length > 15){
+  } else if (nameInput.value.length > 15) {
     nameInput.value = store;
   }
-  charLen.innerText = 15 - nameInput.value.length; 
+  charLen.innerText = 15 - nameInput.value.length;
 }
 
 export function positionCursor(end) {
@@ -198,7 +192,7 @@ export function updatePopup(value) {
   popupUsername ? (popupUsername.textContent = value) : "no-pop-up-buddy";
 }
 
-// Timer
+// timer
 export function timer(seconds) {
   clearInterval(countdown);
 
@@ -231,7 +225,6 @@ function displayTimeLeft(seconds) {
 }
 
 export function getLevelTime(level) {
-  console.log(level);
   if (level == 1) {
     return 45;
   } else if (level <= 4) {

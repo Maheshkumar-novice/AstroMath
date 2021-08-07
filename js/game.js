@@ -22,6 +22,7 @@ const themeAud = document.querySelector(".audio__theme");
 let soundSrc;
 let playable;
 
+// functions
 function triggerOption(key) {
   invertColor(keys[key]);
   setTimeout(() => {

@@ -4,7 +4,7 @@ import {
   lowScoreAudio,
   gameAudioPlay,
   themeAudio,
-  fireworksPlay
+  fireworksPlay,
 } from "./modules/music.js";
 import {
   getLocal,
@@ -66,6 +66,7 @@ const keys = {
 };
 footer.style.pointerEvents = "none";
 
+// functions
 // QA generation
 function getRandomOperator() {
   return operators[Math.floor(Math.random() * operators.length)];
@@ -93,12 +94,6 @@ function getRandomAnswers(ans) {
     randomAnswer1 = -1 * randomAnswer1;
     randomAnswer2 = -1 * randomAnswer2;
   }
-  // if (!Number.isInteger(ans)) {
-  //   let randomValue1 = Math.random();
-  //   let randomValue2 = Math.random();
-  //   randomAnswer1 = Number((randomAnswer1 + randomValue1).toFixed(1));
-  //   randomAnswer2 = Number((randomAnswer2 + randomValue2).toFixed(1));
-  // }
   if (
     randomAnswer1 === ans ||
     randomAnswer2 === ans ||
@@ -128,7 +123,6 @@ function returnAnswer(op1, op2, op) {
     case "*":
       return op1 * op2;
     case "/":
-      // return +(op1 / op2).toFixed(1);
       return (op1 * op2) / op2;
   }
 }
@@ -195,7 +189,6 @@ function randIndex(index) {
 
 function assignOptions() {
   randomAsteroid = gameAsteroids.splice(randIndex(gameAsteroids.length), 1)[0];
-  console.log(randomAsteroid);
   if (!randomAsteroid) {
     asteroids = "";
     answers.splice(0, answers.length);
@@ -259,18 +252,6 @@ function activateAnimation() {
   body.style.backgroundColor = "#ff000070";
   body.style.overflow = "hidden";
 }
-
-main.addEventListener("animationend", function (e) {
-  body.style.backgroundColor = "initial";
-  body.style.overflow = "initial";
-  main.style.animation = "none";
-});
-
-gameOptions.forEach((option) => {
-  option.addEventListener("click", (e) => {
-    answerValidate(e.target.textContent.trim());
-  });
-});
 
 // end Game
 function endGame() {
@@ -346,6 +327,18 @@ function listenKeys(e) {
 }
 
 // event listeners
+main.addEventListener("animationend", function (e) {
+  body.style.backgroundColor = "initial";
+  body.style.overflow = "initial";
+  main.style.animation = "none";
+});
+
+gameOptions.forEach((option) => {
+  option.addEventListener("click", (e) => {
+    answerValidate(e.target.textContent.trim());
+  });
+});
+
 start.addEventListener("click", () => {
   window.addEventListener("keyup", listenKeys);
   footer.style.pointerEvents = "unset";

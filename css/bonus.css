@@ -1,5 +1,5 @@
 :root {
-  --game-info-text: clamp(1.5rem, 4vw, 3.5rem);
+  --game-info-text: clamp(1.3rem, 4vw, 3rem);
   --asteroid-text: clamp(2rem, 2vw, 3.25rem);
 }
 
@@ -129,14 +129,8 @@ a {
   width: 100%;
   height: 100vh;
   background-color: #001833;
-  /* background-color: #260029; */
-  /* background-color: #000; */
-  /* background-color: #000d1b; */
-  /* background: url(../assets/images/result.jpg); */
-  /* background-size: cover; */
   padding: 1rem;
   z-index: 100;
-
   display: grid;
   grid-template-rows: 100px 1fr 150px;
 }
@@ -216,10 +210,12 @@ a {
   min-width: 100vw;
   background-color: black;
 }
+
 .popup__blocker h1{
   font-size: var(--site-title);
 }
-@media (max-width: 950px) {
+
+@media (max-width: 1050px) {
   .header {
     display: grid;
     grid-template-columns: 1fr 1fr;

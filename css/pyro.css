@@ -7,6 +7,7 @@
   overflow: hidden;
   z-index: -1;
 }
+
 .pyro > .before,
 .pyro > .after {
   position: absolute;
