@@ -353,7 +353,7 @@ buttons.forEach((data) => {
 });
 
 window.addEventListener("load", () => {
-  if (+getLocal("currentLevel") < 6) {
+  if (+getLocal("currentLevel") < 5) {
     body.innerHTML = "";
     body.innerHTML = `<div class="popup__blocker">
     <h1>You Need to unlock <span class="secondary-color">level 5</span> to access this Game</h1>
