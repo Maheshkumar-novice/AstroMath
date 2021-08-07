@@ -306,6 +306,11 @@ function endGame() {
   window.removeEventListener("keyup", listenKeys);
   let localjson = JSON.parse(getLocal("levelValue"));
   let currTime = +getLocal("gameTime") - (secondsLeft < 0 ? 0 : secondsLeft);
+  console.log(currTime);
+  if(!currTime){
+    currTime=1;
+  }
+  console.log(currTime);
   let ques = getLocal("gameQuestions");
   let currPercentage = Math.floor(
     calculatePercentage(ques, +scoreTag.innerText)
