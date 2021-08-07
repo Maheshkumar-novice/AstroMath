@@ -158,7 +158,6 @@ function generateQA() {
   for (let i = 0; i < questions; i++) {
     generateProblem();
   }
-  console.table(qaMap);
   generateRandomChoices(qaMap);
 }
 
