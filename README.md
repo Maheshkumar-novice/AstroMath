@@ -1,6 +1,6 @@
 # AstroMath
 ## Destroy Asteroids By Solving Math and Save The Earth
-## The Odin Project - [Jam](https://itch.io/jam/top-jam-1) - 1
+## **[The Odin Project](https://theodinproject.com)** - [Jam](https://itch.io/jam/top-jam-1) - 1
    ![home](./assets/readme/home.png)
 ## Languages & Tools
 - HTML
