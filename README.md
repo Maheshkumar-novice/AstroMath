@@ -16,6 +16,8 @@
 
   ![howToPlay](./assets/images/how-to-play/howToPlay.png)
 
+## Demo
+   ![demo](./assets/readme/astromath_demo.gif)
 ## Features
 ### Settings
    ![settings](./assets/readme/settings.png)
